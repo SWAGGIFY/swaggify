@@ -146,7 +146,7 @@ bcrypt.genSalt(10, (err, salt)=>{
 
 //Get username
 module.exports.getUserByUsername =  (username, callback)=>{
-const query = {$or:[{username : username}, {email:username}] };
+const query = {$or:[{username : username}, {socialNetwork:{$elemMatch:{email:username}}}] };
 User.findOne(query, callback);
 
 }

@@ -26,7 +26,7 @@ router.post('/sign-up',[
         lastname : req.body.lastname,
         password : req.body.pwd,
         socialNetwork : [{
-            email:req.body.email
+            email:req.body.email.toLowerCase(),
         }]
     });
     const errors = validationResult(req);
@@ -49,7 +49,15 @@ router.post('/sign-up',[
 //Log user in
 router.post('/sign-in', passport.authenticate('local',{ failureRedirect: '/auth/sign-in' }),
    (req, res)=>{
-     console.log(req.user);
+     if(req.user.role =="Admin"){
+         res.redirect('/admin/admin-dashboard');
+     }else if(req.user.role =="Artist"){
+        res.redirect('/artist/artist-dashboard');
+     }else if(req.user.role == "Supplier"){
+        res.redirect('/supplier/supplier-dashboard');
+     }else{
+        res.redirect('/customer/customer-dashboard');
+     }
   }
 );
 
