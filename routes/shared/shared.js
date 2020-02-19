@@ -5,8 +5,14 @@ const router = express.Router();
 //models
 const User= require('../../model/user');
 
+//Ajax data handler
+router.get('/object-data',ensureAuthentication,(req,res)=>{
+    console.log(req.query.id);
+    console.log(req.query.data_type);
+})
+
 //get User Creation router
-router.post('/admin-add-user',ensureAuthendication,(req, res)=>{
+router.post('/admin-add-user',ensureAuthentication,(req, res)=>{
     
     const newUSer = new User({
         firstname : req.body.firstname,
@@ -31,6 +37,9 @@ router.post('/admin-add-user',ensureAuthendication,(req, res)=>{
             });
         });
 });
+
+///Delete handle
+
 
 // update function
 router.put('/profileupdate', function(req, res) {
