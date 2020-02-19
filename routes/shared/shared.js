@@ -6,7 +6,7 @@ const router = express.Router();
 const User= require('../../model/user');
 
 //get User Creation router
-router.post('/admin-add-user',ensureAuthendication,(req, res)=>{
+router.post('/admin-add-user',ensureAuthentication,(req, res)=>{
     
     const newUSer = new User({
         firstname : req.body.firstname,
