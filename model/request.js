@@ -2,11 +2,11 @@ const mongoose = require ('mongoose');
 const bcrypt  = require ('bcryptjs');
 
 const RequestSchema = mongoose.Schema({
-    order_id:{
+    order_quantity:{
         type:String
       },
     date:{
-    type:date
+    type:Date
     },
     product_name:{
         type:String

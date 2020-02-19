@@ -26,14 +26,14 @@
                                         </thead>
                                         <tbody>
                                             {{#each users}}
-                                                <tr data-id="{{#each this}}{{id}}{{/each}}">
+                                                <tr data-id="{{#each this}}{{_id}}{{/each}}" data-type="user">
                                                     <td>{{#each this}}{{firstname}}{{/each}}</td>
-                                                    <td>{{lastname}}</td>
-                                                    <td>1234567890</td>
-                                                    <td>{{email}}</td>
+                                                    <td>{{#each this}}{{lastname}}{{/each}}</td>
+                                                    <td>{{#each this}}{{role}}{{/each}}</td>
+                                                    <td>{{#each this}}{{email}}{{/each}}</td>
                                                     <td class="action-link">
                                                         <a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editDetailModal"><i class="fa fa-edit"></i>Edit</a>
-                                                        <a class="delete" href="#" title="Delete" onclick="confirm_delete('user', '{{#each this}}{{_id}}{{/each}}')" data-toggle="modal" data-target="#deleteDetailModal"><i class="fa fa-remove"></i>Delete</a>
+                                                        <a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="fa fa-remove"></i>Delete</a>
                                                     </td>
                                                 </tr>
                                             {{/each}}
@@ -52,31 +52,6 @@
                                     </table>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Delete Modal -->
-            <div id="deleteDetailModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title"><i class="fa fa-trash"></i>DELETE </h4>
-                        </div>
-                        <div class="modal-body">
-                          <p class="object"></p>
-                            <div class="table-action-box">
-                              <form action="/shared/delete" method="post">
-                                  <input class="id" type="hidden" name="id">
-                                  <input class="data_type" type="hidden" name="data_type">
-                                  <button type="submit" class="save"><i class="fa fa-check"></i>YES</button>
-                                  <a href="#" class="cancel" data-dismiss="modal"><i class="fa fa-ban"></i>CLOSE</a>
-                              </form>
-                            </div>
-                            <div class="clearfix"></div>
                         </div>
                     </div>
                 </div>

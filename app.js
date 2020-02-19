@@ -46,7 +46,10 @@ const app = express();
 
 //View engine
 app.set('views', path.join(__dirname, 'views'))
-app.engine('handlebars', exphbs({defaultLayout:'layout'}));
+app.engine('handlebars', exphbs({
+  defaultLayout:'layout',
+  partialsDir: __dirname + '/views/partials/'
+}));
 app.set('view engine', 'handlebars');
 
 //Set static folder

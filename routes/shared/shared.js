@@ -1,44 +1,50 @@
 const express = require('express');
 const { check, validationResult } = require('express-validator');
-const passport = require ('passport');
 const router = express.Router();
 //models
 const User= require('../../model/user');
+const Request= require('../../model/request');
 
 //Ajax data handler
 router.get('/object-data',ensureAuthentication,(req,res)=>{
-    console.log(req.query.id);
     console.log(req.query.data_type);
+    var id = req.query.id.slice(0,24);
+    if(req.query.data_type =="user"){
+        console.log("user");
+        User.findOne({_id:id},(err, user)=>{
+            if(err) throw err;
+            res.json(user);
+        });
+    }else if(req.query.data_type =="request"){
+        Request.findOne({_id:id},(err, requests)=>{
+            if(err) throw err;
+            res.json(requests);
+        })
+    }else{
+
+    }
 })
 
-//get User Creation router
-router.post('/admin-add-user',ensureAuthentication,(req, res)=>{
-    
-    const newUSer = new User({
-        firstname : req.body.firstname,
-        lastname : req.body.lastname,
-        username : req.body.username,
-        role: req.body.role,
-        password : req.body.pwd,
-        socialNetwork : [{
-            email:req.body.email.toLowerCase(),
-        }]
-    });
-    const errors = validationResult(req);
-
-        console.log(req.body.email);
-        User.createUser(newUSer,(err)=>{
-            if (err) throw err;
-            const alert = "alert alert-success";
-            const msg = "Successfully added";
-            res.render('./homefiles/index',{
-                alert:alert,
-                msg: msg
-            });
-        });
-});
-
 ///Delete handle
+router.get('/delete-data', ensureAuthentication,(req,res)=>{
+    if(req.query.id ==req.user.id && req.user.role =="Admin"){
+        res.json('Iwe ukuputa dzemari, ukuda kuzvibvisa musystem uriwe admin');
+    }else{
+        if(req.query.data_type =="user"){
+            User.findOneAndDelete({_id:req.query.id},(err)=>{
+                    if (err) throw err;
+                    res.json("Successfully deleted");
+            });
+        }else if(req.query.data_type =="request"){
+            Request.findOneAndDelete({_id:req.query.id},(err)=>{
+                if (err) throw err;
+                res.json("Successfully deleted");
+        });
+        }else{
+            
+        }
+    }
+});
 
 
 // update function
