@@ -38,6 +38,8 @@ const artist = require('./routes/artist/artist');
 const supplier = require('./routes/supplier/supplier');
 //Customer
 const customer = require('./routes/customer/customer');
+//Shared
+const shared = require('./routes/shared/shared');
 
 //Initializing App
 const app = express();
@@ -101,6 +103,8 @@ app.use('/supplier', supplier);
 app.use('/artist', artist);
 //Under customer
 app.use('/customer', customer);
+//Under shared
+app.use('/shared', shared);
 
 //Set port and Start App
 app.set('port', (process.env.PORT || 3000));
