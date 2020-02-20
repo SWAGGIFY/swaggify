@@ -10,7 +10,7 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/">Swaggify</a>
+            <a class="navbar-brand" href="/">Swaggify Supplier</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -32,12 +32,12 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        User Managemant
+                         Managemant
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#AddUser">Add user</a>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#custRequest">Add Product</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/admin/admin-view-users">View users</a>
+                        <a class="dropdown-item" href="/customer/customer-view-request">View users</a>
                         </div>
                     </li>
                     <li class="nav-item">
@@ -56,7 +56,7 @@
         <script src="/ajax.js"></script>
     </body>
     <!-- Modal -->
-    <!--Delete-->
+    <!--Delete -->
     <!-- Delete Modal -->
             <div id="deleteDetailModal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
@@ -77,31 +77,65 @@
                     </div>
                 </div>
             </div>
-            <!--Password-->
-    <div class="modal fade" id="password-settings" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            
+    <!-- Request Modal -->
+    <div class="modal fade" id="custRequest" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Password settings</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add Product/h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="/auth/password-settings" method="POST">
+            <form action="/supplier/add" method="POST">
                 <div class="modal-body">
                     
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Current Password</label>
-                            <input type="text" name="cpwd" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                            <label for="exampleInputEmail1">Product Id</label>
+                            <input type="number" name="productid" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">New Password</label>
-                            <input type="text" name="pwd" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                            <label for="exampleInputEmail1">Product name</label>
+                            <input type="text" name="productname" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Confirm Password</label>
-                            <input type="text" name="pwd1" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                            <label for="exampleInputEmail1">Product Price</label>
+                            <input type="text" name="productprice" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
                         </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Product Description</label>
+                            <textarea name="productdescription" id="" cols="10" rows="10" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Product categories</label>
+                            <input type="text" name="productcategory" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Product color</label>
+                            <input type="text" name="productcolor" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Product size</label>
+                            <input type="text" name="productsize" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Product Quantity</label>
+                            <input type="text" name="productquatity" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Product Tag</label>
+                            <input type="text" name="producttag" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Artist Name</label>
+                            <input type="text" name="artistname" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Artist Song</label>
+                            <input type="text" name="artistsong" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                        </div>
+                        
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -112,43 +146,5 @@
             </div>
         </div>
     </div>
-
-    <!--Add user-->
-    <div class="modal fade" id="AddUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add user</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="/admin/admin-add-user" method="POST">
-                <div class="modal-body">
-                    
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Email</label>
-                            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Role</label>
-                            <select name="role" id="">
-                                <optgroup>
-                                    <option value="Admin">Admin</option>
-                                    <option value="Supplier">Supplier</option>
-                                    <option value="Artist">Artist</option>
-                                    <option value="Customer">Cutsomer</option>
-                                </optgroup>
-                            </select>
-                        </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                </div>
-            
-            </form>
-            </div>
-        </div>
-    </div>
+    <!-- end of request modal-->
 </html>

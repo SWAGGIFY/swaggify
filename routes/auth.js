@@ -6,6 +6,67 @@ const bcrypt = require('bcryptjs');
 //models
 const User= require('../model/user');
 
+//Google handler
+///Signing up using google Account(google strategy)
+router.get('/google',
+passport.authenticate('google', {
+  scope: [//'profile','email'
+        'https://www.googleapis.com/auth/userinfo.profile',
+        'https://www.googleapis.com/auth/userinfo.email'
+    ]
+}));
+
+///Google account
+router.get('/google/redirect',
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  (req, res)=>{
+    if(req.user.role =="Admin"){
+      res.redirect('/admin/admin-dashboard');
+    }else if (req.user.role =="Supplier") {
+        if(req.user.active == false){
+            res.redirect('/auth/supplier-verify-account');
+        }else{
+            res.redirect('/suplier/supplier-dashboard');
+        }
+    }else if(req.user.role =="Artist") {
+        if(req.user.active == false){
+            res.redirect('/auth/artist-verify-account');
+        }else{
+            res.redirect('/artist/artist-dashboard');
+        }
+    }else{
+        if(req.user.active == false){
+            res.redirect('/auth/user-verify-account');
+        }else{
+            res.redirect('/customer/customer-dashboard');
+        }
+    }
+  });
+
+  ///Endle google handler
+//acount verification
+  router.get('/artist-verify-account', ensureAuthentication, (req, res)=>{
+    res.render('./homefiles/accountVerification/artist',{
+        user:req.user, 
+        layout:"../layouts/verifyAccount.handlebars"
+    });
+ });
+
+ router.get('/supplier-verify-account', ensureAuthentication, (req, res)=>{
+    res.render('./homefiles/accountVerification/supplier',{
+        user:req.user, 
+        layout:"../layouts/verifyAccount.handlebars"
+    });
+ });
+
+ router.get('/user-verify-account', ensureAuthentication, (req, res)=>{
+    res.render('./homefiles/accountVerification/user',{
+        user:req.user, 
+        layout:"../layouts/verifyAccount.handlebars"
+    });
+ });
+ //End account verification
+
 ///get signin 
 router.get('/sign-in',(req,res)=>{
     res.render('./homefiles/sign-in')
@@ -21,30 +82,40 @@ router.post('/sign-up',[
     check('pwd1','Passwords do not match').exists()
     .custom((value, { req }) => value === req.body.pwd)
 ],(req, res)=>{
-    
-    const newUSer = new User({
-        firstname : req.body.firstname,
-        lastname : req.body.lastname,
-        password : req.body.pwd,
-        socialNetwork : [{
-            email:req.body.email.toLowerCase(),
-        }]
-    });
-    const errors = validationResult(req);
-    if (errors) {
-        return res.status(422).json({ errors: errors.array() });
-      }else{
-        console.log(req.body.email);
-        User.createUser(newUSer,(err)=>{
-            if (err) throw err;
-            const alert = "alert alert-success";
-            const msg = "Successfully added";
-            res.render('./homefiles/index',{
-                alert:alert,
-                msg: msg
-            });
+    User.find({},(err,user)=>{
+        if(err) throw err;
+        const newUSer = new User({
+            firstname : req.body.firstname,
+            lastname : req.body.lastname,
+            password : req.body.pwd,
+            socialNetwork : [{
+                email:req.body.email.toLowerCase(),
+            }],
+            role : "Admin"
         });
-      }
+        if(!user){
+            const errors = validationResult(req);
+            if (errors) {
+                return res.status(422).json({ errors: errors.array() });
+            }else{
+                console.log(req.body.email);
+                User.createUser(newUSer,(err)=>{
+                    if (err) throw err;
+                    const alert = "alert alert-success";
+                    const msg = "Successfully added";
+                    res.render('./homefiles/index',{
+                        alert:alert,
+                        msg: msg
+                    });
+                });
+            }
+        }else{
+            res.render('./homefiles/sign-in',{
+                alert:"alert alert-danger",
+                msg:"Please log in to the system",
+            })
+        }
+    });
 });
 
 //Password management
@@ -131,11 +202,19 @@ router.post('/sign-in', passport.authenticate('local',{ failureRedirect: '/auth/
      if(req.user.role =="Admin"){
          res.redirect('/admin/admin-dashboard');
      }else if(req.user.role =="Artist"){
-        res.redirect('/artist/artist-dashboard');
+         if(req.user.active == false){
+            res.redirect('/auth/verify-account');
+         }else{
+            res.redirect('/artist/artist-dashboard');
+        }
      }else if(req.user.role == "Supplier"){
-        res.redirect('/supplier/supplier-dashboard');
-     }else{
-        res.redirect('/customer/customer-dashboard');
+        if(req.user.active == false){
+            res.redirect('/auth/verify-account');
+         }else{
+            res.redirect('/supplier/supplier-dashboard');
+        }
+     }else if(req.user.role =="new"){
+        res.redirect('/auth/verify-account');
      }
   }
 );

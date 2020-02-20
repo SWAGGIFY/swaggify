@@ -41,14 +41,14 @@ router.get('/delete-data', ensureAuthentication,(req,res)=>{
                 res.json("Successfully deleted");
         });
         }else{
-            
+
         }
     }
 });
 
 
 // update function
-router.put('/profileupdate', function(req, res) {
+router.put('/profileupdate', (req, res)=>{
     console.log('Updating user profile');
     User.findByIdAndUpdate(req.params.id, {
       $set: {firstname:req.body.firstname,lastname:req.body.lastname}
@@ -56,7 +56,7 @@ router.put('/profileupdate', function(req, res) {
     {
     new: true
     },
-    function(err, User){
+    (err, User)=>{
         if(err){
             //req.session.loggedIn = true;
             res.send("Error updating video")

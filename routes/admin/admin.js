@@ -16,11 +16,8 @@ router.get('/admin-dashboard', ensureAuthentication, function(req, res){
 router.post('/admin-add-user',ensureAuthentication,(req, res)=>{
     
   const newUSer = new User({
-      firstname : req.body.firstname,
-      lastname : req.body.lastname,
-      username : req.body.username.toLowerCase(),
       role: req.body.role,
-      password : req.body.pwd,
+      status : true,
       socialNetwork : [{
           email:req.body.email.toLowerCase(),
       }]

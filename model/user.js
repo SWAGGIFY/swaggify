@@ -115,6 +115,9 @@ const UserSchema = mongoose.Schema({
       type:String,
   
     },
+    active:{
+      type: Boolean
+    },
     password:{
       type: String,
     },

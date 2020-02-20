@@ -30,40 +30,48 @@ module.exports = function(passport){
   ///Google Strategy
   passport.use(new GoogleStrategy({
       clientID:keys.google.clientID,
-      callbackURL: '/sign-up/google/redirect',
       clientSecret:keys.google.clientSecret,
+      callbackURL: '/auth/google/redirect',
     },
-    function(accessToken, refreshToken,profile, done) {
-      User.findOne({$or:[{googleId:profile.id},{email:profile.emails[0].value.toUpperCase()}]}, function( err, user){
+    (accessToken, refreshToken,profile, done)=>{
+      User.findOne({$or:[{socialNetwork:{$elemMatch:{email:profile.emails[0].value.toLowerCase()}}},{socialNetwork:{$elemMatch:{googleId:profile.id}}}]},( err, user)=>{
         if(err) throw err;
         if (!user){
-            Provider.findOne({$or:[{googleId:profile.id},{email:profile.emails[0].value.toUpperCase()}]}, function(err, provider){
-                  if (err) throw err;
-                  if (provider){
-                    done(null, provider);
-                  }else {
-                    const newUser = new User({
-                          username : profile.displayName.replace(/ .*/,'').toUpperCase(),
-                          lastname: profile.name.familyName,
-                          firstname: profile.name.givenName,
-                          googleId:profile.id,
-                          email : profile.emails[0].value.toUpperCase(),
-                          role:"new"
+          const newUser = new User({
+            username : profile.displayName.replace(/ .*/,'').toLowerCase(),
+            lastname: profile.name.familyName,
+            firstname: profile.name.givenName,
+            socialNetwork:{
+              googleId:profile.id,
+              email : profile.emails[0].value.toLowerCase(),
+            },
+            avatar : profile.photos[0].value,
+            active:false
 
-                        });
-                        User.createUser(newUser, function(err, user){
-                          if(err) throw err;
-                          done(null,user);
-                        });
-                  }
-                });
+          });
+          User.createUser(newUser,(err, user)=>{
+            if(err) throw err;
+            done(null,user);
+          });
         }else {
-          done(null, user);
+          const userInfo= {$set:{
+            username : profile.displayName.replace(/ .*/,'').toLowerCase(),
+            lastname: profile.name.familyName,
+            firstname: profile.name.givenName,
+            socialNetwork:{
+              googleId:profile.id,
+              email : profile.emails[0].value.toLowerCase(),
+            },
+            avatar : profile.photos[0].value,
+            active:false
+
+          }};
+          User.updateOne({socialNetwork:{$elemMatch:{email:profile.emails[0].value.toLowerCase()}}}, userInfo,(err)=>{
+            if(err) throw err;
+            done(null, user);
+          });
         }
       });
-        /*User.findOrCreate({ googleId: profile.id }, function (err, user) {
-          return done(err, user);
-        });*/
     }
   ));
 
@@ -74,10 +82,10 @@ module.exports = function(passport){
       callbackURL: '/sign-up/facebook/redirect'
     },
     function(accessToken, refreshToken, profile, done) {
-      User.findOne({$or:[{googleId:profile.id},{email:profile.emails[0].value.toUpperCase()}]}, function( err, user){
+      User.findOne({$or:[{socialNetwork:{$elemMatch:{email:profile.email}}},{socialNetwork:{$elemMatch:{googleId:profile.id}}}]}, function( err, user){
         if(err) throw err;
         if (!user){
-            Provider.findOne({$or:[{facebookId:profile.id},{email:profile.emails[0].value.toUpperCase()}]}, function(err, provider){
+            User.findOne({$or:[{facebookId:profile.id},{email:profile.emails[0].value.toUpperCase()}]}, function(err, provider){
                   if (err) throw err;
                   if (provider){
                     done(null, provider);

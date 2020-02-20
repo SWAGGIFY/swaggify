@@ -3,8 +3,19 @@
             <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">SignUp</h5>
+                <div class="{{alert}}">
+                    <strong>{{msg}}</strong>
+                </div>
             </div>
             <form action="/auth/sign-in" method="POST">
+                <div class="social" style="margin-bottom:15px">
+                    <a id="google-button" title=" Sign in with Google account" style="border-radius: 1000px;margin-top: 5px; width:37px; height:37px" class="btn btn-sm btn-primary btn-social btn-google" href="/auth/google?">
+                    <center><i class="fa fa-google"></i></center>
+                    </a>
+                    <a id="google-button" title=" Sign in with Facebook" style="background-color: #5c36f4;border-radius: 100px;margin-top: 5px; width:37px; height:37px" class="btn btn-sm btn-primary btn-social btn-facbook" href="/sign-up/auth/facebook">
+                    <center><i class="fa fa-facebook"></i></center>
+                    </a>
+                </div>
                 <div class="modal-body">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email address</label>
