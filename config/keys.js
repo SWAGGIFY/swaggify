@@ -1,6 +1,5 @@
 module.exports ={
     google:{
-      
     },
     facebook:{
       clientID:'My_secret',
