@@ -45,7 +45,7 @@ router.post('/add',ensureAuthentication,(req, res)=>{
 
 //check authentication
 function ensureAuthentication(req, res, next){
-    if(req.isAuthenticated){
+    if(req.isAuthenticated()){
         return next();
     }else{
         res.redirect('/');

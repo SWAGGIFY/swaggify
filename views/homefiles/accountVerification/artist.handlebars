@@ -1,8 +1,10 @@
+{{#user}}
 <div class="container register">
                 <div class="row">
                     <div class="col-md-3 register-left">
+                        <img src="{{#each this}}{{avatar}}{{/each}}" alt="" style="border-radius: 25px;">
                         <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
-                        <h3>Welcome {{user}}</h3>
+                        <h3>Welcome {{#each this}}{{firstname}}{{/each}}</h3>
                         <p>You are 30 seconds away from earning your own money!</p>
                         <input href="/auth/sign-in" type="submit" name="" value="Login"/><br/>
                     </div>
@@ -21,10 +23,10 @@
                                 <div class="row register-form">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input type="text" name="firstname" class="form-control" placeholder="First Name *" value="" />
+                                            <input type="text" name="firstname" class="form-control" placeholder="First Name *" value="{{firstname}}" />
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Last Name *" value="" />
+                                            <input type="text" class="form-control" placeholder="Last Name *" value="{{lastname}}" />
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control" placeholder="Password *" value="" />
@@ -78,7 +80,7 @@
                                             <input type="text" class="form-control" placeholder="Last Name *" value="" />
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" class="form-control" placeholder="Email *" value="" />
+                                            <input type="email" class="form-control" placeholder="Email *" value="{{socialNetwork}}" />
                                         </div>
                                         <div class="form-group">
                                             <input type="text" maxlength="10" minlength="10" class="form-control" placeholder="Phone *" value="" />
@@ -113,3 +115,4 @@
                 </div>
 
             </div>
+            {{/user}}

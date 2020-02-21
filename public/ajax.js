@@ -13,6 +13,10 @@ $(document).ready(function(){
           console.log(data)
           if(data_type =="user"){
             modal.find(".object").text('DELETE ' + data.firstname + " "+ data.lastname);//.attr("action" "/admin/admin-student-list-data/" );
+          }else if(data_type =="request"){
+            modal.find(".object").text('DELETE ' + data.request);//.attr("action" "/admin/admin-student-list-data/" );
+          }else if(data_type =="category"){
+            modal.find(".object").text('DELETE ' + data.category_name);//.attr("action" "/admin/admin-student-list-data/" );
           }else{
             modal.find(".object").text('DELETE ' + data.product_name);//.attr("action" "/admin/admin-student-list-data/" );
           }
@@ -28,4 +32,42 @@ $(document).ready(function(){
             }
         });
     });
+      ///Select options for classes
+  let category = $('#category');
+  let song = $('#song');
+  let artist = $('#artist');
+  let products = $('#products');
+  category.empty();
+  song.empty();
+  artist.empty();
+  products.empty();
+
+  //
+category.append('<option disabled selected>Choose Category</option>');
+song.append('<option disabled selected>Choose Song</option>');
+artist.append('<option disabled selected>Choose Artist</option>');
+products.append('<option disabled selected>Choose Product</option>');
+//subjects.prop('selectedIndex', 0);
+
+// Populate dropdown with list of subjects
+$.getJSON('/shared/category-data', (data)=>{
+    $.each(data, function (key, entry) {
+      category.append($('<option></option>').attr('value', entry.category_name,'title',entry.category_description).text( entry.category_name));
+
+    });
+});
+
+$.getJSON('/shared/artist-data', (data)=>{
+  $.each(data, function (key, entry) {
+    song.append($('<option></option>').attr('value', entry.category_name,'title',entry.category_description).text( entry.category_name));
+  });
+});
+
+$.getJSON('/shared/product-data', (data)=>{
+  $.each(data, function (key, entry) {
+    products.append($('<option></option>').attr('value', entry.product_name,'title',entry.category_description).text( entry.category_name));
+
+  });
+});
+
 });

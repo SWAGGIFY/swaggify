@@ -36,6 +36,7 @@ const manage_customers = require('./routes/admin/customer_management');
 const artist = require('./routes/artist/artist');
 //Supplier
 const supplier = require('./routes/supplier/supplier');
+const inventory = require('./routes/supplier/inventory');
 //Customer
 const customer = require('./routes/customer/customer');
 //Shared
@@ -102,6 +103,7 @@ app.use('/admin', manage_supplier);
 
 //Under supplier
 app.use('/supplier', supplier);
+app.use('/supplier', inventory);
 //Under artist
 app.use('/artist', artist);
 //Under customer

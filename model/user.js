@@ -57,7 +57,7 @@ const CompanySchema = mongoose.Schema({
         type:String
       },
     address:{
-    type:String
+      type:String
     },  
     tel:{
         type:String
@@ -77,6 +77,9 @@ const CompanySchema = mongoose.Schema({
     description:{
         type:String
     },
+    email:{
+      type:String
+    }
 });
 
 //User Schema

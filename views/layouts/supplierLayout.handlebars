@@ -5,8 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Swaggify</title>
         <link rel="stylesheet" href="/bootstrap-4.4.1-dist/css/bootstrap.css">
-        <!-- MDBootstrap Datatables  -->
-        <link href="/bootstrap-4.4.1-dist/css/addons/datatables.min.css" rel="stylesheet">
+        <!-- Fastselect  -->
+        <link rel="stylesheet" href="/fastselect-master/dist/fastselect.min.css">
+        
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -25,9 +26,9 @@
                         Profile Managemant
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#password-settings">Password settings</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Profile settings</a>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#password-settings">Password settings</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Profile settings</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -35,9 +36,11 @@
                          Managemant
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#custRequest">Add Product</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/customer/customer-view-request">View users</a>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#AddProduct">Add Product</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#Dressed">Dressed Artist</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/supplier/supplier-view-products">View Product</a>
                         </div>
                     </li>
                     <li class="nav-item">
@@ -45,15 +48,13 @@
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
         </nav>
         {{{body}}}
-        <script src="/bootstrap-4.4.1-dist/js/jQuery_v3.4.1.js"></script>
-        <script src="/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
-        <script src="/ajax.js"></script>
+        
     </body>
     <!-- Modal -->
     <!--Delete -->
@@ -78,17 +79,19 @@
                 </div>
             </div>
             
-    <!-- Request Modal -->
-    <div class="modal fade" id="custRequest" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!--end Request Modal -->
+
+    <!--Add product-->
+    <div class="modal fade" id="AddProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Product/h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="/supplier/add" method="POST">
+            <form action="/supplier/supplier-add-product" method="POST">
                 <div class="modal-body">
                     
                         <div class="form-group">
@@ -109,7 +112,12 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Product categories</label>
-                            <input type="text" name="productcategory" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                            <select class="artist" id="category" name="category">
+                                <option value="Killer T">Killer T</option>
+                                <option value="Jahp">Jah Prayzah</option>
+                                <option value="Albert Nyati">Albert Nyati</option>
+                                <option value="Tuku">Tuku</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Product color</label>
@@ -127,14 +135,6 @@
                             <label for="exampleInputEmail1">Product Tag</label>
                             <input type="text" name="producttag" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Artist Name</label>
-                            <input type="text" name="artistname" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Artist Song</label>
-                            <input type="text" name="artistsong" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
-                        </div>
                         
                 </div>
                 <div class="modal-footer">
@@ -147,4 +147,66 @@
         </div>
     </div>
     <!-- end of request modal-->
+
+<!--Dressed supplier-->
+ <div class="modal fade" id="Dressed" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Artist Dressed</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/supplier/supplier-dressed-artist" method="POST">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Artist Name</label>
+                        <select class="artist" id="artist" name="artist">
+                            <option value="Killer T">Killer T</option>
+                            <option value="Jahp">Jah Prayzah</option>
+                            <option value="Albert Nyati">Albert Nyati</option>
+                            <option value="Tuku">Tuku</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Product name</label>
+                        <select class="products" id="products" multiple name="product_name">
+                            <option value="sneaker">Sneakers</option>
+                            <option value="jacket">Jacket</option>
+                            <option value="hat">Hat</option>
+                            <option value="Bangladesh">Bangladesh</option>
+                            <option value="Barbados">Barbados</option>
+                            <option value="Belarus">Belarus</option>
+                            <option value="Belgium">Belgium</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Artist Song</label>
+                        <select class="song" id="song" name="song">
+                            <option value="mkwasha mboko">Mkwasha mboko</option>
+                            <option value="Jahp">Jah Prayzah</option>
+                            <option value="Albert Nyati">Albert Nyati</option>
+                            <option value="Tuku">Tuku</option>
+                        </select>
+                    </div>
+                        
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            
+            </form>
+            </div>
+        </div>
+    </div>
+    <script src="/bootstrap-4.4.1-dist/js/jQuery_v3.4.1.js"></script>
+        <script src="/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+        <script src="/fastselect-master/dist/fastselect.standalone.js"></script>
+        <script src="/fastselect-master/dist/fastselect.js"></script>
+        <script src="/ajax.js"></script>
+        <script>
+            $('.products,.artist,.song,.category').fastselect();
+        </script>
 </html>

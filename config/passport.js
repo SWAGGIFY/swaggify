@@ -54,22 +54,26 @@ module.exports = function(passport){
             done(null,user);
           });
         }else {
-          const userInfo= {$set:{
-            username : profile.displayName.replace(/ .*/,'').toLowerCase(),
-            lastname: profile.name.familyName,
-            firstname: profile.name.givenName,
-            socialNetwork:{
-              googleId:profile.id,
-              email : profile.emails[0].value.toLowerCase(),
-            },
-            avatar : profile.photos[0].value,
-            active:false
-
-          }};
-          User.updateOne({socialNetwork:{$elemMatch:{email:profile.emails[0].value.toLowerCase()}}}, userInfo,(err)=>{
-            if(err) throw err;
-            done(null, user);
-          });
+          if(user.active == true){
+            done(null,user);
+          }else{
+            const userInfo= {$set:{
+              username : profile.displayName.replace(/ .*/,'').toLowerCase(),
+              lastname: profile.name.familyName,
+              firstname: profile.name.givenName,
+              socialNetwork:{
+                googleId:profile.id,
+                email : profile.emails[0].value.toLowerCase(),
+              },
+              avatar : profile.photos[0].value,
+              active:false
+  
+            }};
+            User.updateOne({socialNetwork:{$elemMatch:{email:profile.emails[0].value.toLowerCase()}}}, userInfo,(err)=>{
+              if(err) throw err;
+              done(null, user);
+            });
+          }
         }
       });
     }

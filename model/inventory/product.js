@@ -33,19 +33,12 @@ const ProductSchema = mongoose.Schema({
         //data: Buffer, 
         type: String
      },
-    /*product_gallery:[{
-        data: Buffer, 
-        type:String
-    }],*/
     uploadDate:{
         type: Date,
     },
-    artist_name:{
+    supplierId:{
         type:String
     },
-    artist_song:{
-        type:String
-    }
     
 });
 

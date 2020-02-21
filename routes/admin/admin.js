@@ -3,6 +3,7 @@ const router = express.Router();
 const {check, validationResult} = require('express-validator');
 //models
 const User= require('../../model/user');
+const Category= require('../../model/inventory/category');
 
 router.get('/admin-dashboard', ensureAuthentication, function(req, res){
     //res.send(req.user)
@@ -10,6 +11,56 @@ router.get('/admin-dashboard', ensureAuthentication, function(req, res){
        //user:req.user,
        layout:"../layouts/authenticated.handlebars"
    });
+});
+
+// create category router
+router.post('/admin-add-category',ensureAuthentication,(req, res)=>{
+    
+  const newCategory = new Category({
+      category_name : req.body.categoryname.toUpperCase(),
+      category_description : req.body.categorydecription,
+  });
+  const errors = validationResult(req);
+  Category.findOne({category_name:req.body.categoryname.toUpperCase()},(err, category)=>{
+    if(err) throw err;
+    Category.find({},(err,categories)=>{
+      if(err) throw err;
+      if(!category){
+        Category.createCategory(newCategory,(err)=>{
+          if (err) throw err;
+          const alert = "alert alert-success";
+          const msg = "Successfully added";
+          res.render('./admin/view-category',{
+            layout:"../layouts/authenticated.handlebars",
+            alert:alert,
+            msg: msg,
+            categories:categories
+          });
+       });
+      }else{
+        res.render('./admin/view-category',{
+          layout:"../layouts/authenticated.handlebars",
+          alert:"alert alert-danger",
+          msg: "Category already added",
+          categories:categories,
+        });
+      }
+    });
+  });
+});
+
+//admin view category
+router.get('/admin-view-category', ensureAuthentication, function(req, res){
+  //res.send(req.user)
+  Category.find({},(err, categories)=>{
+    //var user = [users];
+    if(err) throw err;
+      //res.send(users);
+    res.render('./admin/view-category',{
+      categories:categories,
+      layout:"../layouts/authenticated.handlebars"
+    });
+  });
 });
 
 //get User Creation router
