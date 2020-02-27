@@ -132,6 +132,7 @@ router.put('/profileupdate', (req, res)=>{
     );
   });
 
+  ///buying an item 
   router.get('/buy-item',(req,res)=>{
       if(!req.isAuthenticated()){
           res.render('./homefiles/sign-in',{
@@ -142,6 +143,79 @@ router.put('/profileupdate', (req, res)=>{
           res.send("Continue purchasing either eccocash or whatever")
       }
   });
+ 
+  ///Create bid
+  router.post('/bid-item',async(req,res)=>{
+        try {
+            if(!req.isAuthenticated()){
+                res.render('./homefiles/sign-in',{
+                    msg:"Option only available to Swaggnation! Please sign-up.",
+                    alert: "alert alert-danger"
+                });
+            }else{
+                if(req.user.blocked == true){
+                    return res.send({
+                        success: false,
+                        message: "Your account has been blocked."
+                    });
+                }else{
+                    try {
+                        console.log(req.query.auction_id);
+                        const auction = await Auction.findById(req.query.auction_id.slice(0,24), 'name description startDate endDate startAmount currentBid countdown _id bids autobids')
+                    
+                        const updatedAuction = await auction.addBid({
+                            value: req.body.value,
+                            userid: req.user._id,
+                            name: req.user.name
+                        });
+                    
+                        res.json({ auction: updatedAuction, success: true });
+                    } catch ({ message }) {
+                    res.send({
+                        success: false,
+                        message
+                    });
+                    }
+                }
+            }
+        } catch (err) {
+            res.send({
+            success: false,
+            message: err
+            })
+        }
+        
+    });
+
+    //Create Autobid
+    router.post('/auto-bid',ensureAuthentication, async(req,res)=>{
+        // Check if it's an autobid
+        if (req.body.autobid && req.body.value) {
+            // Check the autobid userid/value don't already exist
+            var autobidExists = auction.autobids.filter(function (obj) {
+            return obj.value == req.body.value && obj.userid == req.user._id
+            });
+
+            if (autobidExists.length === 0) {
+            // Save the autobid
+            auction.autobids.push({
+                value: req.body.value,
+                userid: req.user._id,
+                name: req.user.name
+            });
+
+            // Use the minimumBid value to create bid instead of the Users max bid (Autobid value)
+            bid.value = minimumBid;
+            msgResult = true;
+            msg = 'Your Autobid for £' + req.body.value + ' has been accepted.';
+            res.send(msg);
+            } else {
+            msgResult = false;
+            msg = 'You have already Autobid this amount.';
+            res.send(msg);
+            }
+        }
+    });
 
   router.get('/view-auctions',async(req,res)=>{
     const fields = 'name description startDate endDate startAmount currentBid countdown _id';

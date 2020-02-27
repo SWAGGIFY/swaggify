@@ -180,3 +180,4 @@ module.exports = mongoose.model('Auction', Auction);
 module.exports.createAuction = (newAuction, callback)=>{
     newAuction.save(callback); 
 }
+
