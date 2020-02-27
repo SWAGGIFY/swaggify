@@ -359,7 +359,7 @@
                   <!--/.Indicators-->
 
                   <div class="carousel-inner v-2" role="listbox">
-                    {{#auctions}}
+                    {{#each auctions}}
                     <div class="carousel-item active">
                       <div class="col-12 col-md-12">
                         <div class="card mb-2 border-left-primary">
@@ -368,12 +368,18 @@
                           <div class="card-body">
                             <h4 class="card-title font-weight-bold">{{#each this}}{{name}}{{/each}}</h4>
                             <p class="card-text">{{#each this}}{{description}}{{/each}}</p>
-                            <a class="btn btn-primary btn-md btn-rounded bounce" href="/shared/buy-item">Buy Me!</a>
+                            <p class="card-text">{{#each this}}{{startDate}}{{/each}}</p>
+                            <p class="card-text">{{#each this}}{{endDate}}{{/each}}</p>
+                            <p class="card-text">Time Remaining</p>
+                            <p class="card-text" id="demo"style="text-align: center;font-size: 60px;"></p>
+                            <br>
+
+                            <!--<a class="btn btn-primary btn-md btn-rounded bounce" href="/shared/buy-item">Buy Me!</a>-->
                           </div>
                         </div>
                       </div>
                     </div>
-                    {{/auctions}}
+                    {{/each}}
                   </div>
 
                 </div>
@@ -391,7 +397,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
+            <span>Copyright &copy; Your Website 2020</span>
           </div>
         </div>
       </footer>
@@ -399,3 +405,20 @@
 
     </div>
     <!-- End of Content Wrapper -->
+    <script> 
+var deadline = {{#each this}}{{startDate}}{{/each}}; 
+var x = setInterval(function() { 
+var now = new Date().getTime(); 
+var t = deadline - now; 
+var days = Math.floor(t / (1000 * 60 * 60 * 24)); 
+var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60)); 
+var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60)); 
+var seconds = Math.floor((t % (1000 * 60)) / 1000); 
+document.getElementById("demo").innerHTML = days + "d "  
++ hours + "h " + minutes + "m " + seconds + "s "; 
+    if (t < 0) { 
+        clearInterval(x); 
+        document.getElementById("demo").innerHTML = "EXPIRED"; 
+    } 
+}, 1000); 
+</script> 
