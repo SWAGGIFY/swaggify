@@ -20,7 +20,7 @@ const RequestSchema = mongoose.Schema({
     customer_id:{
         type:String
     },
-});
+}, { timestamps: true });
 
 const Request = module.exports = mongoose.model('Request', RequestSchema);
 //Create new user

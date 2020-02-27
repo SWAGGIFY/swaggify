@@ -4,6 +4,7 @@ const {check, validationResult} = require('express-validator');
 //models
 const User= require('../../model/user');
 const Category= require('../../model/inventory/category');
+const Auction = require('../../model/auction/auction');
 
 router.get('/admin-dashboard', ensureAuthentication, function(req, res){
     //res.send(req.user)
@@ -68,35 +69,76 @@ router.post('/admin-add-user',ensureAuthentication,(req, res)=>{
     
   const newUSer = new User({
       role: req.body.role,
-      status : true,
+      active : false,
       socialNetwork : [{
           email:req.body.email.toLowerCase(),
       }]
   });
   const errors = validationResult(req);
-
-      console.log(req.body.email);
-      User.createUser(newUSer,(err)=>{
-          if (err) throw err;
-          const alert = "alert alert-success";
-          const msg = "Successfully added";
-          res.render('./homefiles/index',{
-              alert:alert,
-              msg: msg
-          });
+  User.findOne({socialNetwork:{$elemMatch:{email:req.body.email.toLowerCase()}}},(err, user)=>{
+    if(err) throw err;
+    User.find({active:true},(err, users)=>{
+        if(err) throw err;
+      if(!user){
+        console.log(req.body.email);
+        User.createUser(newUSer,(err)=>{
+            if (err) throw err;
+            const alert = "alert alert-success";
+            const msg = "Successfully added";
+            res.render('./admin/view-users',{
+                alert:alert,
+                msg: msg,
+                users:users,
+                layout:"../layouts/authenticated.handlebars"
+            });
+        });
+      }else{
+        res.render('./admin/view-users',{
+          alert:"alert alert-danger",
+          msg: "User already added",
+          users:users,
+          layout:"../layouts/authenticated.handlebars"
       });
+      }
+    });
+  })
 });
 
 
 router.get('/admin-view-users', ensureAuthentication, function(req, res){
   //res.send(req.user)
-  User.find({},(err, users)=>{
+  User.find({active:true},(err, users)=>{
     //var user = [users];
     if(err) throw err;
       //res.send(users);
     res.render('./admin/view-users',{
       users:users,
       layout:"../layouts/authenticated.handlebars"
+    });
+  });
+});
+
+router.post('/admin-add-auction',ensureAuthentication,(req,res)=>{
+  var newAuction = new Auction({
+    // set auction info
+    name : req.body.name,
+    startDate : req.body.startDate,
+    endDate : req.body.endDate,
+    description : req.body.description,
+    startAmount : req.body.startAmount,
+    enabled : req.body.enabled,
+    countdown : req.body.countdown,
+  });
+
+  Auction.createAuction(newAuction,(err)=>{
+    if (err) throw err;
+    Auction.find({},(err,auctions)=>{
+      if(err) throw err;
+      res.render('./admin/admin-view-auctions',{
+        alert:"alert alert-success",
+        msg:"Auction successfully added",
+        auctions:auctions
+      });
     });
   });
 });

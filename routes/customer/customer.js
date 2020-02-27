@@ -3,11 +3,18 @@ const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const passport = require ('passport');
 const Request= require('../../model/request');
+const Auction= require('../../model/auction/auction');
 
 router.get('/customer-dashboard', ensureAuthentication, (req, res) =>{
+    const fields = 'name description startDate endDate startAmount currentBid countdown _id';
     
-    res.render('./customer/customer-dashboard',{
-        layout:"../layouts/customerLayout.handlebars"
+    Auction.find({enabled:true},(err, auctions)=>{
+           //.select(fields);
+           console.log(auctions);
+           res.render('./customer/customer-dashboard',{
+               layout:"../layouts/customerLayout.handlebars",
+               auctions : auctions
+           });
     });
 });
 

@@ -36,11 +36,14 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#AddUser">Add user</a>
-                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/admin/admin-view-users">View users</a>
-                            <a class="dropdown-item" href="#"data-toggle="modal" data-target="#addcategory">Add Category</a>
                             <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#"data-toggle="modal" data-target="#addcategory">Add Category</a>
                             <a class="dropdown-item" href="/admin/admin-view-category">View Category</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#"data-toggle="modal" data-target="#AddAuction">Add Auction</a>
+                            <a class="dropdown-item" href="/shared/view-auctions">View Auctions</a>
+                            <div class="dropdown-divider"></div>
                         </div>
                     </li>
                     <li class="nav-item">
@@ -187,4 +190,91 @@
             </div>
         </div>
     </div>
+     <!-- ############################ *************************** Binding modal*******#################-->
+    <!--Add Auction-->
+    <div class="modal fade" id="AddAuction" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Auction</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/admin/admin-add-auction" method="POST">
+                <div class="modal-body">
+                    
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Name</label>
+                            <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Start Date</label>
+                            <input type="date" name="startDate" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">End Date</label>
+                            <input type="date" name="endDate" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Auction Description</label>
+                            <input type="text" name="description" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Start Amount</label>
+                            <input type="number" name="startAmount" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Enable Auction</label>
+                            <select name="enabled" id="">
+                                <option value="true"> Yes : Enable auction</option>
+                                <option value="false">No : Disable Auction</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Count Down</label>
+                            <input type="number" name="countdown" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                        </div>
+                        
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            
+            </form>
+            </div>
+        </div>
+    </div>
+          <!-- end of create aution -->
+
+           <!--Add Auction-->
+    <div class="modal fade" id="AddAuction" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"> Crete Autobid</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/admin/admin-add-auction" method="POST">
+                <div class="modal-body">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Auto Bid Value</label>
+                            <input type="value" name="startDate" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            
+            </form>
+            </div>
+        </div>
+    </div>
+          <!-- end of create aution -->
+          
+        <!--######################***** Binding End modals##########################-->
 </html>

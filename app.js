@@ -1,5 +1,7 @@
 const express = require('express');
 const path = require('path');
+const http = require('http');
+const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
@@ -7,11 +9,17 @@ const expressValidator = require ('express-validator');
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
+const port = process.env.PORT || 3000;
 //const LocalStrategy = require('passport-local').Strategy;
 const config = require('./config/database');
+const socketIO = require('./config/io');
 const mongoose = require('mongoose');
 //Db connections
-mongoose.connect(config.database, { useNewUrlParser: true });
+mongoose.connect(config.database, { 
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useUnifiedTopology: true,
+});
 
 let db = mongoose.connection;
 //Check db connection
@@ -60,6 +68,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use(cors());
+
+//app.use(enforceSSL);
 
 
 //Express session
@@ -112,8 +124,13 @@ app.use('/customer', customer);
 app.use('/shared', shared);
 
 //Set port and Start App
-app.set('port', (process.env.PORT || 3000));
+let httpServer = http.createServer(app);
+httpServer.listen(port);
+//app.set('port', (process.env.PORT || 3000));
 
 app.listen(app.get('port'), function() {
-  console.log('Server started on port '+app.get('port'));
+  console.log('Server started on port '+port);
 });
+
+// SETUP SOCKET BROADCASTS
+socketIO(httpServer)

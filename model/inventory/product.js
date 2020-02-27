@@ -40,7 +40,7 @@ const ProductSchema = mongoose.Schema({
         type:String
     },
     
-});
+}, { timestamps: true });
 
 const Product = module.exports = mongoose.model('Product', ProductSchema);
 //Create new user

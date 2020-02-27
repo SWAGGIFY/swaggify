@@ -136,8 +136,12 @@ const UserSchema = mongoose.Schema({
     },
     company:[
       CompanySchema
-    ]
-  });
+    ],
+    blocked: { 
+      type: Boolean, 
+      default: true 
+    }
+  }, { timestamps: true });
   
 const User = module.exports = mongoose.model('User', UserSchema);
 //Create new user

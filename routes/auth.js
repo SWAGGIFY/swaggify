@@ -138,7 +138,9 @@ router.post('/verify-account', ensureAuthentication, [
 
 ///get signin 
 router.get('/sign-in',(req,res)=>{
-    res.render('./homefiles/sign-in')
+    res.render('./homefiles/sign-in',{
+        layout:false
+    });
 });
 //Register user
 router.post('/sign-up',[
@@ -272,18 +274,22 @@ router.post('/sign-in', passport.authenticate('local',{ failureRedirect: '/auth/
          res.redirect('/admin/admin-dashboard');
      }else if(req.user.role =="Artist"){
          if(req.user.active == false){
-            res.redirect('/auth/verify-account');
+            res.redirect('/auth/artist-verify-account');
          }else{
             res.redirect('/artist/artist-dashboard');
         }
      }else if(req.user.role == "Supplier"){
         if(req.user.active == false){
-            res.redirect('/auth/verify-account');
+            res.redirect('/auth/user-verify-account');
          }else{
             res.redirect('/supplier/supplier-dashboard');
         }
-     }else if(req.user.role =="new"){
-        res.redirect('/auth/verify-account');
+     }else{
+        if(req.user.active == false){
+            res.redirect('/auth/user-verify-account');
+         }else{
+            res.redirect('/customer/customer-dashboard');
+        }
      }
   }
 );

@@ -22,5 +22,13 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="/bootstrap-4.4.1-dist/js/jQuery_v3.4.1.js"></script>
         <script src="/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+        <script>
+            $(document).ready(function(){
+                if($('div.tab-pane').hasClass('active')){
+                    console.log("Hello ready to verify");
+                    $('div.tab-pane').hasClass('active').hide();
+                }
+            });
+        </script>
     </body>
 </html>

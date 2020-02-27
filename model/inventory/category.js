@@ -8,7 +8,7 @@ const CategorySchema = mongoose.Schema({
     category_description:{
         type:String
     },
-});
+}, { timestamps: true });
 
 const Category = module.exports = mongoose.model('Category', CategorySchema);
 //Create new user

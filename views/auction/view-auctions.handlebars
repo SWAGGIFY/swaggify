@@ -1,0 +1,65 @@
+<body class="">
+<div class="wrapper ">
+    <div class="main-panel">
+        <div class="panel-header panel-header-sm">
+        </div>
+        <div class="main-content" id="content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 clear-padding-xs">
+                        <div class="col-lg-12">
+                            <div class="dash-item first-dash-item">
+                                <h6 class="item-title"><i class="fa fa-user"></i>Available Auctions</h6>
+                                <div class="{{alert}}">
+                                  <strong class="">{{msg}}</strong>
+                                </div>
+                                <div class="inner-item">
+                                    <table id="attendenceDetailedTable" class="display responsive nowrap" cellspacing="0" width="100%">
+                                        <thead>
+                                        <tr>
+                                            <th><i class="fa fa-user"></i>Auction name</th>
+                                            <th><i class="fa fa-building"></i>Start Date</th>
+                                            <th><i class="fa fa-calendar"></i>End Date</th>
+                                            <th><i class="fa fa-envelope-o"></i>Auction Description</th>
+                                            <th><i class="fa fa-calendar"></i>Auction Value</th>
+                                            <th><i class="fa fa-tasks"></i>ACTION</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{#each auctions}}
+                                                <tr data-id="{{#each this}}{{_id}}{{/each}}" data-type="user">
+                                                    <td>{{#each this}}{{name}}{{/each}}</td>
+                                                    <td>{{#each this}}{{lastname}}{{/each}}</td>
+                                                    <td>{{#each this}}{{role}}{{/each}}</td>
+                                                    <td>{{#each this}}{{email}}{{/each}}</td>
+                                                    <td>{{#each this}}{{email}}{{/each}}</td>
+                                                    <td class="action-link">
+                                                        <a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editDetailModal"><i class="fa fa-edit"></i>Edit</a>
+                                                        <a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="fa fa-remove"></i>Delete</a>
+                                                    </td>
+                                                </tr>
+                                            {{/each}}
+                                        <tr>
+                                            <td>LENNORE DOE</td>
+                                            <td>Harvard</td>
+                                            <td>2006</td>
+                                            <td>0999878775</td>
+                                            <td>lennore@gmail.com</td>
+                                            <td class="action-link">
+                                                <a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editDetailModal"><i class="fa fa-edit"></i></a>
+                                                <a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="fa fa-remove"></i></a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>

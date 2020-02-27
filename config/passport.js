@@ -119,7 +119,6 @@ module.exports = function(passport){
   ////Local strategy
     passport.use(new LocalStrategy((username, password, done) =>{
       //Check
-      console.log(username);
       var username= username.toLowerCase();
       User.getUserByUsername(username, function(err, user){
         if (err) throw err;
