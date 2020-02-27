@@ -8,13 +8,26 @@ const Auction= require('../../model/auction/auction');
 router.get('/customer-dashboard', ensureAuthentication, (req, res) =>{
     const fields = 'name description startDate endDate startAmount currentBid countdown _id';
     
-    Auction.find({enabled:true},(err, auctions)=>{
-           //.select(fields);
-           console.log(auctions);
-           res.render('./customer/customer-dashboard',{
-               layout:"../layouts/customerLayout.handlebars",
-               auctions : auctions
-           });
+    Auction.find({enabled:true},async(err, auctions)=>{
+        const fields = 'name description startDate endDate startAmount currentBid countdown _id';
+    const filter = {
+      enabled: true
+    };
+  
+    try {
+      const auctions = await Auction
+        .find(filter, null, { sort: 'startDate' })
+        .select(fields);
+        console.log(auctions);
+       if(req.isAuthenticated()){
+            res.render('./customer/customer-dashboard',{
+                auctions:auctions,
+                layout :'../layouts/customerLayout.handlebars'
+            });
+       }
+    } catch (err) {
+      res.send(err)
+    }
     });
 });
 

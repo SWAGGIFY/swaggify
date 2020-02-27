@@ -134,9 +134,10 @@ router.post('/admin-add-auction',ensureAuthentication,(req,res)=>{
     if (err) throw err;
     Auction.find({},(err,auctions)=>{
       if(err) throw err;
-      res.render('./admin/admin-view-auctions',{
+      res.render('./auction/view-auctions',{
         alert:"alert alert-success",
         msg:"Auction successfully added",
+        layout:'../layouts/authenticated.handlebars',
         auctions:auctions
       });
     });
