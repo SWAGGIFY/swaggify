@@ -18,7 +18,7 @@ router.get('/customer-dashboard', ensureAuthentication, (req, res) =>{
       const auctions = await Auction
         .find(filter, null, { sort: 'startDate' })
         .select(fields);
-        console.log(auctions);
+        //console.log(auctions);
        if(req.isAuthenticated()){
             res.render('./customer/customer-dashboard',{
                 auctions:auctions,
