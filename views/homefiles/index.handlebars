@@ -3,18 +3,18 @@
       <div class="welcome-slides owl-carousel">
 
         <!-- Single Welcome Slides -->
-        <div class="single-welcome-slides bg-img bg-overlay jarallax" style="background-image: url(adult.jpg); text-align: center;">
+        <div class="single-welcome-slides bg-img bg-overlay jarallax" style="background-image: url(/home/img/core-img/adult1.jpg); text-align: center;">
           <div class="container h-100">
             <div class="row h-100 align-items-center">
               <div class="col-12 col-lg-10">
                 <div class="welcome-content">
                   <h2 data-animation="fadeInUp" data-delay="200ms"><span style="font-weight: bolder;">Instantly Shop, Buy and Bid</span> Fashion <br> & Collectables from<span style="color: yellow;"> Music Videos.</span> </h2>
                   <p data-animation="fadeInUp" data-delay="400ms"> Clothing & Fashion Accessories from your <br> Favourite international and Local Artists' Music Videos</p>
-                  <form action="#" method="post">
-                    <input type="text" class="form-control" placeholder="Search by Artists & Song">
-                    <button type="submit" class="btn famie-btn">Search</button>
-                  </form> 
-
+                  <!-- Search Icon -->
+                  <div id="searchIcon">
+                    <i class="icon_search" aria-hidden="true"></i>
+                  </div>
+                  <a href="#" class="btn icon_search famie-btn mt-4" data-animation="bounceInDown" data-delay="600ms" aria-hidden="true">Search</a>
                 </div>
               </div>
             </div>
@@ -22,7 +22,7 @@
         </div>
 
         <!-- Single Welcome Slides -->
-        <div class="single-welcome-slides bg-img bg-overlay jarallax" style="background-image: url(adult1.jpg);text-align: center;">
+        <!--<div class="single-welcome-slides bg-img bg-overlay jarallax" style="background-image: url(/home/img/core-img/adult.jpg);text-align: center;">
           <div class="container h-100">
             <div class="row h-100 align-items-center">
               <div class="col-12 col-lg-10">
@@ -35,7 +35,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div>-->
 
       </div>
     </div>
@@ -292,92 +292,33 @@
                       <!--/.Indicators-->
 
                       <div class="carousel-inner v-2" role="listbox">
-
-                        <div class="carousel-item active">
+                        {{#auctions}}
+                        <div class="carousel-item">
                           <div class="col-12 col-md-12">
                             <div class="card mb-12">
                               <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/img (36).jpg"
                                 alt="Card image cap">
                               <div class="card-body">
-                                <h4 class="card-title font-weight-bold">Jah Cure's Bracelet</h4>
+                                <h4 class="card-title font-weight-bold">{{#each this}}{{name}}{{/each}}</h4>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                                   card's content.</p>
-                                <a class="btn btn-primary btn-md btn-rounded" href="#">Start Bidding</a>
+                                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="/shared/bid-item?auction_id={{#each this}}{{_id}}{{/each}}" method="post">
+                                    <div class="input-group">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit">
+                                        <i class="fas fa-auction">BID</i>
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <ul class="filter"></ul>
+                                    </div>
+                                    </div>
+                                </form>
                               </div>
                             </div>
                           </div>
                         </div>
-                        <div class="carousel-item">
-                          <div class="col-12 col-md-12">
-                            <div class="card mb-2">
-                              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/img (34).jpg"
-                                alt="Card image cap">
-                              <div class="card-body">
-                                <h4 class="card-title font-weight-bold">Legendary Tukus' Guitar</h4>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                  card's content.</p>
-                                <a class="btn btn-primary btn-md btn-rounded" href="#">Start Bidding</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="carousel-item">
-                          <div class="col-12 col-md-12">
-                            <div class="card mb-2">
-                              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/img (38).jpg"
-                                alt="Card image cap">
-                              <div class="card-body">
-                                <h4 class="card-title font-weight-bold">Jah Prayzah's Nhembe</h4>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                  card's content.</p>
-                                <a class="btn btn-primary btn-md btn-rounded" href="#">Start Bidding</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="carousel-item">
-                          <div class="col-12 col-md-12">
-                            <div class="card mb-2">
-                              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/img (29).jpg"
-                                alt="Card image cap">
-                              <div class="card-body">
-                                <h4 class="card-title font-weight-bold">E-XQ Suit</h4>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                  card's content.</p>
-                                <a class="btn btn-primary btn-md btn-rounded" href="#">Start Bidding</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="carousel-item">
-                          <div class="col-12 col-md-12">
-                            <div class="card mb-2">
-                              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/img (30).jpg"
-                                alt="Card image cap">
-                              <div class="card-body">
-                                <h4 class="card-title font-weight-bold">Tammy Moyo's traditional ear-rings</h4>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                  card's content.</p>
-                                <a class="btn btn-primary btn-md btn-rounded" href="#">Start Bidding</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="carousel-item">
-                          <div class="col-12 col-md-12">
-                            <div class="card mb-2">
-                              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/img (27).jpg"
-                                alt="Card image cap">
-                              <div class="card-body">
-                                <h4 class="card-title font-weight-bold">Enzo Ishall's watch</h4>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                  card's content.</p>
-                                <a class="btn btn-primary btn-md btn-rounded" href="#">Start Bidding</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
+                        {{/auctions}}
                       </div>
 
                     </div>

@@ -143,6 +143,8 @@ router.put('/profileupdate', (req, res)=>{
           res.send("Continue purchasing either eccocash or whatever")
       }
   });
+
+  ////check for the bidding user
  
   ///Create bid
   router.post('/bid-item',async(req,res)=>{
@@ -160,7 +162,6 @@ router.put('/profileupdate', (req, res)=>{
                     });
                 }else{
                     try {
-                        console.log(req.query.auction_id);
                         const auction = await Auction.findById(req.query.auction_id.slice(0,24), 'name description startDate endDate startAmount currentBid countdown _id bids autobids')
                     
                         const updatedAuction = await auction.addBid({
@@ -256,16 +257,42 @@ router.put('/profileupdate', (req, res)=>{
   });
 
   router.get('/view-auction',async(req,res)=>{
-    const id = req.params.auction_id
+    const id = req.query.auction_id.slice(0,24);
     const fields = 'name description startDate endDate startAmount currentBid countdown _id';
 
     try {
         const auction = await Auction
         .findById(id, fields)
-
-        res.json(auction);
+        if(req.isAuthenticated){
+            if(req.user.role == "Admin"){
+                res.render('./auction/auction-details',{
+                    layout:'../layouts/authenticated.handlebars',
+                    auction:auction,
+                });
+            }else if(req.user.role == "Supplier"){
+                res.render('./auction/action-details',{
+                    layout:'../layouts/supplierLayout.handlebars',
+                    auction:auction
+                });
+            }else if(req.user.role == "Artist"){
+                res.render('./auction/action-details',{
+                    layout:'../layouts/artistLayout.handlebars',
+                    auction:auction
+                });
+            }else{
+                res.render('./auction/auction-details',{
+                    layout:'../layouts/customerLayout.handlebars',
+                    auction:auction
+                });
+            }
+        }else{
+            res.render('./auction/action-details',{
+                layout:'',
+                auction:auction
+            });
+        }
     } catch (err) {
-        res.send(err)
+        res.send(err);
     }
   });
   

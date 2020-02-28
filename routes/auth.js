@@ -297,7 +297,7 @@ router.post('/sign-in', passport.authenticate('local',{ failureRedirect: '/auth/
 //sign-out 
 router.get('/sign-out', ensureAuthentication, (req,res)=>{
     req.logout();
-    res.redirect('/');
+    res.redirect('/auth/sign-in');
 });
 
 //check authentication

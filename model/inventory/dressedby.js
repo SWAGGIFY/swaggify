@@ -2,9 +2,9 @@ const mongoose = require ('mongoose');
 const bcrypt  = require ('bcryptjs');
 
 const DressedBySchema = mongoose.Schema({
-    product_id:{
+    product_id:[{
         type:String
-      },
+      }],
     uploadDate:{
         type: Date,
     },

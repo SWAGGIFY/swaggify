@@ -29,10 +29,10 @@
                                             {{#each auctions}}
                                                 <tr data-id="{{#each this}}{{_id}}{{/each}}" data-type="user">
                                                     <td>{{#each this}}{{name}}{{/each}}</td>
-                                                    <td>{{#each this}}{{lastname}}{{/each}}</td>
-                                                    <td>{{#each this}}{{role}}{{/each}}</td>
-                                                    <td>{{#each this}}{{email}}{{/each}}</td>
-                                                    <td>{{#each this}}{{email}}{{/each}}</td>
+                                                    <td>{{#each this}}{{startDate}}{{/each}}</td>
+                                                    <td>{{#each this}}{{endDate}}{{/each}}</td>
+                                                    <td>{{#each this}}{{description}}{{/each}}</td>
+                                                    <td>{{#each this}}{{startAmount}}{{/each}}</td>
                                                     <td class="action-link">
                                                         <a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editDetailModal"><i class="fa fa-edit"></i>Edit</a>
                                                         <a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="fa fa-remove"></i>Delete</a>

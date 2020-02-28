@@ -7,7 +7,7 @@ const Song= require('../../model/song');
 router.get('/artist-dashboard', ensureAuthentication, (req, res) =>{
     
     res.render('./artist/artist-dashboard',{
-        layout:"../layouts/artistLayout.handlebars"
+        layout:'../layouts/artistLayout.handlebars'
     });
 });
 

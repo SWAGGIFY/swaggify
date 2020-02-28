@@ -210,10 +210,37 @@
 
           <div class="row row-offcanvas row-offcanvas-right">
             <div class="col-12 col-md-8 card">
-              
-              <!--video-->
-              <div class="embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+              <h1>Action details</h1>
+              <div class="card mb-4 py-3 border-left-primary">
+                <div class="card-body">
+                  <div class="row">
+                      {{#auction}}
+                      <div class="col-md-4">
+                          <img src="https://mdbootstrap.com/img/Photos/Others/img (36).jpg" class="img-circle" alt="Cinque Terre">
+                      </div>
+                      <div class="col-md-8">
+                          <h6>{{#each this}}{{name}}{{/each}}</h6><hr>
+                          <p>{{#each this}}{{description}}{{/each}}</p>
+                          <ul>
+                              <li></li>
+                          </ul>
+                      </div>
+                      <!-- Topbar Search -->
+                        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="/shared/bid-item?auction_id={{#each this}}{{_id}}{{/each}}" method="post">
+                            <div class="input-group">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">
+                                <i class="fas fa-auction">BID</i>
+                                </button>
+                            </div>
+                            <div>
+                                <ul class="filter"></ul>
+                            </div>
+                            </div>
+                        </form>
+                      {{/auction}}
+                  </div>
+                </div>
               </div>
             </div>
             <div class="col-12 col-md-4 card">
@@ -361,24 +388,22 @@
                   <div class="carousel-inner v-2" role="listbox">
                     {{#each auctions}}
                     <div class="carousel-item">
-                      <a href="/shared/view-auction?auction_id={{#each this}}{{_id}}{{/each}}">
-                        <div class="col-12 col-md-12">
-                          <div class="card mb-2 border-left-primary">
-                            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/img (36).jpg"
-                              alt="Card image cap">
-                            <div class="card-body">
-                              <h4 class="card-title font-weight-bold">{{#each this}}{{name}}{{/each}}</h4>
-                              <p class="card-text">Auction Starts:{{#each this}}{{startDate}}{{/each}}</p>
-                              <p class="card-text">Auction ende:{{#each this}}{{endDate}}{{/each}}</p>
-                              <p class="card-text">Time Remaining</p>
-                              <p class="card-text" id="demo"style="text-align: center;font-size: 60px;"></p>
-                              <br>
+                      <div class="col-12 col-md-12">
+                        <div class="card mb-2 border-left-primary">
+                          <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/img (36).jpg"
+                            alt="Card image cap">
+                          <div class="card-body">
+                            <h4 class="card-title font-weight-bold">{{#each this}}{{name}}{{/each}}</h4>
+                            <p class="card-text">Auction Starts:{{#each this}}{{startDate}}{{/each}}</p>
+                            <p class="card-text">Auction ende:{{#each this}}{{endDate}}{{/each}}</p>
+                            <p class="card-text">Time Remaining</p>
+                            <p class="card-text" id="demo"style="text-align: center;font-size: 60px;"></p>
+                            <br>
 
-                              <!--<a class="btn btn-primary btn-md btn-rounded bounce" href="/shared/buy-item">Buy Me!</a>-->
-                            </div>
+                            <!--<a class="btn btn-primary btn-md btn-rounded bounce" href="/shared/buy-item">Buy Me!</a>-->
                           </div>
                         </div>
-                      </a>
+                      </div>
                     </div>
                     {{/each}}
                   </div>
