@@ -49,6 +49,8 @@ const inventory = require('./routes/supplier/inventory');
 const customer = require('./routes/customer/customer');
 //Shared
 const shared = require('./routes/shared/shared');
+///shop
+const shop = require('./routes/shared/shop');
 
 //Initializing App
 const app = express();
@@ -122,6 +124,7 @@ app.use('/artist', artist);
 app.use('/customer', customer);
 //Under shared
 app.use('/shared', shared);
+app.use('/shop', shop);
 
 //Set port and Start App
 let httpServer = http.createServer(app);

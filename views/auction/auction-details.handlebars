@@ -216,10 +216,13 @@
                   <div class="row">
                       {{#auction}}
                       <div class="col-md-4">
-                          <img src="https://mdbootstrap.com/img/Photos/Others/img (36).jpg" class="img-circle" alt="Cinque Terre">
+                          <img src="https://mdbootstrap.com/img/Photos/Others/img (36).jpg" height="120" class="img-circle" alt="Cinque Terre">
+                          <p>Start Date: {{#each this}}{{startDate}}{{/each}}</p>
+                          <p>End Date  : {{#each this}}{{endDate}}{{/each}}</p>
                       </div>
                       <div class="col-md-8">
-                          <h6>{{#each this}}{{name}}{{/each}}</h6><hr>
+                          <h6>{{#each this}}{{name}}{{/each}}</h6>
+                          Current Bid is ..$<span>{{#each this}}{{#currentBid}}{{#each this}}{{value}}{{/each}}{{/currentBid}}{{/each}}</span><hr>
                           <p>{{#each this}}{{description}}{{/each}}</p>
                           <ul>
                               <li></li>

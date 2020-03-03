@@ -93,6 +93,21 @@ $(document).ready(function(){
     console.log("hello waiting");
   });
 
+
+  $(".panel-heading").parent('.panel').hover(
+    function() {
+      var tr = $(this).closest("tr");
+      var id = tr.data("id").slice(0,24);
+       console.log(id);
+       $.getJSON('/shared/object-data?id='+id+'&data_type=songProducts',(data)=>{
+         console.log(data);
+       });
+      $(this).children('.collapse').collapse('show');
+    }, function() {
+      $(this).children('.collapse').collapse('hide');
+    }
+  );
+
 });
 
 function mySearch(){

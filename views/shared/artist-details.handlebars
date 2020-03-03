@@ -1,0 +1,83 @@
+<!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+          <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Salary</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Name</th>
+                      <th>Salary</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                    {{#songs}}
+                    <tr data-id="{{#each this }}{{_id}}{{/each}}">
+                      <td>
+                        <!-- Artist data -->
+                          <div class="col-xl-12 col-md-12 mb-12">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                              <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                <div class="panel panel-default">
+                                  <div class="panel-heading" role="tab" id="headingOne">
+                                    <h4 class="panel-title">
+                                      <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <div class="row">
+                                          <div class="col-md-3">
+                                            <img src="./{{#each this }}{{avatar}}{{/each}}" alt="">
+                                          </div>
+                                          <div class="col md-9">
+                                            <h6>{{#each this }}{{song_title}}{{/each}}</h6><hr>
+                                            <p>Desccriptions and other info</p>
+                                          </div>
+                                        </div>
+                                      </a>
+                                    </h4>
+                                  </div><hr>
+                                  <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                    <div class="panel-body">
+                                      <h6>Availeble Products</h6><hr>
+                                      <!-- Illustrations -->
+                                      <div class="row">
+                                        <div class="card" style="width: 18rem;margin-left: 21px">
+                                          <img class="card-img-top" src="..." alt="Card image cap">
+                                          <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      </td>
+                      <td>$320,800</td>
+                    </tr>
+                    {{/songs}}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->

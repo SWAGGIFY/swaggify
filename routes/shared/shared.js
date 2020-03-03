@@ -7,6 +7,7 @@ const User= require('../../model/user');
 const Request= require('../../model/request');
 const Song= require('../../model/song');
 const Product = require('../../model/inventory/product');
+const DressedBy = require('../../model/inventory/dressedby');
 const Category = require('../../model/inventory/category');
 const Auction = require('../../model/auction/auction');
 
@@ -39,6 +40,11 @@ router.get('/object-data',ensureAuthentication,(req,res)=>{
             if(err) throw err;
             res.json(song);
         })
+    }else if(req.query.data_type =="songProducts"){
+        DressedBy.findOne({artist_song:id},(err, song)=>{
+            if(err) throw err;
+            res.json(song);
+        })
     }else{
 
     }
@@ -55,6 +61,60 @@ router.get('/artist-data', (req,res)=>{
     User.find({$and:[{role:"Artist" },{active:true}]},(err, artists)=>{
         if(err) throw err;
         res.json(artists);
+    });
+});
+
+router.get('/view-artist',ensureAuthentication, (req,res)=>{
+    User.find({$and:[{role:"Artist" },{active:true}]},(err, artists)=>{
+        if(err) throw err;
+        if(req.user.role=="Admin"){
+            res.render('./shared/view-artists',{
+                artists:artists,
+                layout :'../layouts/authenticated.handlebars'
+            });
+        }else if(req.user.role=="Supplier"){
+            res.render('./shared/view-artists',{
+                artists:artists,
+                layout :'../layouts/supplierLayout.handlebars'
+            });
+        }else if(req.user.role=="Artist"){
+            res.render('./shared/view-artists',{
+                artists:artists,
+                layout :'../layouts/artist.handlebars'
+            });
+        }else{
+            res.render('./shared/view-artists',{
+                artists:artists,
+                layout :'../layouts/customerLayout.handlebars'
+            });
+        }
+    });
+});
+
+router.get('/artist-details',ensureAuthentication, (req,res)=>{
+    Song.find({artist_id:req.query.artist_id.slice(0,24)},(err, songs)=>{
+        if(err) throw err;
+        if(req.user.role=="Admin"){
+            res.render('./shared/artist-details',{
+                songs:songs,
+                layout :'../layouts/authenticated.handlebars'
+            });
+        }else if(req.user.role=="Supplier"){
+            res.render('./shared/artist-details',{
+                songs:songs,
+                layout :'../layouts/supplierLayout.handlebars'
+            });
+        }else if(req.user.role=="Artist"){
+            res.render('./shared/artist-details',{
+                songs:songs,
+                layout :'../layouts/artist.handlebars'
+            });
+        }else{
+            res.render('./shared/artist-details',{
+                songs:songs,
+                layout :'../layouts/customerLayout.handlebars'
+            });
+        }
     });
 });
 
@@ -262,7 +322,7 @@ router.put('/profileupdate', (req, res)=>{
 
     try {
         const auction = await Auction
-        .findById(id, fields)
+        .findById(id, fields);
         if(req.isAuthenticated){
             if(req.user.role == "Admin"){
                 res.render('./auction/auction-details',{
