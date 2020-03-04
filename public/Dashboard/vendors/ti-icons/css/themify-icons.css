@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'themify';
-	src:url('https://www.urbanui.com/vanta/template/vendors/ti-icons/fonts/themify.eot');
-	src:url('https://www.urbanui.com/vanta/template/vendors/ti-icons/fonts/themify.eot?#iefix') format('embedded-opentype'),
-		url('https://www.urbanui.com/vanta/template/vendors/ti-icons/fonts/themify.woff') format('woff'),
-		url('https://www.urbanui.com/vanta/template/vendors/ti-icons/fonts/themify.ttf') format('truetype'),
-		url('https://www.urbanui.com/vanta/template/vendors/ti-icons/fonts/themify.svg') format('svg');
+	src:url('/Dashboard/vendors/fonts/themify.eot');
+	src:url('/Dashboard/vendors/fonts/themify.eot?#iefix') format('embedded-opentype'),
+		url('/Dashboard/vendors/fonts/themify.woff') format('woff'),
+		url('/Dashboard/vendors/fonts/themify.ttf') format('truetype'),
+		url('/Dashboard/vendors/fonts/themify.svg') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }

@@ -218,24 +218,52 @@ router.put('/profileupdate', (req, res)=>{
                 if(req.user.blocked == true){
                     return res.send({
                         success: false,
-                        message: "Your account has been blocked."
+                        message: "You're currently not allowed to bit."
                     });
                 }else{
-                    try {
-                        const auction = await Auction.findById(req.query.auction_id.slice(0,24), 'name description startDate endDate startAmount currentBid countdown _id bids autobids')
-                    
-                        const updatedAuction = await auction.addBid({
-                            value: req.body.value,
-                            userid: req.user._id,
-                            name: req.user.name
+                    if(req.user.package != "Gold" && req.user.package != "Silver"&& req.user.package != "Platnum"){
+                        if(req.user.role=="Admin"){
+                            res.render('./shared/pricing',{
+                                alert:"alert alert-danger",
+                                msg:"Please upgrade your package",
+                                layout :'../layouts/authenticated.handlebars'
+                            });
+                           }else if(req.user.role=="Supplier"){
+                                res.render('./shared/pricing',{
+                                    alert:"alert alert-danger",
+                                    msg:"Please upgrade your package",
+                                    layout :'../layouts/supplierLayout.handlebars'
+                                });
+                           }else if(req.user.role=="Artist"){
+                                res.render('./shared/pricing',{
+                                    alert:"alert alert-danger",
+                                    msg:"Please upgrade your package",
+                                    layout :'../layouts/artist.handlebars'
+                                });
+                           }else{
+                                res.render('./shared/pricing',{
+                                    alert:"alert alert-danger",
+                                    msg:"Please upgrade your package",
+                                    layout :'../layouts/customerLayout.handlebars'
+                                });
+                           }
+                    }else{
+                        try {
+                            const auction = await Auction.findById(req.query.auction_id.slice(0,24), 'name description startDate endDate startAmount currentBid countdown _id bids autobids')
+                        
+                            const updatedAuction = await auction.addBid({
+                                value: req.body.value,
+                                userid: req.user._id,
+                                name: req.user.name
+                            });
+                        
+                            res.json({ auction: updatedAuction, success: true });
+                        } catch ({ message }) {
+                        res.send({
+                            success: false,
+                            message
                         });
-                    
-                        res.json({ auction: updatedAuction, success: true });
-                    } catch ({ message }) {
-                    res.send({
-                        success: false,
-                        message
-                    });
+                        }
                     }
                 }
             }
@@ -305,12 +333,12 @@ router.put('/profileupdate', (req, res)=>{
                 layout :'../layouts/artist.handlebars'
             });
            }else{
-            res.render('./auction/view-auctions',{
-                auctions:auctions,
-                layout :'../layouts/customerLayout.handlebars'
-            });
+                res.render('./auction/view-auctions',{
+                    auctions:auctions,
+                    layout :'../layouts/customerLayout.handlebars'
+                });
+           }
         }
-       }
     } catch (err) {
       res.send(err)
     }

@@ -107,7 +107,7 @@ router.post('/admin-add-user',ensureAuthentication,(req, res)=>{
 
 router.get('/admin-view-users', ensureAuthentication, function(req, res){
   //res.send(req.user)
-  User.find({active:true},(err, users)=>{
+  User.find({$and:[{active:true},{role:{$ne:"Admin"}}]},(err, users)=>{
     //var user = [users];
     if(err) throw err;
       //res.send(users);
