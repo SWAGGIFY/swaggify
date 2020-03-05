@@ -4,6 +4,7 @@ const router = express.Router();
 const fs = require('fs');
 //models
 const User= require('../../model/user');
+const Package= require('../../model/package');
 const Request= require('../../model/request');
 const Song= require('../../model/song');
 const Product = require('../../model/inventory/product');
@@ -50,6 +51,35 @@ router.get('/object-data',ensureAuthentication,(req,res)=>{
     }
 });
 
+router.get('/view-packages', ensureAuthentication, function(req, res){
+    //res.send(req.user)
+    Package.find({},(err,packages)=>{
+        if(err) throw err;
+        if(req.user.role =="Admin"){
+            res.render('./admin/admin-view-packages',{
+                //user:req.user,
+                layout:"../layouts/authenticated.handlebars"
+            });
+        }else if(req.user.role =="Supplier"){
+            res.render('./shared/pricing',{
+                packages:packages,
+                layout:"../layouts/supplierLayout.handlebars"
+            });
+        }else if(req.user.role =="Artist"){
+            res.render('./shared/pricing',{
+                packages:packages,
+                layout:"../layouts/artistLayout.handlebars"
+            });
+        }else{
+            res.render('./shared/pricing',{
+                packages:packages,
+                layout:"../layouts/customerLayout.handlebars"
+            });
+        }
+    });
+  });
+
+//Category
 router.get('/category-data', (req,res)=>{
     Category.find({},(err, categories)=>{
         if(err) throw err;
@@ -221,7 +251,8 @@ router.put('/profileupdate', (req, res)=>{
                         message: "You're currently not allowed to bit."
                     });
                 }else{
-                    if(req.user.package != "Gold" && req.user.package != "Silver"&& req.user.package != "Platnum"){
+                    console.log(req.user.package)
+                    if(req.user.package =="Bronze" ){
                         if(req.user.role=="Admin"){
                             res.render('./shared/pricing',{
                                 alert:"alert alert-danger",
@@ -237,7 +268,7 @@ router.put('/profileupdate', (req, res)=>{
                            }else if(req.user.role=="Artist"){
                                 res.render('./shared/pricing',{
                                     alert:"alert alert-danger",
-                                    msg:"Please upgrade your package",
+                                    msg:"Please upgrade your package", 
                                     layout :'../layouts/artist.handlebars'
                                 });
                            }else{
@@ -249,15 +280,15 @@ router.put('/profileupdate', (req, res)=>{
                            }
                     }else{
                         try {
-                            const auction = await Auction.findById(req.query.auction_id.slice(0,24), 'name description startDate endDate startAmount currentBid countdown _id bids autobids')
+                            const auction = await Auction.findById(req.query.auction_id.slice(0,24), 'name description startDate endDate startAmount currentBid countdown _id bids autobids');
                         
                             const updatedAuction = await auction.addBid({
                                 value: req.body.value,
                                 userid: req.user._id,
                                 name: req.user.name
                             });
-                        
-                            res.json({ auction: updatedAuction, success: true });
+                            res.send(updatedAuction)
+                            //res.json({ auction: updatedAuction, success: true });
                         } catch ({ message }) {
                         res.send({
                             success: false,

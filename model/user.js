@@ -118,6 +118,10 @@ const UserSchema = mongoose.Schema({
       type:String,
   
     },
+    package:{
+      type:String,
+  
+    },
     active:{
       type: Boolean
     },

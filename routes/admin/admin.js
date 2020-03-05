@@ -3,6 +3,7 @@ const router = express.Router();
 const {check, validationResult} = require('express-validator');
 //models
 const User= require('../../model/user');
+const Package= require('../../model/package');
 const Category= require('../../model/inventory/category');
 const Auction = require('../../model/auction/auction');
 
@@ -13,6 +14,41 @@ router.get('/admin-dashboard', ensureAuthentication, function(req, res){
        layout:"../layouts/authenticated.handlebars"
    });
 });
+
+//Packages
+router.post('/admin-add-package', ensureAuthentication, function(req, res){
+  Package.find({},(err,packages)=>{
+    if(err) throw err;
+    Package.findOne({pname:req.body.pname.toUpperCase()},(err, package)=>{
+      if (err) throw err;
+      if(package){
+        res.render('./shared/pricing',{
+          alert:"alert alert-danger",
+          msg:"Package already exists",
+          layout:"../layouts/authenticated.handlebars",
+          packages:packages
+        });
+      }else{
+        const newPackage =new Package({
+          pname:req.body.pname.toUpperCase(),
+          package_description:req.body.package_description,
+          package_price:req.body.package_price,
+          packages:packages
+        });
+        Package.createPackage(newPackage,()=>{
+          res.render('./shared/pricing',{
+            alert:"alert alert-success",
+            msg:"Package successfully added",
+            layout:"../layouts/authenticated.handlebars",
+            packages:packages
+          });
+        });
+      }
+    });
+  });
+});
+
+//Packages end
 
 // create category router
 router.post('/admin-add-category',ensureAuthentication,(req, res)=>{

@@ -39,8 +39,48 @@
                         </a>
                         <div class="collapse" id="ui-users">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="#"> Add User </a></li>
+                            <li class="nav-item"> <a class="nav-link" href="#" data-toggle="modal" data-target="#AddUser"> Add User </a></li>
                             <li class="nav-item"> <a class="nav-link" href="/admin/admin-view-users"> View Users </a></li>
+                        </ul>
+                        </div>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#ui-packages" aria-expanded="false" aria-controls="ui-apps">
+                            <i class="ti-package menu-icon"></i>
+                                <span class="menu-title">Package Management</span>
+                            <i class="ti-angle-down menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="ui-packages">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="#" data-toggle="modal" data-target="#AddPackage"> Add Package </a></li>
+                            <li class="nav-item"> <a class="nav-link" href="/shared/view-packages"> View Packages </a></li>
+                        </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#ui-categories" aria-expanded="false" aria-controls="ui-apps">
+                            <i class="ti-menu-alt menu-icon"></i>
+                                <span class="menu-title">Categories Management</span>
+                            <i class="ti-angle-down menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="ui-categories">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="#" data-toggle="modal" data-target="#AddCategory"> Add Catgeory </a></li>
+                            <li class="nav-item"> <a class="nav-link" href="/admin/admin-view-category"> View Categories </a></li>
+                        </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#ui-auction" aria-expanded="false" aria-controls="ui-apps">
+                            <i class="ti-hummer menu-icon"></i>
+                                <span class="menu-title">Auction Management</span>
+                            <i class="ti-angle-down menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="ui-auction">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="#" data-toggle="modal" data-target="#AddAuction"> Add Auction </a></li>
+                            <li class="nav-item"> <a class="nav-link" href="/shared/view-auctions"> View Auction </a></li>
                         </ul>
                         </div>
                     </li>
@@ -552,7 +592,7 @@
 
     <!-- modal category-->
     <!-- Delete Modal -->
-    <div class="modal fade" id="addcategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="AddCategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
@@ -667,6 +707,44 @@
         </div>
     </div>
           <!-- end of create aution -->
+    <!-- modal admin premier-->
+    <div class="col-md-6 col-xl-9 grid-margin stretch-card">
+        <div class="card-body">
+        <div class="modal fade" id="AddPackage" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLabel">Add New package</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <form action="/admin/admin-add-package" method="POST">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Package Name</label>
+                            <input type="text" name="pname" class="form-control" aria-describedby="emailHelp" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Package Price</label>
+                            <input type="text" name="package_price" class="form-control" aria-describedby="emailHelp" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Package Description</label>
+                            <textarea rows="5" name="package_description" class="form-control"  aria-describedby="emailHelp" required ></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="submit" class="btn btn-gradient-success">Submit Package</button>
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                    </div>
+                    </form>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <!-- end of premier -->
           
         <!--######################***** Binding End modals##########################-->
 </html>
