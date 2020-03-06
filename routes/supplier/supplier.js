@@ -7,7 +7,7 @@ const Product= require('../../model/inventory/product');
 router.get('/supplier-dashboard', ensureAuthentication, (req, res) =>{
     
     res.render('./supplier/supplier-dashboard',{
-        layout:"../layouts/supplierLayout.handlebars"
+        layout:"./layouts/supplierLayout.handlebars"
     });
 });
 
@@ -36,7 +36,7 @@ router.post('/add',ensureAuthentication,(req, res)=>{
             const alert = "alert alert-success";
             const msg = "Successfully added";
             res.render('./supplier-dashboard',{
-                layout:"../layouts/supplierLayout.handlebars",
+                layout:"./layouts/supplierLayout.handlebars",
                 alert:alert,
                 msg: msg
             });

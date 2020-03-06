@@ -303,6 +303,7 @@
                     <div class="navbar-brand-wrapper d-flex align-items-center justify-content-center">
                         <a class="navbar-brand brand-logo" href="index.html"><img src="https://www.urbanui.com/vanta/template/images/logo.svg" alt="logo"/></a>
                         <a class="navbar-brand brand-logo-mini" href="index.html"><img src="https://www.urbanui.com/vanta/template/images/logo-mini.svg" alt="logo"/></a>
+                        <%= user.firstname %> <%= user.lastname %>
                     </div>
                     <ul class="navbar-nav navbar-nav-right ml-auto">
                         <li class="nav-item nav-search d-none d-sm-flex">
@@ -428,7 +429,7 @@
                 <!--Body-->
                 <!-- partial -->
                 <div class="main-panel">
-                    {{{body}}}
+                    <%- body    %>
                     <!-- partial:partials/_footer.html -->
                     <footer class="footer">
                         <div class="d-sm-flex justify-content-center justify-content-sm-between">

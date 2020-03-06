@@ -4,8 +4,11 @@ const http = require('http');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const exphbs = require('express-handlebars');
+//if using express.handlebars
+//const exphbs = require('express-handlebars');
 const expressValidator = require ('express-validator');
+const ejs = require ('ejs');
+const layouts = require('express-ejs-layouts');
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
@@ -56,12 +59,15 @@ const shop = require('./routes/shared/shop');
 const app = express();
 
 //View engine
-app.set('views', path.join(__dirname, 'views'))
-app.engine('handlebars', exphbs({
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'handlebars');
+app.engine('handlebars', ejs.renderFile/*exphbs({
   defaultLayout:'layout',
   partialsDir: __dirname + '/views/partials/'
-}));
-app.set('view engine', 'handlebars');
+})*/);
+app.use(layouts);
+app.set('layout', 'layouts/layout');
+
 
 //Set static folder
 app.use(express.static(path.join(__dirname, 'public')));

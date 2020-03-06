@@ -346,7 +346,7 @@ router.put('/profileupdate', (req, res)=>{
     try {
       const auctions = await Auction
         .find(filter, null, { sort: 'startDate' })
-        .select(fields)
+        .select(fields);
        if(req.isAuthenticated()){
            if(req.user.role=="Admin"){
             res.render('./auction/view-auctions',{
@@ -358,18 +358,16 @@ router.put('/profileupdate', (req, res)=>{
                 auctions:auctions,
                 layout :'../layouts/supplierLayout.handlebars'
             });
-           }else if(req.user.role=="Artist"){
-            res.render('./auction/view-auctions',{
-                auctions:auctions,
-                layout :'../layouts/artist.handlebars'
-            });
            }else{
                 res.render('./auction/view-auctions',{
                     auctions:auctions,
-                    layout :'../layouts/customerLayout.handlebars'
                 });
            }
-        }
+        }else{
+            res.render('./auction/view-auctions',{
+                auctions:auctions,
+            });
+       }
     } catch (err) {
       res.send(err)
     }

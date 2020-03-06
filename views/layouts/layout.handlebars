@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+ <!DOCTYPE html>
   <html lang="en">
 
   <head>
@@ -8,12 +8,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <!-- Title -->
-    <title>Swaggiffy &amp; Online music and Fashion Shop | Home</title>
+    <title>Swaggiffy &amp; Online music videos and Fashion Shop | Home</title>
     <!-- Favicon -->
-    <link rel="icon" href="/home/img/bg-img/swagglogo.png">
+    <link rel="icon" href="icon 3.png">
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="/home/style.css">
+    <style>
+      .form-dark .font-small {
+  font-size: 0.8rem; }
+
+.form-dark [type="radio"] + label,
+.form-dark [type="checkbox"] + label {
+  font-size: 0.8rem; }
+
+.form-dark [type="checkbox"] + label:before {
+  top: 2px;
+  width: 15px;
+  height: 15px; }
+
+.form-dark .md-form label {
+  color: #fff; }
+
+.form-dark input[type=email]:focus:not([readonly]) {
+  border-bottom: 1px solid #00C851;
+  -webkit-box-shadow: 0 1px 0 0 #00C851;
+  box-shadow: 0 1px 0 0 #00C851; }
+
+.form-dark input[type=email]:focus:not([readonly]) + label {
+  color: #fff; }
+
+.form-dark input[type=password]:focus:not([readonly]) {
+  border-bottom: 1px solid #00C851;
+  -webkit-box-shadow: 0 1px 0 0 #00C851;
+  box-shadow: 0 1px 0 0 #00C851; }
+
+.form-dark input[type=password]:focus:not([readonly]) + label {
+  color: #fff; }
+
+.form-dark input[type="checkbox"] + label:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 17px;
+  height: 17px;
+  z-index: 0;
+  border: 1.5px solid #fff;
+  border-radius: 1px;
+  margin-top: 2px;
+  -webkit-transition: 0.2s;
+  transition: 0.2s; }
+
+.form-dark input[type="checkbox"]:checked + label:before {
+  top: -4px;
+  left: -3px;
+  width: 12px;
+  height: 22px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: transparent #00c851 #00c851 transparent;
+  -webkit-transform: rotate(40deg);
+  -ms-transform: rotate(40deg);
+  transform: rotate(40deg);
+  -webkit-backface-visibility: hidden;
+  -webkit-transform-origin: 100% 100%;
+  -ms-transform-origin: 100% 100%;
+  transform-origin: 100% 100%; }
+
+.form-dark .modal-header {
+    border-bottom: none;
+}
+    </style>
   </head>
+
   <body>
     <!-- Preloader -->
     <div class="preloader d-flex align-items-center justify-content-center">
@@ -30,12 +97,12 @@
               <div class="top-header-content d-flex align-items-center justify-content-between">
                 <!-- Top Header Content -->
                 <div class="top-header-meta">
-                  <p>Welcome to <span>Swaggiffy</span> SEE IT, BUY IT</p>
+                  <p>Welcome to <span><b>Swaggiffy</b></span> SEE IT, BUY IT</p>
                 </div>
                 <!-- Top Header Content -->
                 <div class="top-header-meta text-right">
-                  <a href="#" data-toggle="tooltip" data-placement="bottom" title="marvin@gmx.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> <span>Email: marvin@gmx.com</span></a>
-                  <a href="#" data-toggle="tooltip" data-placement="bottom" title="+1 234 122 122"><i class="fa fa-phone" aria-hidden="true"></i> <span>Call Us: +263 715 801 268</span></a>
+                  <a href="#" data-toggle="tooltip" data-placement="bottom" title="marvin@gmx.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> <span>: marvin@gmx.com</span></a>
+                  <a href="#" data-toggle="tooltip" data-placement="bottom" title="+263 715 801 268"><i class="fa fa-phone" aria-hidden="true"></i> <span>: +263 715 801 268</span></a>
                 </div>
               </div>
             </div>
@@ -65,35 +132,57 @@
                 <div class="classynav">
                   <ul>
                     <li><a href="/">Home</a></li>
-                    <li><a href="about.html">ABOUT</a></li>
-                    <li><a href="#">Pages</a>
-                      <ul class="dropdown">
-                        <li><a href="index.html">Artists</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                      
-                        <li><a href="#">Shop</a>
-                          <ul class="dropdown">
-                            <li><a href="/shop/shop">Our Products</a></li>
-                            <li><a href="shop.html">Trending Swagg</a></li>
-                          </ul>
-                        </li>
-                        <li><a href="news.html">News</a>
-                          <ul class="dropdown">
-                            <li><a href="news.html">What's Trending</a></li>
-                            <li><a href="news-details.html">Breaking News</a></li>
-                          </ul>
-                        </li>
-                        <li><a href="contact.html">Bidding Page</a></li>
+                    <li><a href="/shop/shop">Shop</a></li>
+
+                    <li><a href="#">Auction</a>
+                    <ul class="dropdown">
+                        <li><a href="/shared/view-auctions"> Deals Of The Day</a></li>
+                        <li><a href="/auth/sign-in"> Auction Category</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#SingIn"></i> Auction Details</a></li>
+                        <li><a href="/auth/sign-out"> Auction Winners</a></li>
                       </ul>
                     </li>
-                    <li><a href="our-product.html">Our Product</a></li>
+                     
+                      <% if(user){ %>
+                      <% if(user.role=="Artist"){ %>
+                    <li><a href="#">Request Management</a>
+                    <ul class="dropdown">
+                        <li><a href="#" data-toggle="modal" data-target="#SingIn"> Acknoledgements</a></li>
+                        <li><a href="/auth/sign-in"> Bid Requests</a></li>
+                      </ul>
+                    </li>
+                     <% } %>
+                      <% } %>
+
+                       <% if(user){ %>
+                      <% if(user.role=="Artist"){ %>
+                    <li><a href="#">Song Management</a>
+                    <ul class="dropdown">
+                        <li><a href="#" data-toggle="modal" data-target="#SingIn"> Add Song</a></li>
+                        <li><a href="/auth/sign-in"> View Song</a></li>
+                      </ul>
+                    </li>
+                     <% } %>
+                      <% } %>
                
-                   
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
                     <li><a href="#"><i class="fa fa-user"></i></a>
                       <ul class="dropdown">
-                        <li><a href="/auth/sign-in"><i class="fa fa-sign-in"></i>Sign-in</a></li>
-                        <li><a href="about.html"><i class="fa fa-pen"></i></a>Sign-up</li>
+                        <li><a href="#" data-toggle="modal" data-target="#SingIn"><i class="fa fa-sign-in"></i> Sign-In</a></li>
+                        <li><a href="/auth/sign-in"><i class="fa fa-sign-in"></i> Sing-Up</a></li>
+                       <% if(user){ %>
+                        <% if(user.role=="Customer"){ %>
+                        <li><a href="/auth/sign-in"><i class="fa fa-sign-in"></i> Profile Management</a></li>
+                        <li><a href="/auth/sign-in"><i class="fa fa-sign-in"></i> Change Password</a></li>
+                        <% } %>
+                        <% if(user.role=="Artist"){ %>
+                        <li><a href="/auth/sign-in"><i class="fa fa-sign-in"></i> Profile Management</a></li>
+                        <li><a href="/auth/sign-in"><i class="fa fa-sign-in"></i> </a></li>
+                        <% } %>
+                        <li><a href="/auth/sign-out"><i class="fa fa-sign-in"></i> Sign-Out</a></li>
+                        
+                       <% } %>
                       </ul>
                     </li>
                   </ul>
@@ -105,7 +194,7 @@
                   <div id="cartIcon">
                     <a href="#">
                       <i class="icon_cart_alt" aria-hidden="true"></i>
-                      <span class="cart-quantity"></span>
+                      <span class="cart-quantity"> {{session.cart.totalQty}}</span>
                     </a>
                   </div>
                 </div>
@@ -127,203 +216,217 @@
       </div>
     </header>
     <!-- ##### Header Area End ##### -->
-        {{{body}}}
-    <!-- ##### News Area Start ##### -->
-    <section class="news-area bg-gray section-padding-100-0">
+
+
+
+
+        <%- body %>
+
+        <!-- Modal -->
+<div class="modal fade" id="SingIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog form-dark" role="document">
+    <!--Content-->
+    <div class="modal-content card card-image" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/pricing-table%20(7).jpg');">
+      <div class="text-white rgba-stylish-strong py-5 px-5 z-depth-4">
+        <!--Header-->
+        <div class="modal-header text-center pb-4">
+          <h3 class="modal-title w-100 white-text font-weight-bold" id="myModalLabel"><strong>SIGN</strong> <a
+              class="green-text font-weight-bold"><strong> UP</strong></a></h3>
+          <button type="button" class="close white-text" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <!--Body-->
+        <form action="/auth/sign-in" method="POST">
+        <div class="modal-body">
+          <!--Body-->
+          <div class="md-form mb-5">
+            <input type="text" name="username" class="form-control validate white-text" placeholder="username">
+            <label data-error="wrong" data-success="right" for="Form-email5">Usename</label>
+          </div>
+          <div class="md-form pb-3">
+            <input type="password" id="Form-pass5" name="password" class="form-control validate white-text" placeholder="password">
+            <label data-error="wrong" data-success="right" for="Form-pass5">Your password</label>
+            <div class="form-group mt-4">
+              <input class="form-check-input" type="checkbox" id="checkbox624">
+              <label for="checkbox624" class="white-text form-check-label">Accept the<a href="#" class="green-text font-weight-bold">
+                  Terms and Conditions</a></label>
+            </div>
+          </div>
+          <!--Grid row-->
+          <div class="row d-flex align-items-center mb-4">
+
+            <!--Grid column-->
+            <div class="text-center mb-3 col-md-12">
+              <button type="submit" class="btn btn-success btn-block btn-rounded z-depth-1">Sign up</button>
+            </div>
+            <!--Grid column-->
+
+          </div>
+          <!--Grid row-->
+
+          <!--Grid row-->
+          <div class="row">
+
+            <!--Grid column-->
+            <div class="col-md-12">
+              <p class="font-small white-text d-flex justify-content-end">Have an account? <a href="#" class="green-text ml-1 font-weight-bold">
+                  Log in</a></p>
+            </div>
+            <!--Grid column-->
+
+          </div>
+          <!--Grid row-->
+
+        </div>
+        </form>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+<!-- Modal -->
+
+   <!-- ##### Footer Area Start ##### -->
+  <footer class="footer-area">
+    <!-- Main Footer Area -->
+    <div class="main-footer bg-img bg-overlay section-padding-80-0" style="background-image: url(/home/img/bg-img/3.jpg);">
       <div class="container">
         <div class="row">
 
-          <!-- Featured Post Area -->
-          <div class="col-12 col-lg-6">
-            <div class="featured-post-area mb-100 wow fadeInUp" data-wow-delay="100ms">
-              <img src="img/bg-img/17.jpg" alt="">
-              <!-- Post Content -->
-              <div class="post-content">
-                <h6>Post on <a href="#">18 Aug 2018</a> / <a href="#">Carlos Bacca</a></h6>
-                <a href="#" class="post-title">Why innovation is key to maintaining our export market share</a>
+          <!-- Single Footer Widget Area -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="footer-widget mb-80">
+              <a href="#" class="foo-logo d-block mb-3"><img src="/home/img/bg-img/swagglogo.png" alt=""></a>
+              <p>Lorem ipsum dolor sit amet, consecte stare adipiscing elit. In act honcus risus atiner Pellentesque risus.</p>
+              <div class="contact-info">
+                <p><i class="fa fa-map-pin" aria-hidden="true"></i><span>120 Raymond Rd, New York</span></p>
+                <p><i class="fa fa-envelope" aria-hidden="true"></i><span>info.deercreative@gmail.com</span></p>
+                <p><i class="fa fa-phone" aria-hidden="true"></i><span>+84 223 9000</span></p>
               </div>
             </div>
           </div>
 
-          <!-- Single Blog Area -->
-          <div class="col-12 col-lg-6 mb-100">
-
-            <!-- Single Blog Area -->
-            <div class="single-blog-area style-2 wow fadeInUp" data-wow-delay="300ms">
-              <!-- Post Content -->
-              <div class="post-content">
-                <h6>Post on <a href="#">18 Aug 2018</a> / <a href="#">Peter Crough</a></h6>
-                <a href="#" class="post-title">Rising cattle supplies see beef export lifted</a>
-                <p>Maecenas facilisis quam orcit, velo porttitor arcu egestas eu. Maecenas donald imperdiet nibh, quis. Etiam non scelerisque exited sagittis...</p>
-              </div>
+          <!-- Single Footer Widget Area -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="footer-widget mb-80">
+              <h5 class="widget-title">QUICK LINK</h5>
+              <!-- Footer Widget Nav -->
+              <nav class="footer-widget-nav">
+                <ul>
+                  <li><a href="#">Purchase</a></li>
+                  <li><a href="#">Policities</a></li>
+                  <li><a href="#">Shipping</a></li>
+                  <li><a href="#">FAQs</a></li>
+                  <li><a href="#">Return</a></li>
+                  <li><a href="#">Careers</a></li>
+                  <li><a href="#">Payments</a></li>
+                  <li><a href="#">Partners</a></li>
+                  <li><a href="#">Guide</a></li>
+                  <li><a href="#">Standard</a></li>
+                  <li><a href="#">News</a></li>
+                  <li><a href="#">Brands</a></li>
+                </ul>
+              </nav>
             </div>
-
-            <!-- Single Blog Area -->
-            <div class="single-blog-area style-2 wow fadeInUp" data-wow-delay="500ms">
-              <!-- Post Content -->
-              <div class="post-content">
-                <h6>Post on <a href="#">18 Aug 2018</a> / <a href="#">Peter Crough</a></h6>
-                <a href="#" class="post-title">Cattle marts: Cows take a hit at the ringside</a>
-                <p>Maecenas facilisis quam orcit, velo porttitor arcu egestas eu. Maecenas donald imperdiet nibh, quis. Etiam non scelerisque exited sagittis...</p>
-              </div>
-            </div>
-
-            <!-- Single Blog Area -->
-            <div class="single-blog-area style-2 wow fadeInUp" data-wow-delay="700ms">
-              <!-- Post Content -->
-              <div class="post-content">
-                <h6>Post on <a href="#">18 Aug 2018</a> / <a href="#">Peter Crough</a></h6>
-                <a href="#" class="post-title">Malting barley price set to commence</a>
-                <p>Maecenas facilisis quam orcit, velo porttitor arcu egestas eu. Maecenas donald imperdiet nibh, quis. Etiam non scelerisque exited sagittis...</p>
-              </div>
-            </div>
-
           </div>
-        </div>
-      </div>
-    </section>
-    <!-- ##### News Area End ##### -->
 
-    <!-- ##### Footer Area Start ##### -->
-    <footer class="footer-area">
-      <!-- Main Footer Area -->
-      <div class="main-footer bg-img bg-overlay section-padding-80-0" style="background-image: url(/home/img/core-img/adult1.jpg);">
-        <div class="container">
-          <div class="row">
+          <!-- Single Footer Widget Area -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="footer-widget mb-80">
+              <h5 class="widget-title">RECENT NEWS</h5>
 
-            <!-- Single Footer Widget Area -->
-            <div class="col-12 col-sm-6 col-lg-3">
-              <div class="footer-widget mb-80">
-                <a href="#" class="foo-logo d-block mb-30"><img src="img/core-img/logo2.png" alt=""></a>
-                <p>Lorem ipsum dolor sit amet, consecte stare adipiscing elit. In act honcus risus atiner Pellentesque risus.</p>
-                <div class="contact-info">
-                  <p><i class="fa fa-map-pin" aria-hidden="true"></i><span>120 Raymond Rd, New York</span></p>
-                  <p><i class="fa fa-envelope" aria-hidden="true"></i><span>info.deercreative@gmail.com</span></p>
-                  <p><i class="fa fa-phone" aria-hidden="true"></i><span>+84 223 9000</span></p>
+              <!-- Single Recent News Start -->
+              <div class="single-recent-blog d-flex align-items-center">
+                <div class="post-thumbnail">
+                  <img src="img/bg-img/4.jpg" alt="">
+                </div>
+                <div class="post-content">
+                  <a href="#" class="post-title">WA’s largest farming business on the market</a>
+                  <div class="post-date">18 Aug 2018</div>
                 </div>
               </div>
-            </div>
 
-            <!-- Single Footer Widget Area -->
-            <div class="col-12 col-sm-6 col-lg-3">
-              <div class="footer-widget mb-80">
-                <h5 class="widget-title">QUICK LINK</h5>
-                <!-- Footer Widget Nav -->
-                <nav class="footer-widget-nav">
+              <!-- Single Recent News Start -->
+              <div class="single-recent-blog d-flex align-items-center">
+                <div class="post-thumbnail">
+                  <img src="img/bg-img/5.jpg" alt="">
+                </div>
+                <div class="post-content">
+                  <a href="#" class="post-title">Beef retail prices hit a record</a>
+                  <div class="post-date">18 Aug 2018</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Single Footer Widget Area -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="footer-widget mb-80">
+              <h5 class="widget-title">STAY CONNECTED</h5>
+              <!-- Footer Social Info -->
+              <div class="footer-social-info">
+                <a href="#">
+                  <i class="fa fa-facebook" aria-hidden="true"></i>
+                  <span>Facebook</span>
+                </a>
+                <a href="#">
+                  <i class="fa fa-twitter" aria-hidden="true"></i>
+                  <span>Twitter</span>
+                </a>
+                <a href="#">
+                  <i class="fa fa-pinterest" aria-hidden="true"></i>
+                  <span>Pinterest</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Copywrite Area  -->
+    <div class="copywrite-area">
+      <div class="container">
+        <div class="copywrite-text">
+          <div class="row align-items-center">
+            <div class="col-md-6">
+              <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+</p>
+            </div>
+            <div class="col-md-6">
+              <div class="footer-nav">
+                <nav>
                   <ul>
-                    <li><a href="#">Purchase</a></li>
-                    <li><a href="#">Policities</a></li>
-                    <li><a href="#">Shipping</a></li>
-                    <li><a href="#">FAQs</a></li>
-                    <li><a href="#">Return</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Payments</a></li>
-                    <li><a href="#">Partners</a></li>
-                    <li><a href="#">Guide</a></li>
-                    <li><a href="#">Standard</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Produce</a></li>
+                    <li><a href="#">Practice</a></li>
+                    <li><a href="#">Products</a></li>
                     <li><a href="#">News</a></li>
-                    <li><a href="#">Brands</a></li>
+                    <li><a href="#">Contact</a></li>
                   </ul>
                 </nav>
               </div>
             </div>
-
-            <!-- Single Footer Widget Area -->
-            <div class="col-12 col-sm-6 col-lg-3">
-              <div class="footer-widget mb-80">
-                <h5 class="widget-title">RECENT NEWS</h5>
-
-                <!-- Single Recent News Start -->
-                <div class="single-recent-blog d-flex align-items-center">
-                  <div class="post-thumbnail">
-                    <img src="img/bg-img/4.jpg" alt="">
-                  </div>
-                  <div class="post-content">
-                    <a href="#" class="post-title">WA’s largest farming business on the market</a>
-                    <div class="post-date">18 Aug 2018</div>
-                  </div>
-                </div>
-
-                <!-- Single Recent News Start -->
-                <div class="single-recent-blog d-flex align-items-center">
-                  <div class="post-thumbnail">
-                    <img src="img/bg-img/5.jpg" alt="">
-                  </div>
-                  <div class="post-content">
-                    <a href="#" class="post-title">Beef retail prices hit a record</a>
-                    <div class="post-date">18 Aug 2018</div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-            <!-- Single Footer Widget Area -->
-            <div class="col-12 col-sm-6 col-lg-3">
-              <div class="footer-widget mb-80">
-                <h5 class="widget-title">STAY CONNECTED</h5>
-                <!-- Footer Social Info -->
-                <div class="footer-social-info">
-                  <a href="#">
-                    <i class="fa fa-facebook" aria-hidden="true"></i>
-                    <span>Facebook</span>
-                  </a>
-                  <a href="#">
-                    <i class="fa fa-twitter" aria-hidden="true"></i>
-                    <span>Twitter</span>
-                  </a>
-                  <a href="#">
-                    <i class="fa fa-pinterest" aria-hidden="true"></i>
-                    <span>Pinterest</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-
           </div>
         </div>
       </div>
-
-      <!-- Copywrite Area  -->
-      <div class="copywrite-area">
-        <div class="container">
-          <div class="copywrite-text">
-            <div class="row align-items-center">
-              <div class="col-md-6">
-                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  </p>
-              </div>
-              <div class="col-md-6">
-                <div class="footer-nav">
-                  <nav>
-                    <ul>
-                      <li><a href="#">About</a></li>
-                      <li><a href="#">Produce</a></li>
-                      <li><a href="#">Practice</a></li>
-                      <li><a href="#">Products</a></li>
-                      <li><a href="#">News</a></li>
-                      <li><a href="#">Contact</a></li>
-                    </ul>
-                  </nav>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-    <!-- ##### Footer Area End ##### -->
+    </div>
+  </footer>
+  <!-- ##### Footer Area End ##### -->
 
     <!-- ##### All Javascript Files ##### -->
     <!-- jquery 2.2.4  -->
     <script src="/home/js/jquery.min.js"></script>
     <!-- Popper js -->
-    <script src="/Dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/home/js/popper.min.js"></script>
     <!-- Bootstrap js -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="/home/js/bootstrap.min.js"></script>
     <!-- Owl Carousel js -->
     <script src="/home/js/owl.carousel.min.js"></script>
     <!-- Classynav -->
@@ -344,54 +447,6 @@
     <script src="/home/js/active.js"></script>
     <!-- Pop Over-->
     <script src="/shop.js"></script>
-    <script>
-            $(document).ready(function(){
-                $('div.carousel-item:first-child').addClass('active');
-            });
-        </script>
   </body>
-</html>
-    <!-- Modal -->
-    <div class="modal fade" id="signUp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">SignUp</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="/auth/sign-up" method="POST">
-                <div class="modal-body">
-                    
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Firstname</label>
-                            <input type="text" name="firstname" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Lastname</label>
-                            <input type="text" name="lastname" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" name="pwd" class="form-control" id="exampleInputPassword1">
-                        </div>  
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Confirm Password</label>
-                            <input type="password" name="pwd1" class="form-control" id="exampleInputPassword1">
-                        </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                </div>
-            
-            </form>
-            </div>
-        </div>
-    </div>
-</html>
+
+  </html>

@@ -13,8 +13,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                          {{#user}}
-                          <tr data-id="{{#each this}}{{_id}}{{/each}}" data-type="user">
+                          <tr data-id="<%= user._id %>" data-type="user">
                             <td>
                                   <div class="col-md-10 grid-margin stretch-card">
                                     <div class="card">
@@ -24,9 +23,9 @@
                                             <img src="/Dashboard/images/faces/face11.jpg" style="width:130px;height:130px; border-radius:56px !important" class="img-lg rounded" alt="profile image"/>
                                           </div>
                                           <div class="ml-sm-3 ml-md-0 ml-xl-3 mt-2 mt-sm-0 mt-md-2 mt-xl-0">
-                                            <span class="text-success alert alert-danger outline-primary font-weight-bold" style="float:right; top:8px; right:16px; position:absolute;"> {{#each this}}{{role}}{{/each}}</span>
-                                            <h5 class="mb-0">{{#each this}}{{firstname}}{{/each}} {{#each this}}{{lastname}}{{/each}}</h5><hr>
-                                            <p class="text-muted mb-1">{{#each this}}{{#socialNetwork}}{{#each this}}{{email}}{{/each}}{{/socialNetwork}}{{/each}}</p>
+                                            <span class="text-success alert alert-danger outline-primary font-weight-bold" style="float:right; top:8px; right:16px; position:absolute;"> <%= user.role %></span>
+                                            <h5 class="mb-0"><%= user.firstname %> <%= user.lastname %></h5><hr>
+                                            <p class="text-muted mb-1"><% for(social of user.socialNetwork){ %><%= social.email %><% } %></p>
                                             <p class="mb-0 text-success font-weight-bold">Designer</p>
                                           </div>
                                         </div>
@@ -39,9 +38,8 @@
                                 <a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="ti-trash menu-icon" style="font-size: 1.1rem;line-height: 1;margin-right: 0.6rem;"></i></a>
                             </td>
                         </tr>
-                          {{/user}}
-                          {{#each users}}
-                        <tr data-id="{{#each this}}{{_id}}{{/each}}" data-type="user">
+                          <% for (var user of users){ %>
+                        <tr data-id="user._id" data-type="user">
                             <td>
                                   <div class="col-md-10 grid-margin stretch-card">
                                     <div class="card">
@@ -51,9 +49,9 @@
                                             <img src="/Dashboard/images/faces/face11.jpg" style="width:130px;height:130px; border-radius:56px !important" class="img-lg rounded" alt="profile image"/>
                                           </div>
                                           <div class="ml-sm-3 ml-md-0 ml-xl-3 mt-2 mt-sm-0 mt-md-2 mt-xl-0">
-                                            <span class="text-success outline-primary font-weight-bold" style="float:right; top:8px; right:16px; position:absolute;"> {{#each this}}{{role}}{{/each}}</span>
-                                            <h5 class="mb-0">{{#each this}}{{firstname}}{{/each}} {{#each this}}{{lastname}}{{/each}}</h5><hr>
-                                            <p class="text-muted mb-1">{{#each this}}{{#socialNetwork}}{{#each this}}{{email}}{{/each}}{{/socialNetwork}}{{/each}}</p>
+                                            <span class="text-success outline-primary font-weight-bold" style="float:right; top:8px; right:16px; position:absolute;"> <%= user.role %></span>
+                                            <h5 class="mb-0"><%= user.firstname %> <%= user.lastname %></h5><hr>
+                                            <p class="text-muted mb-1"><% for(social of user.socialNetwork){ %><%= social.email %><% } %></p>
                                             <p class="mb-0 text-success font-weight-bold">Designer</p>
                                           </div>
                                         </div>
@@ -66,7 +64,7 @@
                                 <a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="ti-trash menu-icon" style="font-size: 1.1rem;line-height: 1;margin-right: 0.6rem;"></i></a>
                             </td>
                         </tr>
-                        {{/each}}
+                        <% } %>
                       </tbody>
                     </table>
                   </div>

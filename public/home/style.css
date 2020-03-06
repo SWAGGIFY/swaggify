@@ -795,13 +795,53 @@ input:focus {
       z-index: 9;
       padding: 0 12px;
       border-radius: 3px;
-      background-color: #23c39f;
+      background-color: yellow;
       font-size: 12px;
       text-transform: uppercase;
       line-height: 20px;
       height: 20px;
       display: inline-block;
-      color: #ffffff; }
+      color: #111111; }
+    .single-product-area .product-thumbnail .auction-price {
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      z-index: 9;
+      padding: 0 12px;
+      border-radius: 3px;
+      background-color: yellow;
+      font-size: 12px;
+      text-transform: uppercase;
+      line-height: 20px;
+      height: 20px;
+      display: inline-block;
+      color: #141313;
+      transform: rotate(-90deg) translate(-50%, -50%);
+      top: 50%;
+      left: 15px;
+      transform: rotate(-90deg) translate(-50%, -50%);
+      -webkit-transform-origin: left top;
+      transform-origin: left top;
+      z-index: 1; }
+      .single-product-area .product-thumbnail .auction-bid {
+        position: absolute;
+        left: 20px;
+        top: 77%;
+        margin-left: 0px;
+        z-index: 9;
+        padding: 0 12px;
+        border-radius: 3px;
+        background-color: yellow;
+        font-size: 12px;
+        text-transform: uppercase;
+        line-height: 20px;
+        height: 20px;
+        display: inline-block;
+        color: #141313;
+        left: 15px;
+        -webkit-transform-origin: left top;
+        transform-origin: left top;
+        z-index: 1; }
     .single-product-area .product-thumbnail .product-meta-data {
       -webkit-transition-duration: 500ms;
       -o-transition-duration: 500ms;

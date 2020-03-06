@@ -11,7 +11,7 @@ router.get('/admin-dashboard', ensureAuthentication, function(req, res){
     //res.send(req.user)
    res.render('./admin/admin-dashboard',{
        //user:req.user,
-       layout:"../layouts/authenticated.handlebars"
+       layout:"./layouts/authenticated.handlebars"
    });
 });
 
@@ -25,7 +25,7 @@ router.post('/admin-add-package', ensureAuthentication, function(req, res){
         res.render('./shared/pricing',{
           alert:"alert alert-danger",
           msg:"Package already exists",
-          layout:"../layouts/authenticated.handlebars",
+          layout:"./layouts/authenticated.handlebars",
           packages:packages
         });
       }else{
@@ -39,7 +39,7 @@ router.post('/admin-add-package', ensureAuthentication, function(req, res){
           res.render('./shared/pricing',{
             alert:"alert alert-success",
             msg:"Package successfully added",
-            layout:"../layouts/authenticated.handlebars",
+            layout:"./layouts/authenticated.handlebars",
             packages:packages
           });
         });
@@ -68,7 +68,7 @@ router.post('/admin-add-category',ensureAuthentication,(req, res)=>{
           const alert = "alert alert-success";
           const msg = "Successfully added";
           res.render('./admin/view-category',{
-            layout:"../layouts/authenticated.handlebars",
+            layout:"./layouts/authenticated.handlebars",
             alert:alert,
             msg: msg,
             categories:categories
@@ -76,7 +76,7 @@ router.post('/admin-add-category',ensureAuthentication,(req, res)=>{
        });
       }else{
         res.render('./admin/view-category',{
-          layout:"../layouts/authenticated.handlebars",
+          layout:"./layouts/authenticated.handlebars",
           alert:"alert alert-danger",
           msg: "Category already added",
           categories:categories,
@@ -95,7 +95,7 @@ router.get('/admin-view-category', ensureAuthentication, function(req, res){
       //res.send(users);
     res.render('./admin/view-category',{
       categories:categories,
-      layout:"../layouts/authenticated.handlebars"
+      layout:"./layouts/authenticated.handlebars"
     });
   });
 });
@@ -125,7 +125,7 @@ router.post('/admin-add-user',ensureAuthentication,(req, res)=>{
                 alert:alert,
                 msg: msg,
                 users:users,
-                layout:"../layouts/authenticated.handlebars"
+                layout:"./layouts/authenticated.handlebars"
             });
         });
       }else{
@@ -133,7 +133,7 @@ router.post('/admin-add-user',ensureAuthentication,(req, res)=>{
           alert:"alert alert-danger",
           msg: "User already added",
           users:users,
-          layout:"../layouts/authenticated.handlebars"
+          layout:"./layouts/authenticated.handlebars"
       });
       }
     });
@@ -149,7 +149,7 @@ router.get('/admin-view-users', ensureAuthentication, function(req, res){
       //res.send(users);
     res.render('./admin/view-users',{
       users:users,
-      layout:"../layouts/authenticated.handlebars"
+      layout:"./layouts/authenticated.handlebars"
     });
   });
 });
@@ -173,7 +173,7 @@ router.post('/admin-add-auction',ensureAuthentication,(req,res)=>{
       res.render('./auction/view-auctions',{
         alert:"alert alert-success",
         msg:"Auction successfully added",
-        layout:'../layouts/authenticated.handlebars',
+        layout:'./layouts/authenticated.handlebars',
         auctions:auctions
       });
     });
