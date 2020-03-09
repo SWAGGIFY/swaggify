@@ -1,4 +1,49 @@
 $(document).ready(function(){
+  //counter
+  $.getJSON('/shared/auctions',(data)=>{
+    $.each(data, (key,entry)=>{
+      var span = $("span."+entry._id);
+      var startDate = new Date(span.data("startdate")).getTime();
+      var endDate = new Date(span.data("enddate")).getTime();
+      // Update the count down every 1 second
+      var x = setInterval(function() {
+
+        // Get today's date and time
+        var now = new Date().getTime();
+          
+        // Find the distance between now and the count down date
+        var timeLeft = endDate - now;
+        ///check when bidding will be opened
+        var auctionOpen = startDate - now;
+        if(auctionOpen > 0){
+          clearInterval(x);
+          var ONE_HOUR = Math.floor((auctionOpen % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+          if(auctionOpen < ONE_HOUR){
+            console.log("Hello");
+            span.text("Biding Start in one Hour").addClass("auction-bid");
+          }
+          span.text("Biding Start at:" +span.data("startdate").split("GMT+0200")[0]).addClass("auction-bid");
+        }else{
+          // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+              
+            // Output the result in an element with id="demo"
+            span.text(days + "d " + hours + "h "
+            + minutes + "m " + seconds + "s ").addClass("auction-bid");
+              
+            // If the count down is over, write some text 
+            if (timeLeft < 0) {
+              clearInterval(x);
+              span.text("EXPIRED");
+            }
+        }
+      }, 1000);
+    });
+  });
+  //counter end
     $(".panel-heading").parent('.panel').hover(
         function() {
             var div=$(this).closest("div.products");

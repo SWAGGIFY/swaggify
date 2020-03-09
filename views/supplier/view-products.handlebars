@@ -25,18 +25,16 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                            {{#products}}
-                                                <tr data-id="{{#each this}}{{_id}}{{/each}}" data-type="product">
-                                                    <td>{{#each this}}{{product_name}}{{/each}}</td>
-                                                    <td>{{#each this}}{{product_price}}{{/each}}</td>
-                                                    <td>{{#each this}}{{role}}{{/each}}</td>
-                                                    <td>{{#each this}}{{email}}{{/each}}</td>
+                                            <% for(product of products){ %>
+                                                <tr data-id="<%= product._id %>" data-type="product">
+                                                    <td><%= product.product_name %></td>
+                                                    <td><%= product.product_price %></td>
                                                     <td class="action-link">
                                                         <a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editDetailModal"><i class="fa fa-edit"></i>Edit</a>
                                                         <a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="fa fa-remove"></i>Delete</a>
                                                     </td>
                                                 </tr>
-                                            {{/products}}
+                                            <% } %>
                                         <tr>
                                             <td>LENNORE DOE</td>
                                             <td>Harvard</td>

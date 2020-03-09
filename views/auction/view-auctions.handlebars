@@ -153,8 +153,7 @@
         
             <!-- Single Product Area -->
              <% for(var auction of auctions) { %>
-           
-            <div data-id="<% auction._id %>" class="col-12 col-sm-6 col-lg-4 products" style="cursor:pointer">
+            <div data-id="<% auction._id %>" class="col-12 col-sm-6 col-lg-4 products" data-cfw="popover" data-cfw-popover-target="#popoverExample0" data-cfw-popover-placement="forward">
              <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
                   <div class="panel-heading" role="tab" id="headingOne">
@@ -167,7 +166,7 @@
                             <!-- Product Tags -->
                             <span class="product-tags">Product: <%= auction.name %> </span><br>
                             <span class="auction-price">Start Amount:$ <%= auction.startAmount %> </span><br>
-                            <!--<span id="bid_counter" class="auction-bid">Auction closed: <%= auction.startDate - auction.endDate %> </span>-->
+                            <span class="<%= auction._id %>" id="<%= auction._id %>" data-startDate="<%= auction.startDate %>" data-endDate="<%= auction.endDate %>"></span>
                             <!-- Product Meta Data -->
                             <div class="product-meta-data">
                               <a href="#" data-toggle="tooltip" data-placement="top" title="Favourite"><i class="icon_heart_alt"></i></a>
@@ -175,23 +174,12 @@
                               <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="arrow_left-right_alt"></i></a>
                             </div>
                           </div>
-                          <!-- Product Description -->
-                          <div class="product-desc text-center pt-4">
-                            <a href="/" class="product-title">{{#each this}}{{product_name}}{{/each}}</a>
-                            <h6 class="price">${{#each this}}{{product_price}}{{/each}}</h6>
-                          </div>
                         </div>
                       </a>
                     </h4>
                   </div>
-                  <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                    <div class="panel-body">
-                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                    </div>
-                  </div>
                 </div>
               </div>
-            
             </div>
              <% } %>
           </div>

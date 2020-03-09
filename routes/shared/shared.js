@@ -51,6 +51,24 @@ router.get('/object-data',ensureAuthentication,(req,res)=>{
     }
 });
 
+router.get('/auctions',async(req,res)=>{
+    const fields = 'name description startDate endDate startAmount currentBid countdown _id';
+    const filter = {
+      enabled: true
+    };
+  
+    try {
+      const auctions = await Auction
+        .find(filter, null, { sort: 'startDate' })
+        .select(fields);
+        //var startDate = auctions.name;
+        console.log(auctions.name);
+        res.json(auctions);
+    } catch (err) {
+      res.send(err)
+    }
+});
+
 router.get('/view-packages', ensureAuthentication, function(req, res){
     //res.send(req.user)
     Package.find({},(err,packages)=>{
@@ -347,6 +365,8 @@ router.put('/profileupdate', (req, res)=>{
       const auctions = await Auction
         .find(filter, null, { sort: 'startDate' })
         .select(fields);
+        //var startDate = auctions.name;
+        console.log(auctions.name);
        if(req.isAuthenticated()){
            if(req.user.role=="Admin"){
             res.render('./auction/view-auctions',{
