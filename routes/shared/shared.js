@@ -13,9 +13,18 @@ const Category = require('../../model/inventory/category');
 const Auction = require('../../model/auction/auction');
 
 
+router.get('/object-data-shop',(req,res)=>{
+    Product.find({},(err, product)=>{
+        if(err) throw err;
+        res.json(product);
+    });
+
+});
 //Ajax data handler
-router.get('/object-data',ensureAuthentication,(req,res)=>{
-    var id = req.query.id.slice(0,24);
+router.get('/object-data'/*,ensureAuthentication*/,(req,res)=>{
+var id = req.query.id.slice(0,24);
+if(id == "undefined"){
+}else{
     if(req.query.data_type =="user"){
         User.findOne({_id:id},(err, user)=>{
             if(err) throw err;
@@ -49,7 +58,9 @@ router.get('/object-data',ensureAuthentication,(req,res)=>{
     }else{
 
     }
+}
 });
+
 
 router.get('/auctions',async(req,res)=>{
     const fields = 'name description startDate endDate startAmount currentBid countdown _id';
@@ -61,8 +72,6 @@ router.get('/auctions',async(req,res)=>{
       const auctions = await Auction
         .find(filter, null, { sort: 'startDate' })
         .select(fields);
-        //var startDate = auctions.name;
-        console.log(auctions.name);
         res.json(auctions);
     } catch (err) {
       res.send(err)
@@ -255,12 +264,14 @@ router.put('/profileupdate', (req, res)=>{
   ////check for the bidding user
  
   ///Create bid
-  router.post('/bid-item',async(req,res)=>{
+  router.get('/bid-item',async(req,res)=>{
         try {
             if(!req.isAuthenticated()){
                 res.render('./homefiles/sign-in',{
                     msg:"Option only available to Swaggnation! Please sign-up.",
-                    alert: "alert alert-danger"
+                    alert: "alert alert-danger",
+                    layout:false,
+                    auction_id:req.query.auction_id
                 });
             }else{
                 if(req.user.blocked == true){
@@ -269,7 +280,6 @@ router.put('/profileupdate', (req, res)=>{
                         message: "You're currently not allowed to bit."
                     });
                 }else{
-                    console.log(req.user.package)
                     if(req.user.package =="Bronze" ){
                         if(req.user.role=="Admin"){
                             res.render('./shared/pricing',{
@@ -365,8 +375,6 @@ router.put('/profileupdate', (req, res)=>{
       const auctions = await Auction
         .find(filter, null, { sort: 'startDate' })
         .select(fields);
-        //var startDate = auctions.name;
-        console.log(auctions.name);
        if(req.isAuthenticated()){
            if(req.user.role=="Admin"){
             res.render('./auction/view-auctions',{

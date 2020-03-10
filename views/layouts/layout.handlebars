@@ -13,6 +13,7 @@
     <link rel="icon" href="icon 3.png">
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="/home/style.css">
+    
     <style>
       .form-dark .font-small {
   font-size: 0.8rem; }
@@ -136,7 +137,7 @@
 
                     <li><a href="#">Auction</a>
                     <ul class="dropdown">
-                        <li><a href="/shared/view-auctions"> Deals Of The Day</a></li>
+                        <li><a href="/view-auctions" data-toggle="modal" data-target="#SingIn"> Deals Of The Day</a></li>
                         <li><a href="/auth/sign-in"> Auction Category</a></li>
                         <li><a href="#" data-toggle="modal" data-target="#SingIn"></i> Auction Details</a></li>
                         <li><a href="/auth/sign-out"> Auction Winners</a></li>
@@ -145,40 +146,48 @@
                      
                       <% if(user){ %>
                       <% if(user.role=="Artist"){ %>
-                    <li><a href="#">Request Management</a>
+                    <li><a href="#">Services</a>
                     <ul class="dropdown">
-                        <li><a href="#" data-toggle="modal" data-target="#SingIn"> Acknoledgements</a></li>
-                        <li><a href="/auth/sign-in"> Bid Requests</a></li>
-                      </ul>
-                    </li>
-                     <% } %>
-                      <% } %>
-
-                       <% if(user){ %>
-                      <% if(user.role=="Artist"){ %>
-                    <li><a href="#">Song Management</a>
-                    <ul class="dropdown">
-                        <li><a href="#" data-toggle="modal" data-target="#SingIn"> Add Song</a></li>
-                        <li><a href="/auth/sign-in"> View Song</a></li>
-                      </ul>
+                        <li><a href="#" > Requests</a>
+                            <ul class="dropdown">
+                              <li><a href="#" data-toggle="modal" data-target="#SingIn"> Acknowlegment</a></li>
+                              <li><a href="#"> Bid Request</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"> Music</a>
+                            <ul class="dropdown">
+                                  <li><a href="#" data-toggle="modal" data-target="#SingIn"> Add Song</a></li>
+                                  <li><a href="#"> View Song</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                     </li>
                      <% } %>
                       <% } %>
                
                     <li><a href="#">About Us</a></li>
                     <li><a href="#">Contact</a></li>
+
                     <li><a href="#"><i class="fa fa-user"></i></a>
                       <ul class="dropdown">
+                         <% if(!user){ %>
                         <li><a href="#" data-toggle="modal" data-target="#SingIn"><i class="fa fa-sign-in"></i> Sign-In</a></li>
-                        <li><a href="/auth/sign-in"><i class="fa fa-sign-in"></i> Sing-Up</a></li>
+                        <li><a href="/auth/sign-in"><i class="fa fa-sign-in"></i> Sign-Up</a></li>
+                        <% } %>
+
                        <% if(user){ %>
                         <% if(user.role=="Customer"){ %>
-                        <li><a href="/auth/sign-in"><i class="fa fa-sign-in"></i> Profile Management</a></li>
+                        <li><a href="/auth/sign-in"><i class="fa fa-sign-in"></i> Profile</a></li>
                         <li><a href="/auth/sign-in"><i class="fa fa-sign-in"></i> Change Password</a></li>
                         <% } %>
                         <% if(user.role=="Artist"){ %>
-                        <li><a href="/auth/sign-in"><i class="fa fa-sign-in"></i> Profile Management</a></li>
-                        <li><a href="/auth/sign-in"><i class="fa fa-sign-in"></i> </a></li>
+                        <li><a href="/auth/sign-in"><i class="fa fa-sign-in"></i> Profile </a></li>
+                        <li><a href="/auth/sign-in"><i class="fa fa-sign-in"></i> Change Password </a></li>
+                        <% } %>
+                        <% if(user.role=="Admin"){ %>
+                        <li><a href="/auth/sign-in"><i class="fa fa-sign-in"></i> Dashboard</a></li>
+                        <li><a href="/auth/sign-in"><i class="fa fa-sign-in"></i> Profile </a></li>
+                        <li><a href="/auth/sign-in"><i class="fa fa-sign-in"></i> Change Password </a></li>
                         <% } %>
                         <li><a href="/auth/sign-out"><i class="fa fa-sign-in"></i> Sign-Out</a></li>
                         
@@ -192,9 +201,9 @@
                   </div>
                   <!-- Cart Icon -->
                   <div id="cartIcon">
-                    <a href="#">
-                      <i class="icon_cart_alt" aria-hidden="true"></i>
-                      <span class="cart-quantity"> {{session.cart.totalQty}}</span>
+                    <a href="/shop/shopping-cart">
+                      <i class="icon_cart_alt" aria-hidden="true"> </i>
+                      <span class="cart-quantity"> </span>
                     </a>
                   </div>
                 </div>

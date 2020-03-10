@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!-- saved from url=(0073)https://cdpn.io/rachelcope/fullembedgrid/gbxzmo?type=embed&animations=run -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="apple-touch-icon" type="image/png" href="https://static.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+<meta name="apple-mobile-web-app-title" content="CodePen">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+<title>CodePen - Transition-Timing</title>
+<style>
+.container {
+  margin: 100px;
+}
+
+.circle, .circle0, .circle1, .circle2, .circle3, .circle4, .circle5 {
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  margin: 10px;
+}
+.container:hover .circle, .container:hover .circle0, .container:hover .circle1, .container:hover .circle2, .container:hover .circle3, .container:hover .circle4, .container:hover .circle5 {
+  transform: translateX(200px);
+}
+
+.circle0 {
+  background: PaleTurquoise;
+  transition: all 1.5s linear;
+}
+
+.circle1 {
+  background: salmon;
+  transition: all 1.5s ease;
+}
+
+.circle2 {
+  background: lightskyblue;
+  transition: all 1.5s ease-in;
+}
+
+.circle3 {
+  background: khaki;
+  transition: all 1.5s ease-out;
+}
+
+.circle4 {
+  background: mediumturquoise;
+  transition: all 1.5s ease-in-out;
+}
+
+.circle5 {
+  background: thistle;
+  transition: all 1.5s cubic-bezier(0, 1, 0.98, 0);
+}
+</style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<div class="container">
+<div class="circle0"></div>
+<div class="circle1"></div>
+<div class="circle2"></div>
+<div class="circle3"></div>
+<div class="circle4"></div>
+<div class="circle5"></div>
+</div>
+<script src="./iframeRefreshCSS-d00a5a605474f5a5a14d7b43b6ba5eb7b3449f04226e06eb1b022c613eabc427.js.download"></script>
+
+
+</body></html>

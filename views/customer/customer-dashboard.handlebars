@@ -175,8 +175,8 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{#user}}{{#each this}}{{username}}{{/each}}{{/user}}</span>
-                <img class="img-profile rounded-circle" src="{{#user}}{{#each this}}{{avatar}}{{/each}}{{/user}}">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%= user.username %></span>
+                <img class="img-profile rounded-circle" src="<%= user.avatar %>">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -359,17 +359,17 @@
                   <!--/.Indicators-->
 
                   <div class="carousel-inner v-2" role="listbox">
-                    {{#each auctions}}
+                    <% for(auction of auctions) { %>
                     <div class="carousel-item">
-                      <a href="/shared/view-auction?auction_id={{#each this}}{{_id}}{{/each}}">
+                      <a href="/shared/view-auction?auction_id=<%= auction._id %>">
                         <div class="col-12 col-md-12">
                           <div class="card mb-2 border-left-primary">
                             <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/img (36).jpg"
                               alt="Card image cap">
                             <div class="card-body">
-                              <h4 class="card-title font-weight-bold">{{#each this}}{{name}}{{/each}}</h4>
-                              <p class="card-text">Auction Starts:{{#each this}}{{startDate}}{{/each}}</p>
-                              <p class="card-text">Auction ende:{{#each this}}{{endDate}}{{/each}}</p>
+                              <h4 class="card-title font-weight-bold"><%= auction.name %></h4>
+                              <p class="card-text">Auction Starts:<%= auction.startDate %></p>
+                              <p class="card-text">Auction ende:<%= auction.endDate %></p>
                               <p class="card-text">Time Remaining</p>
                               <p class="card-text" id="demo"style="text-align: center;font-size: 60px;"></p>
                               <br>
@@ -380,7 +380,7 @@
                         </div>
                       </a>
                     </div>
-                    {{/each}}
+                    <% } %>
                   </div>
 
                 </div>
@@ -407,7 +407,7 @@
     </div>
     <!-- End of Content Wrapper -->
     <script> 
-var deadline = {{#each this}}{{startDate}}{{/each}}; 
+var deadline = <%= auction.startDate %>; 
 var x = setInterval(function() { 
 var now = new Date().getTime(); 
 var t = deadline - now; 

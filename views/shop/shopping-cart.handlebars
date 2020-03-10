@@ -53,7 +53,7 @@
           <!-- Shopping Cart -->
           <div class="shopping-cart mb-50">
             <h5 class="mb-30">Shopping Cart</h5>
-            {{#if products }}
+            <% for(product of products) { %>
             <!-- Cart Table -->
             <div class="cart-table clearfix">
               <table class="table table-responsive">
@@ -61,20 +61,20 @@
                 <tbody>
                   <!-- Single Table Row -->
                   
-                  {{#each products }}
+                  <% for(product of products) { %>
                   <tr>
                     <td class="cart_product_img">
                       <a href="#"><img src="/home/img/bg-img/34.jpg" alt="Product"></a>
                     </td>
                     <td class="cart_product_desc">
-                      <p>{{ this.item.product_name }}</p>
-                      <h6>qty:{{ this.qty }} x ${{ this.item.product_price }}</h6>
+                      <p><%= product.product_name %></p>
+                      <h6>qty:<%= product.qty %> x $<%= product.product_price %></h6>
                     </td>
                     <td class="pro-close">
-                      <a href="/shared/reduce/{{this.item._id}}"><i class="icon_close"></i></a>
+                      <a href="/shared/reduce/<%= product._id %>"><i class="icon_close"></i></a>
                     </td>
                   </tr>
-                  {{/each}}
+                  <% } %>
                 </tbody>
               </table>
             </div>
@@ -84,10 +84,10 @@
                 <h6>SUBTOTAL</h6>
               </div>
               <div class="total-price">
-                <h6>$ {{ totalPrice }}</h6>
+                <h6>$ <%= totalPrice %></h6>
               </div>
             </div>
-            {{/if}}
+            <% } %>
             <!-- Checkout -->
             <a href="#" class="btn famie-btn checkout-btn mt-30 w-100">Proceed</a>
           </div>

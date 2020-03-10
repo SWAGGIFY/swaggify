@@ -819,10 +819,44 @@ input:focus {
       transform: rotate(-90deg) translate(-50%, -50%);
       top: 50%;
       left: 15px;
-      transform: rotate(-90deg) translate(-50%, -50%);
       -webkit-transform-origin: left top;
       transform-origin: left top;
       z-index: 1; }
+      .single-product-area .product-thumbnail .product-price {
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        z-index: 9;
+        padding: 0 12px;
+        border-radius: 3px;
+        background-color: #fdf733;
+        font-size: 12px;
+        text-transform: uppercase;
+        line-height: 20px;
+        height: 20px;
+        display: inline-block;
+        color: black;
+        transform: rotate(-90deg) translate(-50%, -50%);
+        -webkit-transform-origin: left top;
+        transform-origin: left top;
+        z-index: 1;
+       }
+       .single-product-area .product-thumbnail .product-song {
+        position: absolute;
+      left: 20%;
+      top: 70%;
+      z-index: 9;
+      padding: 0 12px;
+      border-radius: 3px;
+      background-color: #fdf733;
+      font-size: 12px;
+      text-transform: uppercase;
+      line-height: 20px;
+      height: 20px;
+      display: inline-block;
+      color: black;
+       }
+        
       .single-product-area .product-thumbnail .auction-bid {
         position: absolute;
         left: 20px;

@@ -6,7 +6,7 @@
       <div class="row h-100 align-items-center">
         <div class="col-12">
           <div class="breadcrumb-text">
-            <h2>Shop</h2>
+            <h2>Auctions</h2>
           </div>
         </div>
       </div>
@@ -17,7 +17,7 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Shop</li>
+          <li class="breadcrumb-item active" aria-current="page">Auction</li>
         </ol>
       </nav>
     </div>
@@ -162,16 +162,14 @@
                         <div class="single-product-area mb-50">
                           <!-- Product Thumbnail -->
                           <div class="product-thumbnail">
-                            <a href="/shop/view-single-product/<% auction._id %>"><img src="/home/img/bg-img/p1.jpg" alt=""></a>
+                            <a href="/shop/view-single-product/<%= auction._id %>"><img src="/home/img/bg-img/p1.jpg" alt=""></a>
                             <!-- Product Tags -->
                             <span class="product-tags">Product: <%= auction.name %> </span><br>
                             <span class="auction-price">Start Amount:$ <%= auction.startAmount %> </span><br>
                             <span class="<%= auction._id %>" id="<%= auction._id %>" data-startDate="<%= auction.startDate %>" data-endDate="<%= auction.endDate %>"></span>
                             <!-- Product Meta Data -->
                             <div class="product-meta-data">
-                              <a href="#" data-toggle="tooltip" data-placement="top" title="Favourite"><i class="icon_heart_alt"></i></a>
-                              <a href="#" onclick="addTocart('{{#each this}}{{_id}}{{/each}}')" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon_cart_alt"></i></a>
-                              <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="arrow_left-right_alt"></i></a>
+                              <a href="/shared/bid-item?auction_id=<%= auction._id %>" data-toggle="tooltip" data-placement="top" title="Bid"><i class="fa fa-gavel"></i></a>
                             </div>
                           </div>
                         </div>

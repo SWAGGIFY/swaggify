@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<!-- saved from url=(0136)https://codepen.io/rachelcope/embed/vOqVjg?height=360&theme-id=18100&slug-hash=vOqVjg&default-tab=result&user=rachelcope&name=cp_embed_2 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width">
+<title>CodePen Embed - Translation Delay</title>
+<meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="Gs7ujTQ2W3FLSeqnXiedDx9kR/K3fum18IC4MXmIszrRxgVOGDOOJ09BkrFga6W9pG2OA/t4YDp+XmOMsXycXA==">
+<link rel="stylesheet" media="all" href="./embed-b838ed5684f29cfa960007cddb312fe60af2190db81baafa7d655feaca73142b.css">
+<style>
+    .hide {
+      display: none !important;
+    }
+
+    .embed-footer,
+    .embed-nav {
+      background: #3d3d3e;
+      
+    }
+    .embed-nav .code-types a,
+    .embed-nav .result-button-list a,
+    .action-button {
+      color: #76daff;
+      background-color: #666666;
+    }
+    .embed-nav .code-types a.active,
+    .embed-nav .result-button-list a.active,
+    .action-button.active {
+      background: #cccccc;
+      color: #000000;
+      box-shadow: inset 0px 3px #dddddd;
+    }
+    .embed-nav .logo-wrap a {
+      color: #ffffff;
+    }
+
+    .embed-nav svg {
+      stroke: #ffffff !important;
+    }
+  </style>
+<link rel="stylesheet" media="all" href="./twilight-c4d2eafba805f08fdb40c0900ac100b78469aba0532ca487a4fb1591a9424a02.css">
+</head>
+<body id="the-body" style="--borderWidth: 0;" class="codepen-embed-body static results-active">
+<nav class="embed-nav group" id="embed-nav">
+<ul class="code-types">
+<li class="code-type">
+<a id="html-link" href="https://codepen.io/rachelcope/embed/vOqVjg?height=360&amp;theme-id=18100&amp;slug-hash=vOqVjg&amp;default-tab=result&amp;user=rachelcope&amp;name=cp_embed_2#html-box" aria-pressed="false" role="button">
+HTML
+</a>
+</li>
+<li class="code-type">
+<a id="css-link" href="https://codepen.io/rachelcope/embed/vOqVjg?height=360&amp;theme-id=18100&amp;slug-hash=vOqVjg&amp;default-tab=result&amp;user=rachelcope&amp;name=cp_embed_2#css-box" aria-pressed="false" role="button">
+SCSS
+</a>
+</li>
+</ul>
+<ul class="result-button-list">
+<li class="results results-type">
+<a id="result-link" href="https://codepen.io/rachelcope/embed/vOqVjg?height=360&amp;theme-id=18100&amp;slug-hash=vOqVjg&amp;default-tab=result&amp;user=rachelcope&amp;name=cp_embed_2#result-box" class="active" aria-pressed="true" role="button">
+Result
+</a>
+</li>
+</ul>
+<div class="logo-wrap" id="edit-area">
+<a class="large-logo edit-on-codepen" target="_blank" rel="noopener" href="https://codepen.io/rachelcope/pen/vOqVjg" title="Edit on CodePen">
+<span id="edit-on-text" class="open-on">EDIT ON</span>
+<svg id="embed-codepen-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 138 26" fill="none" stroke="#000" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+<path d="M80 6h-9v14h9 M114 6h-9 v14h9 M111 13h-6 M77 13h-6 M122 20V6l11 14V6 M22 16.7L33 24l11-7.3V9.3L33 2L22 9.3V16.7z M44 16.7L33 9.3l-11 7.4 M22 9.3l11 7.3 l11-7.3 M33 2v7.3 M33 16.7V24 M88 14h6c2.2 0 4-1.8 4-4s-1.8-4-4-4h-6v14 M15 8c-1.3-1.3-3-2-5-2c-4 0-7 3-7 7s3 7 7 7 c2 0 3.7-0.8 5-2 M64 13c0 4-3 7-7 7h-5V6h5C61 6 64 9 64 13z"></path>
+</svg>
+</a>
+<a class="box-logo edit-on-codepen" target="_blank" rel="noopener" href="https://codepen.io/rachelcope/pen/vOqVjg" title="Edit on CodePen">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 0 26 26" fill="none" stroke="#000" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+<path id="icon-codepen-box" d="M22 16.7L33 24l11-7.3V9.3L33 2L22 9.3V16.7z M44 16.7L33 9.3l-11 7.4 M22 9.3l11 7.3 l11-7.3 M33 2v7.3 M33 16.7V24"></path>
+</svg>
+</a>
+</div>
+</nav>
+<div id="output" data-border-style="none" data-header="true">
+<div id="html-box" class="code-wrap code-box box " role="region" aria-label="HTML">
+<pre><code data-lang="htmlmixed" data-og-lang="htmlmixed" data-alt-lang="xml" id="actual-html-code" class=" cm-s-default"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">div</span> <span class="cm-attribute">class</span>=<span class="cm-string">"wrap"</span><span class="cm-tag cm-bracket">&gt;</span><br>  <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">div</span> <span class="cm-attribute">class</span>=<span class="cm-string">"container"</span><span class="cm-tag cm-bracket">&gt;</span><br>    <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">h1</span><span class="cm-tag cm-bracket">&gt;</span>300ms<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag cm-error">p</span><span class="cm-tag cm-bracket cm-error">&gt;</span><br>    <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">div</span> <span class="cm-attribute">class</span>=<span class="cm-string">"box1 box"</span><span class="cm-tag cm-bracket">&gt;</span><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">div</span><span class="cm-tag cm-bracket">&gt;</span><br>  <span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">div</span><span class="cm-tag cm-bracket">&gt;</span><br>   <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">div</span> <span class="cm-attribute">class</span>=<span class="cm-string">"container"</span><span class="cm-tag cm-bracket">&gt;</span><br>    <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">h1</span><span class="cm-tag cm-bracket">&gt;</span>1s<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag cm-error">p</span><span class="cm-tag cm-bracket cm-error">&gt;</span><br>    <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">div</span> <span class="cm-attribute">class</span>=<span class="cm-string">"box2 box"</span><span class="cm-tag cm-bracket">&gt;</span><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">div</span><span class="cm-tag cm-bracket">&gt;</span><br>  <span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">div</span><span class="cm-tag cm-bracket">&gt;</span><br>   <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">div</span> <span class="cm-attribute">class</span>=<span class="cm-string">"container"</span><span class="cm-tag cm-bracket">&gt;</span><br>    <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">h1</span><span class="cm-tag cm-bracket">&gt;</span>3s<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag cm-error">p</span><span class="cm-tag cm-bracket cm-error">&gt;</span><br>    <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">div</span> <span class="cm-attribute">class</span>=<span class="cm-string">"box3 box"</span><span class="cm-tag cm-bracket">&gt;</span><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">div</span><span class="cm-tag cm-bracket">&gt;</span><br>  <span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">div</span><span class="cm-tag cm-bracket">&gt;</span><br><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">div</span><span class="cm-tag cm-bracket">&gt;</span></code></pre>
+</div>
+<div id="css-box" class="code-wrap code-box box " role="region" aria-label="CSS">
+<pre><code data-lang="text/x-scss" data-og-lang="text/x-scss" data-alt-lang="css" id="actual-css-code" class=" cm-s-default"><span class="cm-qualifier">.wrap</span> {<br>  <span class="cm-property">margin</span>: <span class="cm-number">50px</span>;<br>}<br><br><span class="cm-qualifier">.container</span> {<br>  <span class="cm-property">display</span>: <span class="cm-atom">inline-block</span>;<br>  <span class="cm-property">width</span>: <span class="cm-number">150px</span>;<br>}<br><br><span class="cm-tag">h1</span> {<br>  <span class="cm-property">color</span>: <span class="cm-keyword">lightgray</span>;<br>  <span class="cm-property">font-family</span>: <span class="cm-variable">lato</span>;<br>  <span class="cm-property">font-size</span>: <span class="cm-number">20px</span>;<br>  <span class="cm-property">font-weight</span>: <span class="cm-number">200</span>;<br>  <span class="cm-property">padding</span>: <span class="cm-number">20px</span>;<br>  <span class="cm-property">text-align</span>: <span class="cm-atom">center</span>;<br>}<br><br><span class="cm-qualifier">.box</span> {<br>  <span class="cm-property">border-radius</span>: <span class="cm-number">50%</span>;<br>  <span class="cm-property">height</span>: <span class="cm-number">40px</span>;<br>  <span class="cm-property">margin</span>: <span class="cm-number">50px</span> <span class="cm-atom">auto</span>;<br>  <span class="cm-property">width</span>: <span class="cm-number">40px</span>;<br>  <br>  <span class="cm-qualifier">.wrap</span>:<span class="cm-variable-3">hover</span> &amp; {<br>    <span class="cm-property">transform</span>: <span class="cm-variable cm-callee">scale</span>(<span class="cm-number">2</span>);<br>  }<br>}<br><br><span class="cm-qualifier">.box1</span> {<br>  <span class="cm-property">background</span>: <span class="cm-atom">#60D4C8</span>;<br>  <span class="cm-property">transition</span>: <span class="cm-atom">all</span> <span class="cm-number">300ms</span>;<br>}<br><br><span class="cm-qualifier">.box2</span> {<br>  <span class="cm-property">background</span>: <span class="cm-atom">#46BAAF</span>;<br>  <span class="cm-property">transition</span>: <span class="cm-atom">all</span> <span class="cm-number">1s</span>;<br>}<br><br><span class="cm-qualifier">.box3</span> {<br>  <span class="cm-property">background</span>: <span class="cm-atom">#3EA69B</span>;<br>  <span class="cm-property">transition</span>: <span class="cm-atom">all</span> <span class="cm-number">3s</span>;<br>}<br><br><br></code></pre>
+<a href="https://codepen.io/rachelcope/embed/vOqVjg?height=360&amp;theme-id=18100&amp;slug-hash=vOqVjg&amp;default-tab=result&amp;user=rachelcope&amp;name=cp_embed_2#0" id="view-css-compiled-button" class="action-button bottom right view-compiled-button" data-type="css">
+View Compiled
+</a>
+</div>
+<div id="result-box" class="code-box active" role="region" aria-label="Result">
+<iframe id="result-iframe" class="result-iframe " sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts" allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; microphone; midi; payment; vr" tabindex="-1" data-src="https://cdpn.io/rachelcope/fullembedgrid/vOqVjg?type=embed&amp;animations=run" src="./vOqVjg(1).html" allowtransparency="true" frameborder="0" scrolling="yes" allowpaymentrequest="true" allowfullscreen="true" name="CodePen Preview for Translation Delay" title="CodePen Preview for Translation Delay">
+      </iframe>
+</div>
+<div id="about-box">
+<div class="about-container">
+<div class="about-user">
+<a href="https://codepen.io/rachelcope" target="_blank" rel="noopener" class="about-image" style="background-image: url(https://s.cdpn.io/profiles/user/165797/512.jpg?1)"></a>
+<div class="about-user-info">
+<p>
+This Pen is owned by <a href="https://codepen.io/rachelcope" target="_blank" rel="noopener">Rachel Cope</a> on <a href="https://codepen.io/" target="_blank" rel="noopener">CodePen</a>.
+</p>
+<p>
+<a href="https://codepen.io/rachelcope" target="_blank" rel="noopener" class="about-user-more">
+See more by @rachelcope on CodePen
+</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="resources-box" class="resources-box">
+<h3>External CSS</h3>
+<p>
+This Pen doesn't use any external CSS resources.
+</p>
+<h3>External JavaScript</h3>
+<p>
+This Pen doesn't use any external JavaScript resources.
+</p>
+</div>
+</div>
+<footer class="embed-footer" id="embed-footer">
+<button id="resources-link" class="resources-link action-button bottom left" href="#resources-box" aria-pressed="false" role="button">
+Resources
+</button>
+<ul class="scaling-choices bottom right">
+<li><button class="action-button active" id="zoom-button-1">1×</button></li><li><button class="action-button" id="zoom-button-05">0.5×</button></li><li><button class="action-button" id="zoom-button-025">0.25×</button></li>
+</ul>
+<button id="rerun-button" class="action-button rerun-button bottom right">
+Rerun
+</button>
+</footer>
+<script>
+    __editor_config = {"id":"classic","editors":[{"id":"html","type":"html","name":"HTML","showEditor":true,"showSettings":true,"showProcessors":true,"settings":[{"id":"processor","name":"HTML Preprocessor","type":"select","visible":true,"values":[{"id":"none","name":"None","value":"none","default":true},{"id":"haml","name":"Haml","value":"haml"},{"id":"markdown","name":"Markdown","value":"markdown"},{"id":"slim","name":"Slim","value":"slim"},{"id":"pug","name":"Pug","value":"pug"}]},{"id":"html_classes","name":"Add Class(es) to \u003chtml\u003e","type":"input","placeholder":"e.g. single post post-1234","visible":true},{"id":"head","name":"Stuff for \u003chead\u003e","type":"textarea","placeholder":"e.g. \u003cmeta\u003e, \u003clink\u003e, \u003cscript\u003e","visible":true}],"actions":[{"id":"tidy_html","type":"tidy_code","name":"Format HTML","disabled_processors":["haml","slim"]},{"id":"view_compiled_html","type":"view_compiled","name":"View Compiled HTML","disabled_processors":["none"]},{"id":"analyze_html","type":"analyze","name":"Analyze HTML"},{"id":"maximize_html_editor","type":"maximize","name":"Maximize HTML Editor"},{"id":"minimize_html_editor","type":"minimize","name":"Minimize HTML Editor"},{"id":"fold_all_html","type":"fold_all","name":"Fold All"},{"id":"unfold_all_html","type":"unfold_all","name":"Unfold All"}],"processors":[{"id":"none","name":"None"},{"id":"haml","name":"Haml"},{"id":"markdown","name":"Markdown"},{"id":"slim","name":"Slim"},{"id":"pug","name":"Pug"}]},{"id":"css","type":"css","name":"CSS","showEditor":true,"showSettings":true,"showProcessors":true,"showVendorPrefixing":true,"actions":[{"id":"tidy_css","type":"tidy_code","name":"Format CSS","disabled_processors":["sass","stylus"]},{"id":"view_compiled_css","type":"view_compiled","name":"View Compiled CSS","disabled_processors":["none"]},{"id":"analyze_css","type":"analyze","name":"Analyze CSS"},{"id":"maximize_css_editor","type":"maximize","name":"Maximize CSS Editor"},{"id":"minimize_css_editor","type":"minimize","name":"Minimize CSS Editor"},{"id":"fold_all_css","type":"fold_all","name":"Fold All","disabled_processors":["sass"]},{"id":"unfold_all_css","type":"unfold_all","name":"Unfold All","disabled_processors":["sass"]}],"processors":[{"id":"none","name":"None"},{"id":"less","name":"Less"},{"id":"scss","name":"SCSS"},{"id":"sass","name":"Sass"},{"id":"stylus","name":"Stylus"},{"id":"postcss","name":"PostCSS"}],"parSuffixes":["less","scss","sass","styl"]},{"id":"js","type":"js","name":"JS","showEditor":true,"showSettings":true,"showProcessors":true,"externalResourcesHidden":false,"actions":[{"id":"tidy_js","type":"tidy_code","name":"Format JavaScript","disabled_processors":["coffeescript, livescript"]},{"id":"view_compiled_js","type":"view_compiled","name":"View Compiled JavaScript","disabled_processors":["none"]},{"id":"analyze_js","type":"analyze","name":"Analyze JavaScript"},{"id":"maximize_js_editor","type":"maximize","name":"Maximize JavaScript Editor"},{"id":"minimize_js_editor","type":"minimize","name":"Minimize JavaScript Editor"},{"id":"fold_all_js","type":"fold_all","name":"Fold All"},{"id":"unfold_all_js","type":"unfold_all","name":"Unfold All"}],"processors":[{"id":"none","name":"None"},{"id":"babel","name":"Babel"},{"id":"typescript","name":"TypeScript"},{"id":"coffeescript","name":"CoffeeScript"},{"id":"livescript","name":"LiveScript"}]}],"formatters":[{"id":"classic","name":"Classic","runOn":[{"eventType":"demand"}],"url":"https://fi593g2v2a.execute-api.us-west-2.amazonaws.com/production/format"}],"layout":{"default":"top"},"linters":[{"id":"classic","name":"Classic","runOn":[{"eventType":"demand"}],"url":"https://fi593g2v2a.execute-api.us-west-2.amazonaws.com/production/lint"}],"preview":{"intervalMaxWaitMS":3500,"intervalMS":1200},"settings":[{"id":"details","name":"Pen Details","type":"setting"},{"id":"privacy","name":"Privacy","pro":true,"type":"setting"},{"id":"behavior","name":"Behavior","type":"setting"},{"id":"editor","name":"Editor","type":"setting"},{"id":"template","name":"Template","type":"setting"},{"id":"screenshot","name":"Screenshot","pro":true,"type":"setting"}]}
+    __processedPen = {"html":"&lt;div class=&quot;wrap&quot;&gt;\n  &lt;div class=&quot;container&quot;&gt;\n    &lt;h1&gt;300ms&lt;/p&gt;\n    &lt;div class=&quot;box1 box&quot;&gt;&lt;/div&gt;\n  &lt;/div&gt;\n   &lt;div class=&quot;container&quot;&gt;\n    &lt;h1&gt;1s&lt;/p&gt;\n    &lt;div class=&quot;box2 box&quot;&gt;&lt;/div&gt;\n  &lt;/div&gt;\n   &lt;div class=&quot;container&quot;&gt;\n    &lt;h1&gt;3s&lt;/p&gt;\n    &lt;div class=&quot;box3 box&quot;&gt;&lt;/div&gt;\n  &lt;/div&gt;\n&lt;/div&gt;","css":".wrap {\n  margin: 50px;\n}\n\n.container {\n  display: inline-block;\n  width: 150px;\n}\n\nh1 {\n  color: lightgray;\n  font-family: lato;\n  font-size: 20px;\n  font-weight: 200;\n  padding: 20px;\n  text-align: center;\n}\n\n.box {\n  border-radius: 50%;\n  height: 40px;\n  margin: 50px auto;\n  width: 40px;\n}\n.wrap:hover .box {\n  transform: scale(2);\n}\n\n.box1 {\n  background: #60D4C8;\n  transition: all 300ms;\n}\n\n.box2 {\n  background: #46BAAF;\n  transition: all 1s;\n}\n\n.box3 {\n  background: #3EA69B;\n  transition: all 3s;\n}","js":""};
+    __preprocessorNames = {
+      "html": "HTML",
+      "css": "SCSS",
+      "js": "JS"
+    };
+    __pageType = "embed";
+    __editable = false;
+    __embed_prefill = false;
+    __env = "production";
+  </script>
+<script src="./embed-ffd281868163251d7c4958df20bf2710f1ab92677c8532166d32de885eb72442.js.download"></script>
+
+
+</body></html>

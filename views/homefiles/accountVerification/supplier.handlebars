@@ -1,12 +1,12 @@
-{{#user}}
 <div class="container register">
                 <div class="row">
                     <div class="col-md-3 register-left">
-                        <img src="{{#each this}}{{avatar}}{{/each}}" alt="" style="border-radius: 25px;">
+                        <img src="<%= avatar %>" alt="" style="border-radius: 25px;">
                         <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
-                        <h3>Welcome {{#each this}}{{firstname}}{{/each}}</h3>
+                        <h3>Welcome <%= firstname %></h3>
                         <p>You are 30 seconds away from earning your own money!</p>
                         <input href="/auth/sign-in" type="submit" name="" value="Login"/><br/>
+                        
                     </div>
                     <div class="col-md-9 register-right" style="height: 478px;">
                         <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
@@ -24,13 +24,13 @@
                                     <div class="row register-form">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="text" disabled name="firstname" class="form-control" placeholder="First Name *" value="{{#each this}}{{firstname}}{{/each}}" />
+                                                <input type="text" disabled name="firstname" class="form-control" placeholder="First Name *" value="<%= firstname %>" />
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" name="lastname" class="form-control" placeholder="Last Name *" value="{{#each this}}{{lastname}}{{/each}}" />
+                                                <input type="text" name="lastname" class="form-control" placeholder="Last Name *" value="<%= lastname %>" />
                                             </div> 
                                             <div class="form-group">
-                                                <input type="text" name="username" class="form-control" placeholder="Enter username *" value="{{#each this}}{{username}}{{/each}}" />
+                                                <input type="text" name="username" class="form-control" placeholder="Enter username *" value="<%= username %>" />
                                             </div>
                                             <div class="form-group">
                                                 <input type="password" name="pwd" class="form-control" placeholder="Password *" value="" />
@@ -41,10 +41,12 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="email" name="email" class="form-control" placeholder="Your Email *" value="{{#each this}}{{#socialNetwork}}{{#each this}}{{email}}{{/each}}{{/socialNetwork}}{{/each}}" />
+                                                <input type="email" name="email" class="form-control" placeholder="Your Email *" value="<% for(social of user.socialNetwork){ %><%= social.email %>" />
+                                                 <% } %>
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" name="address" minlength="10" maxlength="10" name="txtEmpPhone" class="form-control" placeholder="Your address *" value="{{#each this}}{{#address}}{{#each this}}{{address}}{{/each}}{{/address}}{{/each}}" />
+                                                <input type="text" name="address" minlength="10" maxlength="10" name="txtEmpPhone" class="form-control" placeholder="Your address *" value="<% for(address of user.address){ %><%= address.address %>" />
+                                                 <% } %>
                                             </div>
                                             <div class="form-group">
                                                 <input type="text" name="city" class="form-control" placeholder="Enter city *" value="" required/>
@@ -103,4 +105,4 @@
                 </div>
 
             </div>
-            {{/user}}
+            

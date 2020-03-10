@@ -1,0 +1,1 @@
+var OfficeLocation=OfficeLocation||{};OfficeLocation.findNearby=function(){var n=new XMLHttpRequest;n.open("GET","/blog/locations/nearby",!0),n.onload=function(){200===n.status&&OfficeLocation.displayContent(n.responseText)},n.send()},OfficeLocation.displayContent=function(n){var o=document.getElementById("promoted");null!==o&&(o.innerHTML=n)},OfficeLocation.findNearby();

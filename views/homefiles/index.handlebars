@@ -292,14 +292,14 @@
                       <!--/.Indicators-->
 
                       <div class="carousel-inner v-2" role="listbox">
-                        {{#auctions}}
+                        <% for(auction of auctions) { %>
                         <div class="carousel-item">
                           <div class="col-12 col-md-12">
                             <div class="card mb-12">
                               <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/img (36).jpg"
                                 alt="Card image cap">
                               <div class="card-body">
-                                <h4 class="card-title font-weight-bold">{{#each this}}{{name}}{{/each}}</h4>
+                                <h4 class="card-title font-weight-bold"><%= auction.name %></h4>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                                   card's content.</p>
                                 <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="/shared/bid-item?auction_id={{#each this}}{{_id}}{{/each}}" method="post">
@@ -318,7 +318,7 @@
                             </div>
                           </div>
                         </div>
-                        {{/auctions}}
+                        <% } %>
                       </div>
 
                     </div>

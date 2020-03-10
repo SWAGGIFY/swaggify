@@ -26,29 +26,29 @@
                     </tr>
                   </tfoot>
                   <tbody>
-                    {{#artists}}
+                    <% for(artist of artists) { %>
                     <tr>
                       <td>
                         <!-- Artist data -->
-                        <a href="/shared/artist-details?artist_id={{#each this }}{{_id}}{{/each}}">
+                        <a href="/shared/artist-details?artist_id=<%= artist._id %>">
                           <div class="col-xl-12 col-md-12 mb-12">
                             <div class="card border-left-primary shadow h-100 py-2">
                               <div class="row">
                                 <div class="col-md-3">
-                                  <img src="./{{#each this }}{{avatar}}{{/each}}" alt="">
+                                  <img src="./<%= avatar %>" alt="">
                                 </div>
                                 <div class="col md-9">
-                                  <h6>{{#each this }}{{username}}{{/each}}</h6><hr>
+                                  <h6><%= artist.username %></h6><hr>
                                   <p>Desccriptions and other info</p>
                                 </div>
                               </div>
                             </div>
                           </div>
                         </a>
-                      </td>
+                      </td
                       <td>$320,800</td>
                     </tr>
-                    {{/artists}}
+                    <% } %>
                   </tbody>
                 </table>
               </div>

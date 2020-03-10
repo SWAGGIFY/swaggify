@@ -1,4 +1,23 @@
 $(document).ready(function(){
+
+  //shop products
+  $.getJSON('/shared/object-data-shop',(product)=>{
+    $.each(product,(key,entry)=>{
+      var div = $('div.'+entry._id);
+      var productid = div.data("productid");
+      var artistid = div.data("artistid");
+      var artistsong = div.data("artistsong");
+      $('span.'+productid).text("$ "+entry.product_price);
+      $('span.name'+productid).text("Name: "+entry.product_name);
+      $('p.'+productid).text(entry.product_description);
+      if(artistsong != "undefined"){
+      $.getJSON('/shared/object-data?id='+artistsong+'&data_type=song',(song)=>{
+        $('span.product-song'+productid).text("Song: "+song.song_title);
+      });
+      }
+    });
+   });
+
   //counter
   $.getJSON('/shared/auctions',(data)=>{
     $.each(data, (key,entry)=>{
@@ -17,12 +36,12 @@ $(document).ready(function(){
         var auctionOpen = startDate - now;
         if(auctionOpen > 0){
           clearInterval(x);
-          var ONE_HOUR = Math.floor((auctionOpen % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+          var ONE_HOUR = Math.floor((auctionOpen % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
           if(auctionOpen < ONE_HOUR){
             console.log("Hello");
             span.text("Biding Start in one Hour").addClass("auction-bid");
           }
-          span.text("Biding Start at:" +span.data("startdate").split("GMT+0200")[0]).addClass("auction-bid");
+          span.text("Bidding Start:" +span.data("startdate").split("GMT+0200")[0]).addClass("auction-bid");
         }else{
           // Time calculations for days, hours, minutes and seconds
             var days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));

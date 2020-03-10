@@ -36,21 +36,21 @@
           </div>
         </div>
         
-          {{#each product}}
+          <% for(product of products){ %>
         <!-- About Us Content -->
         <div class="col-12 col-lg-6">
           <div class="about-us-content mb-100">
             <!-- Section Heading -->
             <div class="section-heading">
-              <p> {{#each this}}{{product_category}}{{/each}}</p>
-              <h2><span>{{#each this}}{{product_name}}{{/each}}</span> &amp; Methods</h2>
+              <p> <%= product.product_category %></p>
+              <h2><span><%= product.product_name %></span> &amp; Methods</h2>
               <img src="img/core-img/decor.png" alt="">
             </div>
-            <p>{{#each this}}{{product_description}}{{/each}}</p>
+            <p><%= product.product_description %></p>
             <a href="#" class="btn famie-btn mt-30">Add to Cart</a>
           </div>
         </div>
-        {{/each}}
+        <% } %>
         
 
       </div>

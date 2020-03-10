@@ -14,15 +14,16 @@ const Cart = require('../../model/cart');
 
  // rounter view shop
  router.get('/shop', /*ensureAuthentication*/ function(req, res){
-    Product.find({},(err, products)=>{
-        
-        //var user = [users];
-        if(err) throw err;
-          //res.send(users);
-        res.render('./shop/shop',{
-          products:products,
-        });
+
+  DressedBy.find({},(err, products)=>{
+      
+      //var user = [users];
+      if(err) throw err;
+        //res.send(users);
+      res.render('./shop/shop',{
+        products:products,
       });
+    });
 });
 
 // view single product

@@ -134,12 +134,12 @@
               <div class="top-header-content d-flex align-items-center justify-content-between">
                 <!-- Top Header Content -->
                 <div class="top-header-meta">
-                  <p>Welcome to <span>Swaggiffy</span> SEE IT, BUY IT</p>
+                  <p>Welcome to <span><b>Swaggiffy</b></span> SEE IT, BUY IT</p>
                 </div>
                 <!-- Top Header Content -->
                 <div class="top-header-meta text-right">
-                  <a href="#" data-toggle="tooltip" data-placement="bottom" title="marvin@gmx.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> <span>Email: marvin@gmx.com</span></a>
-                  <a href="#" data-toggle="tooltip" data-placement="bottom" title="+1 234 122 122"><i class="fa fa-phone" aria-hidden="true"></i> <span>Call Us: +263 715 801 268</span></a>
+                  <a href="#" data-toggle="tooltip" data-placement="bottom" title="marvin@gmx.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> <span>: marvin@gmx.com</span></a>
+                  <a href="#" data-toggle="tooltip" data-placement="bottom" title="+263 715 801 268"><i class="fa fa-phone" aria-hidden="true"></i> <span>: +263 715 801 268</span></a>
                 </div>
               </div>
             </div>
@@ -168,36 +168,58 @@
                 <!-- Navbar Start -->
                 <div class="classynav">
                   <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">ABOUT</a></li>
-                    <li><a href="#">Pages</a>
-                      <ul class="dropdown">
-                        <li><a href="index.html">Artists</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                      
-                        <li><a href="shop.html">Shop</a>
-                          <ul class="dropdown">
-                            <li><a href="our-product.html">Our Products</a></li>
-                            <li><a href="shop.html">Trending Swagg</a></li>
-                          </ul>
-                        </li>
-                        <li><a href="news.html">News</a>
-                          <ul class="dropdown">
-                            <li><a href="news.html">What's Trending</a></li>
-                            <li><a href="news-details.html">Breaking News</a></li>
-                          </ul>
-                        </li>
-                        <li><a href="contact.html">Bidding Page</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/shop/shop">Shop</a></li>
+
+                    <li><a href="#">Auction</a>
+                    <ul class="dropdown">
+                        <li><a href="/shared/view-auctions"> Deals Of The Day</a></li>
+                        <li><a href="/auth/sign-in"> Auction Category</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#SingIn"></i> Auction Details</a></li>
+                        <li><a href="/auth/sign-out"> Auction Winners</a></li>
                       </ul>
                     </li>
-                    <li><a href="our-product.html">Our Product</a></li>
+                     
+                      <% if(user){ %>
+                      <% if(user.role=="Artist"){ %>
+                    <li><a href="#">Request Management</a>
+                    <ul class="dropdown">
+                        <li><a href="#" data-toggle="modal" data-target="#SingIn"> Acknoledgements</a></li>
+                        <li><a href="/auth/sign-in"> Bid Requests</a></li>
+                      </ul>
+                    </li>
+                     <% } %>
+                      <% } %>
+
+                       <% if(user){ %>
+                      <% if(user.role=="Artist"){ %>
+                    <li><a href="#">Song Management</a>
+                    <ul class="dropdown">
+                        <li><a href="#" data-toggle="modal" data-target="#SingIn"> Add Song</a></li>
+                        <li><a href="/auth/sign-in"> View Song</a></li>
+                      </ul>
+                    </li>
+                     <% } %>
+                      <% } %>
                
-                   
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
                     <li><a href="#"><i class="fa fa-user"></i></a>
                       <ul class="dropdown">
-                        <li><a href="/auth/sign-in"><i class="fa fa-sign-in"></i>Sign-in</a></li>
-                        <li><a href="about.html"><i class="fa fa-pen"></i></a>Sign-up</li>
+                        <li><a href="#" data-toggle="modal" data-target="#SingIn"><i class="fa fa-sign-in"></i> Sign-In</a></li>
+                        <li><a href="/auth/sign-in"><i class="fa fa-sign-in"></i> Sing-Up</a></li>
+                       <% if(user){ %>
+                        <% if(user.role=="Customer"){ %>
+                        <li><a href="/auth/sign-in"><i class="fa fa-sign-in"></i> Profile Management</a></li>
+                        <li><a href="/auth/sign-in"><i class="fa fa-sign-in"></i> Change Password</a></li>
+                        <% } %>
+                        <% if(user.role=="Artist"){ %>
+                        <li><a href="/auth/sign-in"><i class="fa fa-sign-in"></i> Profile Management</a></li>
+                        <li><a href="/auth/sign-in"><i class="fa fa-sign-in"></i> </a></li>
+                        <% } %>
+                        <li><a href="/auth/sign-out"><i class="fa fa-sign-in"></i> Sign-Out</a></li>
+                        
+                       <% } %>
                       </ul>
                     </li>
                   </ul>
@@ -209,7 +231,7 @@
                   <div id="cartIcon">
                     <a href="#">
                       <i class="icon_cart_alt" aria-hidden="true"></i>
-                      <span class="cart-quantity">2</span>
+                      <span class="cart-quantity"> {{session.cart.totalQty}}</span>
                     </a>
                   </div>
                 </div>
@@ -230,8 +252,10 @@
         </div>
       </div>
     </header>
-    <div class="{{alert}}">
-      <strong class="">{{msg}}</strong>
+    <!-- ##### Header Area End ##### -->
+    
+    <div class="<%= alert %>">
+      <strong class=""><%= msg %></strong>
     </div>
     <div class="container h-100" >
         <div class="d-flex justify-content-center h-100">
@@ -350,7 +374,7 @@
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="/auth/sign-up" method="POST">
+            <form action="/auth/sign-up?auction_id=<%= auction_id %>" method="POST">
                 <div class="modal-body">
                     
                         <div class="form-group">

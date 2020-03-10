@@ -26,8 +26,8 @@
                     </tr>
                   </tfoot>
                   <tbody>
-                    {{#songs}}
-                    <tr data-id="{{#each this }}{{_id}}{{/each}}">
+                    <% for(song of songs) { %>
+                    <tr data-id="<%= product._id %>">
                       <td>
                         <!-- Artist data -->
                           <div class="col-xl-12 col-md-12 mb-12">
@@ -39,10 +39,10 @@
                                       <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                         <div class="row">
                                           <div class="col-md-3">
-                                            <img src="./{{#each this }}{{avatar}}{{/each}}" alt="">
+                                            <img src="./<%= avatar %>" alt="">
                                           </div>
                                           <div class="col md-9">
-                                            <h6>{{#each this }}{{song_title}}{{/each}}</h6><hr>
+                                            <h6><%= song_title %></h6><hr>
                                             <p>Desccriptions and other info</p>
                                           </div>
                                         </div>
@@ -72,7 +72,7 @@
                       </td>
                       <td>$320,800</td>
                     </tr>
-                    {{/songs}}
+                    <% } %>
                   </tbody>
                 </table>
               </div>

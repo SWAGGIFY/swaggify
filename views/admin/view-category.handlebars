@@ -1,51 +1,111 @@
-<div class="content-wrapper">
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">Data table</h4>
-              <div class="row">
-                <div class="col-12">
-                  <div class="table-responsive">
-                    <table id="order-listing" class="table table-borderless">
-                      <thead>
-                        <tr>
-                            <th>User Information</th>
-                            <th>Action</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                          <% for (var category of categories){ %>
-                        <tr data-id="user._id" data-type="user">
-                            <td>
-                                  <div class="col-md-10 grid-margin stretch-card">
-                                    <div class="card">
-                                      <div class="card-body">
-                                        <div class="d-sm-flex row flex-wrap text-center text-sm-left align-items-center">
-                                          <div class="col-md-4">
-                                            <img src="/Dashboard/images/faces/face11.jpg" style="width:130px;height:130px; border-radius:56px !important" class="img-lg rounded" alt="profile image"/>
-                                          </div>
-                                          <div class="col-md-8">
-                                            <span class="text-success outline-primary font-weight-bold" style=" top:8px; right:16px; position:absolute;"> </span>
-                                            <h5 class="mb-0"><%= category.category_name %></h5><hr>
-                                            <p class="text-muted mb-1"><%= category.category_description %></p>
-                                            <p class="mb-0 text-success font-weight-bold">Designer</p>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                             </td>
-                            <td class="action-link">
-                                <a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editDetailModal"><i class="ti-write menu-icon" style="font-size: 1.1rem;line-height: 1;margin-right: 0.6rem;"></i></a>
-                                <a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="ti-trash menu-icon" style="font-size: 1.1rem;line-height: 1;margin-right: 0.6rem;"></i></a>
-                            </td>
-                        </tr>
-                        <% } %>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+<body class="">
+<div class="wrapper ">
+    <div class="main-panel">
+        <div class="panel-header panel-header-sm">
         </div>
-        <!-- content-wrapper ends -->
+        <div class="main-content" id="content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 clear-padding-xs">
+                        <div class="col-lg-12">
+                            <div class="dash-item first-dash-item">
+                                <h6 class="item-title"><i class="fa fa-user"></i>View Categories</h6>
+                                <div class="<%= alert %>">
+                                  <strong class=""><%= msg %></strong>
+                                </div>
+                                <div class="inner-item">
+                                    <table id="attendenceDetailedTable" class="display responsive nowrap" cellspacing="0" width="100%">
+                                        <thead>
+                                        <tr>
+                                            <th><i class="fa fa-user"></i>Category Name</th>
+                                            <th><i class="fa fa-building"></i>Category Description</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% for(catergory of categories){ %>
+                                                <tr data-id="<%= catergory._id %>" data-type="category">
+                                                    <td><%= catergory.category_name %></td>
+                                                    <td class="action-link">
+                                                        <a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editDetailModal"><i class="fa fa-edit"></i>Edit</a>
+                                                        <a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="fa fa-remove"></i>Delete</a>
+                                                    </td>
+                                                </tr>
+                                            <% } %>
+                                        <tr>
+                                            <td>LENNORE DOE</td>
+                                            <td>Harvard</td>
+                                            <td class="action-link">
+                                                <a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editDetailModal"><i class="fa fa-edit"></i></a>
+                                                <a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="fa fa-remove"></i></a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--Edit details modal-->
+            <div id="editDetailModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"><i class="fa fa-edit"></i>EDIT TEACHER DETAILS</h4>
+                        </div>
+                        <div class="modal-body dash-form">
+                            <div class="col-sm-3">
+                                <label class="clear-top-margin"><i class="fa fa-user"></i>FIRST NAME</label>
+                                <input type="text" placeholder="First Name" value="John" />
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="clear-top-margin"><i class="fa fa-user"></i>MIDDLE NAME</label>
+                                <input type="text" placeholder="Middle Name" value="Fidler" />
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="clear-top-margin"><i class="fa fa-user"></i>LAST NAME</label>
+                                <input type="text" placeholder="Last Name" value="Doe" />
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="clear-top-margin"><i class="fa fa-book"></i>CLASS</label>
+                                <input type="text" placeholder="Standard" value="5 STD" />
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-sm-3">
+                                <label><i class="fa fa-cogs"></i>SECTION</label>
+                                <input type="text" placeholder="Section" value="PTH05A" />
+                            </div>
+                            <div class="col-sm-3">
+                                <label><i class="fa fa-puzzle-piece"></i>ROLL #</label>
+                                <input type="text" placeholder="Roll Number" value="Fidler" />
+                            </div>
+                            <div class="col-sm-3">
+                                <label><i class="fa fa-phone"></i>CONTACT #</label>
+                                <input type="text" placeholder="Contact Number" value="1234567890" />
+                            </div>
+                            <div class="col-sm-3">
+                                <label><i class="fa fa-envelope-o"></i>EMAIL</label>
+                                <input type="text" placeholder="Email" value="john@gmail.com" />
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="table-action-box">
+                                <a href="#" class="save"><i class="fa fa-check"></i>SAVE</a>
+                                <a href="#" class="cancel" data-dismiss="modal"><i class="fa fa-ban"></i>CLOSE</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end modal-->
+        </div>
+    </div>
+</div>
+</div>
+</body>

@@ -1,7 +1,7 @@
 <body class="">
 
     <!-- ##### Breadcrumb Area Start ##### -->
-  <div class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url('/home/img/bg-img/18.jpg');">
+  <div class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url('/home/img/bg-img/3.jpg');">
     <div class="container h-100">
       <div class="row h-100 align-items-center">
         <div class="col-12">
@@ -38,9 +38,9 @@
             </div>
 
             <!-- Product View Mode -->
-            <div class="produtc-view-mode">
-              <a href="#"><i class="fa fa-th"></i></a>
-              <a href="#"><i class="fa fa-list-ul"></i></a>
+            <div class="produtc-view-mode" id="btnContainer">
+              <a href="#" class="btn active" onclick="gridView()"><i class="fa fa-th"></i></a>
+              <a href="#" class="btn" onclick="listView()"><i class="fa fa-list-ul"></i></a>
             </div>
           </div>
         </div>
@@ -152,46 +152,53 @@
           <div class="row">
         
             <!-- Single Product Area -->
-             {{#each products}}
+             <% for (product of products){
+               for (product1 of product.product_id){
+               %>
+
            
-            <div data-id="{{#each this}}{{_id}}{{/each}}" class="col-12 col-sm-6 col-lg-4 products" style="cursor:pointer">
-             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-default">
+            <div data-productid="<%= product1 %>" data-artistid="<%= product.artist_name %>" data-artistsong="<%= product.artist_song %>" class="col-12 col-sm-6 col-lg-4 <%= product1 %> products" style="cursor:pointer">
+             <div class="panel-group " id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default ">
                   <div class="panel-heading" role="tab" id="headingOne">
                     <h4 class="panel-title">
                       <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        <div class="single-product-area mb-50">
+                        <div class="single-product-area mb-50 ">
                           <!-- Product Thumbnail -->
                           <div class="product-thumbnail">
-                            <a href="/shop/view-single-product/{{#each this}}{{_id}}{{/each}}"><img src="/home/img/bg-img/p1.jpg" alt=""></a>
+                            <a href="/shop/view-single-product/<%= product1 %>"><img src="/home/img/bg-img/p1.jpg" alt=""></a>
                             <!-- Product Tags -->
-                            <span class="product-tags">Artist: {{#each this}}{{product_name}}{{/each}} </span><br>
+                            <span class="product-tags name<%= product1 %>"> </span><br>
+                             <span class="product-price <%= product1 %>"> </span><br>
+                             <span class="product-song product-song<%= product1 %>"> </span>
                             <!-- Product Meta Data -->
                             <div class="product-meta-data">
                               <a href="#" data-toggle="tooltip" data-placement="top" title="Favourite"><i class="icon_heart_alt"></i></a>
-                              <a href="#" onclick="addTocart('{{#each this}}{{_id}}{{/each}}')" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon_cart_alt"></i></a>
+                              <a href="#" onclick="addTocart('<%= product1 %>')" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon_cart_alt"></i></a>
                               <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="arrow_left-right_alt"></i></a>
+
+                              
                             </div>
                           </div>
-                          <!-- Product Description -->
+                          <!-- Product Description --
                           <div class="product-desc text-center pt-4">
-                            <a href="/" class="product-title">{{#each this}}{{product_name}}{{/each}}</a>
-                            <h6 class="price">${{#each this}}{{product_price}}{{/each}}</h6>
-                          </div>
+                            <p class="product-title "> Won:</p>
+                            <h6 class="price"></h6>
+                          </div>-->
                         </div>
                       </a>
                     </h4>
                   </div>
                   <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                     <div class="panel-body">
-                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                      <p class="product-title <%= product1 %>">kkkkkkk</p>
                     </div>
                   </div>
                 </div>
               </div>
             
             </div>
-             {{/each}}
+             <% }} %>
           </div>
 
           <!-- Pagination -->
@@ -209,3 +216,35 @@
   </section>
   <!-- ##### Shop Area End ##### -->
   </body>
+  <script>
+// Get the elements with class="column"
+var elements = document.getElementsByClassName("column");
+
+// Declare a loop variable
+var i;
+
+// List View
+function listView() {
+  for (i = 0; i < elements.length; i++) {
+    elements[i].style.width = "100%";
+  }
+}
+
+// Grid View
+function gridView() {
+  for (i = 0; i < elements.length; i++) {
+    elements[i].style.width = "50%";
+  }
+}
+
+/* Optional: Add active class to the current button (highlight it) */
+var container = document.getElementById("btnContainer");
+var btns = container.getElementsByClassName("btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+</script>

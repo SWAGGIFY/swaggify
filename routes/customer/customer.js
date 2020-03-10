@@ -22,7 +22,7 @@ router.get('/customer-dashboard', ensureAuthentication, (req, res) =>{
        if(req.isAuthenticated()){
             res.render('./customer/customer-dashboard',{
                 auctions:auctions,
-                layout :'../layouts/customerLayout.handlebars'
+                layout :'./layouts/customerLayout.handlebars'
             });
        }
     } catch (err) {
