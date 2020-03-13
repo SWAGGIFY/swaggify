@@ -84,7 +84,7 @@ $(document).ready(function(){
   $.getJSON('/shared/product-data', (data)=>{
     $.each(data, function (key, entry) {
       
-      products.append($('<option></option>').attr('value', entry.product_name,'title',entry.category_description).text( entry.product_name));
+      products.append($('<option></option>').attr('value', entry._id,'title',entry.category_description).text( entry.product_name));
 
     });
   });

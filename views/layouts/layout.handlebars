@@ -133,14 +133,13 @@
                 <div class="classynav">
                   <ul>
                     <li><a href="/">Home</a></li>
+                    <li><a href="/index">Home2</a></li>
                     <li><a href="/shop/shop">Shop</a></li>
 
                     <li><a href="#">Auction</a>
                     <ul class="dropdown">
-                        <li><a href="/view-auctions" data-toggle="modal" data-target="#SingIn"> Deals Of The Day</a></li>
+                        <li><a href="/shared/view-auctions"> Deals Of The Day</a></li>
                         <li><a href="/auth/sign-in"> Auction Category</a></li>
-                        <li><a href="#" data-toggle="modal" data-target="#SingIn"></i> Auction Details</a></li>
-                        <li><a href="/auth/sign-out"> Auction Winners</a></li>
                       </ul>
                     </li>
                      
@@ -429,6 +428,35 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
   </footer>
   <!-- ##### Footer Area End ##### -->
 
+  <!---Modal-->
+  <!-- Modal -->
+    <div class="modal fade" id="auctionValue" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Bid value</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form action="/shared/bid-item" method="get"> 
+            <div class="modal-body">
+              
+                <label for="value">Please enter value</label>
+                <input type="text" class="value" name="value">
+                <input type="hidden" class="auction_id" name="auction_id">
+                
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
     <!-- ##### All Javascript Files ##### -->
     <!-- jquery 2.2.4  -->
     <script src="/home/js/jquery.min.js"></script>
@@ -438,6 +466,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="/home/js/bootstrap.min.js"></script>
     <!-- Owl Carousel js -->
     <script src="/home/js/owl.carousel.min.js"></script>
+    <script src="/home/js/slider.js"></script>
     <!-- Classynav -->
     <script src="/home/js/classynav.js"></script>
     <!-- Wow js -->

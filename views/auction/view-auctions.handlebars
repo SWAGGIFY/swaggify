@@ -153,7 +153,7 @@
         
             <!-- Single Product Area -->
              <% for(var auction of auctions) { %>
-            <div data-id="<% auction._id %>" class="col-12 col-sm-6 col-lg-4 products" data-cfw="popover" data-cfw-popover-target="#popoverExample0" data-cfw-popover-placement="forward">
+            <div data-id="<% auction._id %>" class="col-12 col-sm-6 col-lg-4" data-cfw="popover" data-cfw-popover-target="#popoverExample0" data-cfw-popover-placement="forward">
              <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
                   <div class="panel-heading" role="tab" id="headingOne">
@@ -162,14 +162,29 @@
                         <div class="single-product-area mb-50">
                           <!-- Product Thumbnail -->
                           <div class="product-thumbnail">
-                            <a href="/shop/view-single-product/<%= auction._id %>"><img src="/home/img/bg-img/p1.jpg" alt=""></a>
+                            <a href="/shared/view-auction?auction_id=<%= auction._id %>"><img src="/home/img/bg-img/p1.jpg" alt=""></a>
                             <!-- Product Tags -->
                             <span class="product-tags">Product: <%= auction.name %> </span><br>
                             <span class="auction-price">Start Amount:$ <%= auction.startAmount %> </span><br>
                             <span class="<%= auction._id %>" id="<%= auction._id %>" data-startDate="<%= auction.startDate %>" data-endDate="<%= auction.endDate %>"></span>
                             <!-- Product Meta Data -->
+                            <% if(user){ %>
+                            <% if (user.package =="BRONZE"){ %>
                             <div class="product-meta-data">
-                              <a href="/shared/bid-item?auction_id=<%= auction._id %>" data-toggle="tooltip" data-placement="top" title="Bid"><i class="fa fa-gavel"></i></a>
+                              <a href="#" title="Upgrade Your package"><i class="fa fa-gavel"></i></a>
+                            </div>
+                            
+                            <% } else{ %>
+                            <div class="product-meta-data">
+                              <a href="#" data-toggle="modal" onclick="bid('<%= auction._id %>')" data-target="#auctionValue" data-placement="top" title="Bid"><i class="fa fa-gavel"></i></a>
+                            </div>
+                            <% } %>
+                            <% } else { %>
+                            <div class="product-meta-data">
+                              <a href="#" data-toggle="modal" data-target="#SingIn" data-placement="top" title="Sign-in To start Bidding"><i class="fa fa-sign-in"></i></a>
+                            </div>
+                            <% } %>
+                            <div>
                             </div>
                           </div>
                         </div>

@@ -84,8 +84,8 @@ router.get('/view-packages', ensureAuthentication, function(req, res){
         if(err) throw err;
         if(req.user.role =="Admin"){
             res.render('./admin/admin-view-packages',{
-                //user:req.user,
-                layout:"../layouts/authenticated.handlebars"
+                packagies:packages,
+                layout:"./layouts/authenticated.handlebars"
             });
         }else if(req.user.role =="Supplier"){
             res.render('./shared/pricing',{
@@ -265,7 +265,17 @@ router.put('/profileupdate', (req, res)=>{
  
   ///Create bid
   router.get('/bid-item',async(req,res)=>{
+    const fields = 'name description startDate endDate startAmount currentBid countdown _id';
+    const id = req.query.auction_id.slice(0,24);
+    const filter = {
+        enabled: true
+      };
         try {
+            const auctionDetail = await Auction
+             .findById(id, fields);
+             const auctions = await Auction
+                .find(filter, null, { sort: 'startDate' })
+                .select(fields);
             if(!req.isAuthenticated()){
                 res.render('./homefiles/sign-in',{
                     msg:"Option only available to Swaggnation! Please sign-up.",
@@ -285,25 +295,25 @@ router.put('/profileupdate', (req, res)=>{
                             res.render('./shared/pricing',{
                                 alert:"alert alert-danger",
                                 msg:"Please upgrade your package",
-                                layout :'../layouts/authenticated.handlebars'
+                                layout :'./layouts/authenticated.handlebars'
                             });
                            }else if(req.user.role=="Supplier"){
                                 res.render('./shared/pricing',{
                                     alert:"alert alert-danger",
                                     msg:"Please upgrade your package",
-                                    layout :'../layouts/supplierLayout.handlebars'
+                                    layout :'./layouts/supplierLayout.handlebars'
                                 });
                            }else if(req.user.role=="Artist"){
                                 res.render('./shared/pricing',{
                                     alert:"alert alert-danger",
                                     msg:"Please upgrade your package", 
-                                    layout :'../layouts/artist.handlebars'
+                                    layout :'./layouts/artist.handlebars'
                                 });
                            }else{
                                 res.render('./shared/pricing',{
                                     alert:"alert alert-danger",
                                     msg:"Please upgrade your package",
-                                    layout :'../layouts/customerLayout.handlebars'
+                                    layout :'./layouts/customerLayout.handlebars'
                                 });
                            }
                     }else{
@@ -315,12 +325,21 @@ router.put('/profileupdate', (req, res)=>{
                                 userid: req.user._id,
                                 name: req.user.name
                             });
-                            res.send(updatedAuction)
+                            //res.send(updatedAuction)
+                            res.render('./auction/auction-details',{
+                                success: false,
+                                auctions:auctions,
+                                auctionDetail:auctionDetail,
+                                updatedAuction:updatedAuction
+
+                            });
                             //res.json({ auction: updatedAuction, success: true });
                         } catch ({ message }) {
-                        res.send({
+                        res.render('./auction/auction-details',{
                             success: false,
-                            message
+                            message,
+                            auctionDetail:auctionDetail,
+                            auctions:auctions,
                         });
                         }
                     }
@@ -377,14 +396,9 @@ router.put('/profileupdate', (req, res)=>{
         .select(fields);
        if(req.isAuthenticated()){
            if(req.user.role=="Admin"){
-            res.render('./auction/view-auctions',{
+            res.render('./admin/admin-view-auctions',{
                 auctions:auctions,
-                layout :'../layouts/authenticated.handlebars'
-            });
-           }else if(req.user.role=="Supplier"){
-            res.render('./auction/view-auctions',{
-                auctions:auctions,
-                layout :'../layouts/supplierLayout.handlebars'
+                layout :'./layouts/authenticated.handlebars'
             });
            }else{
                 res.render('./auction/view-auctions',{
@@ -394,6 +408,7 @@ router.put('/profileupdate', (req, res)=>{
         }else{
             res.render('./auction/view-auctions',{
                 auctions:auctions,
+                layout:"./layouts/layout2.handlebars"
             });
        }
     } catch (err) {
@@ -404,40 +419,43 @@ router.put('/profileupdate', (req, res)=>{
   router.get('/view-auction',async(req,res)=>{
     const id = req.query.auction_id.slice(0,24);
     const fields = 'name description startDate endDate startAmount currentBid countdown _id';
+    const filter = {
+      enabled: true
+    };
 
     try {
         const auction = await Auction
         .findById(id, fields);
-        if(req.isAuthenticated){
+        const auctions = await Auction
+        .find(filter, null, { sort: 'startDate' })
+        .select(fields);
+        if(req.isAuthenticated()){
             if(req.user.role == "Admin"){
                 res.render('./auction/auction-details',{
                     layout:'../layouts/authenticated.handlebars',
                     auction:auction,
+                    auctions:auctions
                 });
             }else if(req.user.role == "Supplier"){
                 res.render('./auction/action-details',{
                     layout:'../layouts/supplierLayout.handlebars',
-                    auction:auction
-                });
-            }else if(req.user.role == "Artist"){
-                res.render('./auction/action-details',{
-                    layout:'../layouts/artistLayout.handlebars',
-                    auction:auction
+                    auction:auction,
+                    auctions:auctions
                 });
             }else{
                 res.render('./auction/auction-details',{
-                    layout:'../layouts/customerLayout.handlebars',
-                    auction:auction
+                    auction:auction,
+                    auctions:auctions
                 });
             }
         }else{
-            res.render('./auction/action-details',{
-                layout:'',
-                auction:auction
+            res.render('./auction/auction-details',{
+                auction:auction,
+                auctions:auctions
             });
         }
     } catch (err) {
-        res.send(err);
+        res.send("Error iyo "+err);
     }
   });
   

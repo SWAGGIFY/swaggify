@@ -16,26 +16,38 @@ const Cart = require('../../model/cart');
  router.get('/shop', /*ensureAuthentication*/ function(req, res){
 
   DressedBy.find({},(err, products)=>{
-      
-      //var user = [users];
-      if(err) throw err;
-        //res.send(users);
-      res.render('./shop/shop',{
-        products:products,
-      });
+    if(err) throw err;
+    Category.find({},(err, category)=>{
+       //var user = [users];
+       if(err) throw err;
+       //res.send(users);
+     res.render('./shop/shop',{
+       products:products,
+       category: category,
+     });
+    });
     });
 });
 
 // view single product
-router.get('/view-single-product/:id', /*ensureAuthentication*/ function(req, res){
-    Product.find({_id:req.params.id.slice(0,24)},(err, product)=>{
+router.get('/view-single-product', /*ensureAuthentication*/ function(req, res){
+    Product.findOne({_id:req.query.pro_id.slice(0,24)},(err, product)=>{
         
         //var user = [users];
         if(err) throw err;
-          //res.send(users);
-        res.render('./shop/single-product',{
-          product:product,
+        Song.findOne({_id:req.query.song_id.slice(0,24)},(err, song)=>{
+          if(err) throw err;
+          User.findOne({_id:req.query.art_id.slice(0,24)},(err, artist)=>{
+            if (err) throw err;
+              //res.send(users);
+              res.render('./shop/single-product',{
+                product:product,
+                song:song,
+                artist:artist
+              });
+          });
         });
+        
       });
 });
 

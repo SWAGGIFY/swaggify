@@ -11,6 +11,13 @@ router.get('/supplier-dashboard', ensureAuthentication, (req, res) =>{
     });
 });
 
+router.get('/supplier-profile', ensureAuthentication, (req, res) =>{
+    
+    res.render('./supplier/supplier-dashboard',{
+        layout:"./layouts/supplierLayout.handlebars"
+    });
+});
+
 //supplier adding product 21  10 oclock
 router.post('/add',ensureAuthentication,(req, res)=>{
     

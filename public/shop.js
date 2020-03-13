@@ -91,3 +91,9 @@ function addTocart(product_id){
         
     });
 }
+
+function bid(auction_id){
+  console.log(auction_id);
+  var modal = $('div#auctionValue');
+  modal.find('.auction_id').val(auction_id);
+}

@@ -1,453 +1,162 @@
-<!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+<body class="">
 
-      <!-- Main Content -->
-      <div id="content">
+     <!-- ##### Breadcrumb Area Start ##### -->
+  <div class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url('/home/img/bg-img/18.jpg');">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-12">
+          <div class="breadcrumb-text">
+            <h2>Single Product View</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="famie-breadcrumb">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Farming Practice</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <!-- ##### Breadcrumb Area End ##### -->
 
-        <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+  <!-- ##### About Us Area Start ##### -->
+  <section class="about-us-area">
+    <div class="container">
+      <div class="row align-items-center">
 
-          <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
-          </button>
-
-          <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" id="mySeach" onkeyup="mySearch()" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-              <div>
-                <ul class="filter"></ul>
-              </div>
+        <!-- About Us Thumbnail -->
+        <div class="col-12 col-lg-4">
+          <div class="about-us-thumbnail mb-50">
+            <img src="/home/img/bg-img/p1.jpg" alt="">
+          </div>
+        </div>
+        <!-- About Us Content -->
+        <div  class="col-12 col-lg-4 products">
+          <div class="about-us-content mb-100">
+            <!-- Section Heading -->
+            <div class="section-heading">
+              <p> <%= auctionDetail.name %></p>
+              <img src="/home/img/core-img/decor.png" alt="">
             </div>
-          </form>
+            <h4><span class="product-price">Start Amount:$ <%= auctionDetail.startAmount %></span></h4>
+            <h4><span class="product-price">Current Bid:$ <%= auctionDetail.currentBid.value %></span></h4>
 
-          <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="/shared/bid-item?auction_id={{#auctions}}{{#each this}}{{_id}}{{/each}}{{/auctions}}" method="post">
-            <div class="input-group">
-              <input type="text" name="value" class="form-control bg-light border-0 small" placeholder="value..." aria-label="Search" aria-describedby="basic-addon2" required>
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="submit">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
+            <h6> <span>Description:</span></h6>
+            <p><%= auctionDetail.description %></p>
+             <% if(user){ %>
+              <% if (user.package =="BRONZE"){ %>
+              <div class="product-meta-data">
+                <a href="#" data-toggle="tooltip" data-placement="top" class="btn famie-btn mt-30">Upgrade Package</a>
               </div>
-              <div>
-                <ul class="filter"></ul>
+              
+              <% } else{ %>
+              <div class="product-meta-data">
+                <a href="#" data-toggle="modal" onclick="bid('<%= auction._id %>')" data-target="#auctionValue" data-placement="top" class="btn famie-btn mt-30">Bid</a>
               </div>
+              <% } %>
+              <% } else { %>
+              <div class="product-meta-data">
+                <a href="#" data-toggle="modal"  data-target="#SingIn" data-placement="top" class="btn famie-btn mt-30">Bid</a>
+              </div>
+              <% } %>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+          <!-- ##### Farming Practice Area Start ##### -->
+  <section class="farming-practice-area bg-gray section-padding-100-50">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <!-- Section Heading -->
+          <div class="section-heading text-center">
+            <p>See It, Buy It</p>
+            <h2><span>Other</span> Auctions</h2>
+            <img src="img/core-img/decor2.png" alt="">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <!-- Single Farming Practice Area -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="single-farming-practice-area mb-50 wow fadeInUp" data-wow-delay="100ms">
+            <!-- Thumbnail -->
+            <div class="farming-practice-thumbnail">
+              <img src="/home/img/core-img/ariana.jpg" alt="">
             </div>
-          </form>
-
-          <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">
-
-            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-            <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-search fa-fw"></i>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                <form class="form-inline mr-auto w-100 navbar-search">
-                  <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search fa-sm"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
+            <!-- Content -->
+            <div class="farming-practice-content text-center">
+              <!-- Icon -->
+              <div class="farming-icon">
+                <img src="/home/img/core-img/bag.jpg" alt="" style=" border-radius: 80%;max-width:100%;">
               </div>
-            </li>
-
-            <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
-                <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
-              </a>
-              <!-- Dropdown - Alerts -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                <h6 class="dropdown-header">
-                  Alerts Center
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-file-alt text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 12, 2019</div>
-                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-success">
-                      <i class="fas fa-donate text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 7, 2019</div>
-                    $290.29 has been deposited into your account!
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-warning">
-                      <i class="fas fa-exclamation-triangle text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 2, 2019</div>
-                    Spending Alert: We've noticed unusually high spending for your account.
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-              </div>
-            </li>
-
-            <!-- Nav Item - Messages -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-envelope fa-fw"></i>
-                <!-- Counter - Messages -->
-                <span class="badge badge-danger badge-counter">7</span>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
-                <h6 class="dropdown-header">
-                  Message Center
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div class="font-weight-bold">
-                    <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
-                    <div class="small text-gray-500">Emily Fowler · 58m</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
-                    <div class="status-indicator"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
-                    <div class="small text-gray-500">Jae Chun · 1d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
-                    <div class="status-indicator bg-warning"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
-                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>
-                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-              </div>
-            </li>
-
-            <div class="topbar-divider d-none d-sm-block"></div>
-
-            <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%= user.username %></span>
-                <img class="img-profile rounded-circle" src="<%= user.avatar %>">
-              </a>
-              <!-- Dropdown - User Information -->
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
-                </a>
-              </div>
-            </li>
-
-          </ul>
-
-        </nav>
-        <!-- End of Topbar -->
-
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
-
-          <div class="row row-offcanvas row-offcanvas-right">
-            <div class="col-12 col-md-8 card">
-              <h1>Action details</h1>
-              <div class="card mb-4 py-3 border-left-primary">
-                <div class="card-body">
-                  <div class="row">
-                      {{#auction}}
-                      <div class="col-md-4">
-                          <img src="https://mdbootstrap.com/img/Photos/Others/img (36).jpg" height="120" class="img-circle" alt="Cinque Terre">
-                          <p>Start Date: {{#each this}}{{startDate}}{{/each}}</p>
-                          <p>End Date  : {{#each this}}{{endDate}}{{/each}}</p>
-                      </div>
-                      <div class="col-md-8">
-                          <h6>{{#each this}}{{name}}{{/each}}</h6>
-                          Current Bid is ..$<span>{{#each this}}{{#currentBid}}{{#each this}}{{value}}{{/each}}{{/currentBid}}{{/each}}</span><hr>
-                          <p>{{#each this}}{{description}}{{/each}}</p>
-                          <ul>
-                              <li></li>
-                          </ul>
-                      </div>
-                      <!-- Topbar Search -->
-                        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="/shared/bid-item?auction_id={{#each this}}{{_id}}{{/each}}" method="post">
-                            <div class="input-group">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="submit">
-                                <i class="fas fa-auction">BID</i>
-                                </button>
-                            </div>
-                            <div>
-                                <ul class="filter"></ul>
-                            </div>
-                            </div>
-                        </form>
-                      {{/auction}}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-md-4 card">
-              <div class="header">
-                <h6>Available products</h6>
-              </div>
-              <div class="row">
-                <div id="carousel-example-multi" class="carousel slide carousel-multi-item v-2" data-ride="carousel">
-
-                  <!--Controls-->
-                  <div class="controls-top">
-                    <a class="btn-floating" href="#carousel-example-multi" data-slide="prev"><i
-                        class="fas fa-chevron-left"></i></a>
-                    <a class="btn-floating" href="#carousel-example-multi" data-slide="next"><i
-                        class="fas fa-chevron-right"></i></a>
-                  </div>
-                  <!--/.Controls-->
-
-                  <!-- Indicators -->
-                  <ol class="carousel-indicators">
-                    <li data-target="#carousel-example-multi" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel-example-multi" data-slide-to="1"></li>
-                    <li data-target="#carousel-example-multi" data-slide-to="2"></li>
-                    <li data-target="#carousel-example-multi" data-slide-to="3"></li>
-                    <li data-target="#carousel-example-multi" data-slide-to="4"></li>
-                    <li data-target="#carousel-example-multi" data-slide-to="5"></li>
-                  </ol>
-                  <!--/.Indicators-->
-
-                  <div class="carousel-inner v-2" role="listbox">
-
-                    <div class="carousel-item active">
-                      <div class="col-12 col-md-12">
-                        <div class="card mb-2 border-left-primary">
-                          <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/img (36).jpg"
-                            alt="Card image cap">
-                          <div class="card-body">
-                            <h4 class="card-title font-weight-bold">Card title</h4>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                              card's content.</p>
-                            <a class="btn btn-primary btn-md btn-rounded bounce" href="/shared/buy-item">Buy Me!</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="carousel-item">
-                      <div class="col-12 col-md-12">
-                        <div class="card mb-2">
-                          <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/img (34).jpg"
-                            alt="Card image cap">
-                          <div class="card-body">
-                            <h4 class="card-title font-weight-bold">Card title</h4>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                              card's content.</p>
-                            <a class="btn btn-primary btn-md btn-rounded bounce">Buy Me!</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="carousel-item">
-                      <div class="col-12 col-md-12">
-                        <div class="card mb-2 border-left-primary">
-                          <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/img (38).jpg"
-                            alt="Card image cap">
-                          <div class="card-body">
-                            <h4 class="card-title font-weight-bold">Card title</h4>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                              card's content.</p>
-                            <a class="btn btn-primary btn-md btn-rounded bounce">Button</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="carousel-item">
-                      <div class="col-12 col-md-12">
-                        <div class="card mb-2 border-left-primary">
-                          <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/img (29).jpg"
-                            alt="Card image cap">
-                          <div class="card-body">
-                            <h4 class="card-title font-weight-bold">Card title</h4>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                              card's content.</p>
-                            <a class="btn btn-primary btn-md btn-rounded bounce">Button</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="carousel-item">
-                      <div class="col-12 col-md-12">
-                        <div class="card mb-2">
-                          <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/img (30).jpg"
-                            alt="Card image cap">
-                          <div class="card-body">
-                            <h4 class="card-title font-weight-bold">Card title</h4>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                              card's content.</p>
-                            <a class="btn btn-primary btn-md btn-rounded bounce">Button</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="carousel-item">
-                      <div class="col-12 col-md-12">
-                        <div class="card mb-2 border-left-primary">
-                          <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/img (27).jpg"
-                            alt="Card image cap">
-                          <div class="card-body">
-                            <h4 class="card-title font-weight-bold">Card title</h4>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                              card's content.</p>
-                            <a class="btn btn-primary btn-md btn-rounded bounce">Button</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-
-                </div>
-                <div class="header">
-                  <h6>Available Auctions</h6>
-                </div>
-                <div id="carousel-example-multi" class="carousel slide carousel-multi-item v-2" data-ride="carousel">
-
-                  <!--Controls-->
-                  <div class="controls-top">
-                    <a class="btn-floating" href="#carousel-example-multi" data-slide="prev"><i
-                        class="fas fa-chevron-left"></i></a>
-                    <a class="btn-floating" href="#carousel-example-multi" data-slide="next"><i
-                        class="fas fa-chevron-right"></i></a>
-                  </div>
-                  <!--/.Controls-->
-
-                  <!-- Indicators -->
-                  <ol class="carousel-indicators">
-                    <li data-target="#carousel-example-multi" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel-example-multi" data-slide-to="1"></li>
-                    <li data-target="#carousel-example-multi" data-slide-to="2"></li>
-                    <li data-target="#carousel-example-multi" data-slide-to="3"></li>
-                    <li data-target="#carousel-example-multi" data-slide-to="4"></li>
-                    <li data-target="#carousel-example-multi" data-slide-to="5"></li>
-                  </ol>
-                  <!--/.Indicators-->
-
-                  <div class="carousel-inner v-2" role="listbox">
-                    <% for(auction of auctions %>
-                    <div class="carousel-item">
-                      <div class="col-12 col-md-12">
-                        <div class="card mb-2 border-left-primary">
-                          <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/img (36).jpg"
-                            alt="Card image cap">
-                          <div class="card-body">
-                            <h4 class="card-title font-weight-bold"><%= auction.name %></h4>
-                            <p class="card-text">Auction Starts:<%= auction.startDate %></p>
-                            <p class="card-text">Auction ende:<%= auction.endDate %></p>
-                            <p class="card-text">Time Remaining</p>
-                            <p class="card-text" id="demo"style="text-align: center;font-size: 60px;"></p>
-                            <br>
-
-                            <!--<a class="btn btn-primary btn-md btn-rounded bounce" href="/shared/buy-item">Buy Me!</a>-->
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <% } %>
-                  </div>
-
-                </div>
-              </div>
+              <span>Buy Now</span>
+              <h4>Product Name</h4>
+              <p>Donec nec justo eget felis facilisis ferme ntum. Aliquam portitor mauris sit amet orci. donec salim...</p>
             </div>
           </div>
-
         </div>
-        <!-- /.container-fluid -->
+
+        <!-- Single Farming Practice Area -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="single-farming-practice-area mb-50 wow fadeInUp" data-wow-delay="300ms">
+            <!-- Thumbnail -->
+            <div class="farming-practice-thumbnail">
+              <img src="/home/img/core-img/ariana.jpg" alt="">
+            </div>
+            <!-- Content -->
+            <div class="farming-practice-content text-center">
+              <!-- Icon -->
+              <div class="farming-icon">
+                <img src="/home/img/core-img/bag.jpg" alt="" style=" border-radius: 80%;max-width:100%;">
+              </div>
+              <span>Buy Now</span>
+              <h4>Product Name</h4>
+              <p>Donec nec justo eget felis facilisis ferme ntum. Aliquam portitor mauris sit amet orci. donec salim...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Single Farming Practice Area -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="single-farming-practice-area mb-50 wow fadeInUp" data-wow-delay="500ms">
+            <!-- Thumbnail -->
+            <div class="farming-practice-thumbnail">
+              <img src="/home/img/core-img/ariana.jpg" alt="">
+            </div>
+            <!-- Content -->
+            <div class="farming-practice-content text-center">
+              <!-- Icon -->
+              <div class="farming-icon">
+                <img src="/home/img/core-img/bag.jpg" alt="" style=" border-radius: 80%;max-width:100%;">
+              </div>
+              <span>Buy Now</span>
+              <h4>Product Name</h4>
+              <p>Donec nec justo eget felis facilisis ferme ntum. Aliquam portitor mauris sit amet orci. donec salim...</p>
+            </div>
+          </div>
+        </div>
 
       </div>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2020</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
-
     </div>
-    <!-- End of Content Wrapper -->
-    <script> 
-var deadline = <%= auction.startDate %>; 
-var x = setInterval(function() { 
-var now = new Date().getTime(); 
-var t = deadline - now; 
-var days = Math.floor(t / (1000 * 60 * 60 * 24)); 
-var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60)); 
-var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60)); 
-var seconds = Math.floor((t % (1000 * 60)) / 1000); 
-document.getElementById("demo").innerHTML = days + "d "  
-+ hours + "h " + minutes + "m " + seconds + "s "; 
-    if (t < 0) { 
-        clearInterval(x); 
-        document.getElementById("demo").innerHTML = "EXPIRED"; 
-    } 
-}, 1000); 
-</script> 
+  </section>
+  <!-- ##### Farming Practice Area End ##### -->
+        
+
+      </div>
+    </div>
+  </section>
+  <!-- ##### About Us Area End ##### -->
+
+
+</body>

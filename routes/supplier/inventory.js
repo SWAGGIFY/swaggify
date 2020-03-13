@@ -13,7 +13,7 @@ router.get('/supplier-view-products',ensureAuthentication,(req,res)=>{
         if(err) throw err;
         res.render('./supplier/view-products',{
             products:products,
-            layout:"../layouts/supplierLayout.handlebars",
+            layout:"./layouts/supplierLayout.handlebars",
         }) 
     });
 });
@@ -44,7 +44,7 @@ router.post('/supplier-add-product',ensureAuthentication,(req, res)=>{
                 Product.find({},(err,products)=>{
                     if(err) throw err;
                     res.render('./supplier/view-products',{
-                        layout:"../layouts/supplierLayout.handlebars",
+                        layout:"./layouts/supplierLayout.handlebars",
                         alert:alert,
                         msg: msg,
                         products:products
@@ -55,7 +55,7 @@ router.post('/supplier-add-product',ensureAuthentication,(req, res)=>{
             Product.find({},(err,products)=>{
                 if(err) throw err;
                 res.render('./supplier/view-products',{
-                    layout:"../layouts/supplierLayout.handlebars",
+                    layout:"./layouts/supplierLayout.handlebars",
                     alert:"alert alet-danger",
                     msg: "Product already exist",
                     products:products
@@ -85,7 +85,7 @@ router.post('/supplier-dressed-artist',ensureAuthentication,(req, res)=>{
                 const alert = "alert alert-success";
                 const msg = "Successfully added";
                 res.render('./supplier/supplier-dashboard',{
-                    layout:"../layouts/supplierLayout.handlebars",
+                    layout:"./layouts/supplierLayout.handlebars",
                     alert:alert,
                     msg: msg
                 });
@@ -97,7 +97,7 @@ router.post('/supplier-dressed-artist',ensureAuthentication,(req, res)=>{
                 const alert = "alert alert-danger";
                 const msg = "Ummm iwe wakaisa kare that data";
                 res.render('./supplier/supplier-dashboard',{
-                    layout:"../layouts/supplierLayout.handlebars",
+                    layout:"./layouts/supplierLayout.handlebars",
                     alert:alert,
                     msg: msg
                 });

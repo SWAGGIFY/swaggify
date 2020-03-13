@@ -10,7 +10,6 @@ const Auction = require('../../model/auction/auction');
 router.get('/admin-dashboard', ensureAuthentication, function(req, res){
     //res.send(req.user)
    res.render('./admin/admin-dashboard',{
-       //user:req.user,
        layout:"./layouts/authenticated.handlebars"
    });
 });
@@ -130,7 +129,7 @@ router.post('/admin-add-user',ensureAuthentication,(req, res)=>{
         });
       }else{
         res.render('./admin/view-users',{
-          alert:"alert alert-danger",
+          alert:"alert-danger",
           msg: "User already added",
           users:users,
           layout:"./layouts/authenticated.handlebars"

@@ -1,5 +1,5 @@
 <body class="">
-<div class="wrapper ">
+<!--<div class="wrapper ">
     <div class="main-panel">
         <div class="panel-header panel-header-sm">
         </div>
@@ -10,44 +10,33 @@
                         <div class="col-lg-12">
                             <div class="dash-item first-dash-item">
                                 <h6 class="item-title"><i class="fa fa-user"></i>Customers</h6>
-                                <div class="<%= alert %>">
-                                  <strong class=""><%= msg %></strong>
+                                <div class="">
+                                  <strong class=""></strong>
                                 </div>
                                 <div class="inner-item">
                                     <table id="attendenceDetailedTable" class="display responsive nowrap" cellspacing="0" width="100%">
                                         <thead>
                                         <tr>
                                             <th><i class="fa fa-user"></i>Customer name</th>
-                                            <th><i class="fa fa-building"></i>Customer ID</th>
+                                            <th><i class="fa fa-building"></i></th>
                                             <th><i class="fa fa-calendar"></i>Date joined</th>
                                             <th><i class="fa fa-envelope-o"></i>Email</th>
                                             <th><i class="fa fa-tasks"></i>ACTION</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                            <% for(user of users){ %>}
+                                            <% for(user of users){ %>
                                                 <tr data-id="<%=users._id %>" data-type="user">
-                                                    <td>.<%= users.firstname %></td>
-                                                    <td><%= users.lastname %></td>
-                                                    <td><%= users.role %></td>
-                                                    <td><%= users.email %></td>
+                                                    <td><%= user.firstname+" "+user.lastname %></td>
+                                                    <td><%= user.role %></td>
+                                                    <td><%= user.role %></td>
+                                                    <td><%= user.email %></td>
                                                     <td class="action-link">
                                                         <a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editDetailModal"><i class="fa fa-edit"></i>Edit</a>
                                                         <a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="fa fa-remove"></i>Delete</a>
                                                     </td>
                                                 </tr>
                                              <% } %>
-                                        <tr>
-                                            <td>LENNORE DOE</td>
-                                            <td>Harvard</td>
-                                            <td>2006</td>
-                                            <td>0999878775</td>
-                                            <td>lennore@gmail.com</td>
-                                            <td class="action-link">
-                                                <a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editDetailModal"><i class="fa fa-edit"></i></a>
-                                                <a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="fa fa-remove"></i></a>
-                                            </td>
-                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -58,10 +47,10 @@
             </div>
 
 
-            <!--Edit details modal-->
+            <!--Edit details modal--
             <div id="editDetailModal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
-                    <!-- Modal content-->
+                    <!-- Modal content--
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -112,9 +101,88 @@
                     </div>
                 </div>
             </div>
-            <!--end modal-->
+            <!--end modal-
         </div>
     </div>
 </div>
-</div>
+</div>-->
+
+<div class="content-wrapper">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Data table</h4>
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-responsive">
+                    <table id="order-listing" class="table table-borderless">
+                      <thead>
+                        <tr>
+                            <th>User Information</th>
+                            <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                         <% if(user.role=="Admin"){%>
+                          <tr data-id="" data-type="user">
+                            <td>
+                                  <div class="col-md-10 grid-margin stretch-card">
+                                    <div class="card">
+                                      <div class="card-body">
+                                        <div class="d-sm-flex flex-row flex-wrap text-center text-sm-left align-items-center">
+                                          <div class="col-md-4">
+                                            <img src="/Dashboard/images/faces/face11.jpg" style="width:130px;height:130px; border-radius:56px !important" class="img-lg rounded" alt="profile image"/>
+                                          </div>
+                                          <div class="ml-sm-3 ml-md-0 ml-xl-3 mt-2 mt-sm-0 mt-md-2 mt-xl-0">
+                                            <span class="text-success alert alert-danger outline-primary font-weight-bold" style="float:right; top:8px; right:16px; position:absolute;"> <%= users.role %></span>
+                                            <h5 class="mb-0"><%= users.role %></h5><hr>
+                                            <p class="text-muted mb-1"><%= users.role %></p>
+                                            <p class="mb-0 text-success font-weight-bold">Designer</p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                             </td>
+                            <td class="action-link">
+                                <a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editDetailModal"><i class="ti-write menu-icon" style="font-size: 1.1rem;line-height: 1;margin-right: 0.6rem;"></i></a>
+                                <a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="ti-trash menu-icon" style="font-size: 1.1rem;line-height: 1;margin-right: 0.6rem;"></i></a>
+                            </td>
+                        </tr>
+                         <%} %>
+                         <% for(user of users){ %>
+                        <tr data-id="" data-type="user">
+                            <td>
+                                  <div class="col-md-10 grid-margin stretch-card">
+                                    <div class="card">
+                                      <div class="card-body">
+                                        <div class="d-sm-flex flex-row flex-wrap text-center text-sm-left align-items-center">
+                                          <div class="col-md-4">
+                                            <img src="/Dashboard/images/faces/face11.jpg" style="width:130px;height:130px; border-radius:56px !important" class="img-lg rounded" alt="profile image"/>
+                                          </div>
+                                          <div class="ml-sm-3 ml-md-0 ml-xl-3 mt-2 mt-sm-0 mt-md-2 mt-xl-0">
+                                            <span class="text-success alert alert-warning outline-primary font-weight-bold" style="float:right; top:8px; right:16px; position:absolute;"> <%= user.role %></span>
+                                            <h5 class="mb-0"><%= user.firstname+" "+user.lastname %></h5><hr>
+                                            <p class="text-muted mb-1">Email: <%= user.socialNetwork.email %></p>
+                                            <p class="mb-0 text-success font-weight-bold">Designer</p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                             </td>
+                            <td class="action-link">
+                                <a class="edit" href="#" title="Edit" data-toggle="modal" data-target="#editDetailModal"><i class="ti-write menu-icon" style="font-size: 1.1rem;line-height: 1;margin-right: 0.6rem;"></i></a>
+                                <a class="delete" href="#" title="Delete" data-toggle="modal" data-target="#deleteDetailModal"><i class="ti-trash menu-icon" style="font-size: 1.1rem;line-height: 1;margin-right: 0.6rem;"></i></a>
+                            </td>
+                        </tr>
+                        <%} %>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
 </body>

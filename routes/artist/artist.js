@@ -11,6 +11,13 @@ router.get('/artist-dashboard', ensureAuthentication, (req, res) =>{
     });
 });
 
+router.get('/artist-profile', ensureAuthentication, (req, res) =>{
+    
+    res.render('./artist/artist-dashboard',{
+        layout:'../layouts/artistLayout.handlebars'
+    });
+});
+
 //customer Request
 router.post('/artist-add-song',ensureAuthentication,(req, res)=>{
     

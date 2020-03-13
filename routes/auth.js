@@ -139,7 +139,7 @@ router.post('/verify-account', ensureAuthentication, [
 ///get signin 
 router.get('/sign-in',(req,res)=>{
     res.render('./homefiles/sign-in',{
-        layout:false
+        //layout:false
     });
 });
 //Register user
@@ -276,7 +276,7 @@ router.post('/sign-in', passport.authenticate('local',{ failureRedirect: '/auth/
          if(req.user.active == false){
             res.redirect('/auth/artist-verify-account');
          }else{
-            res.redirect('/artist/artist-dashboard');
+            res.redirect('back');
         }
      }else if(req.user.role == "Supplier"){
         if(req.user.active == false){
@@ -288,7 +288,7 @@ router.post('/sign-in', passport.authenticate('local',{ failureRedirect: '/auth/
         if(req.user.active == false){
             res.redirect('/auth/user-verify-account');
          }else{
-            res.redirect('/customer/customer-dashboard');
+            res.redirect('back');
         }
      }
   }

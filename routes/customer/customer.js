@@ -31,6 +31,12 @@ router.get('/customer-dashboard', ensureAuthentication, (req, res) =>{
     });
 });
 
+router.get('/customer-profile', ensureAuthentication, (req, res) =>{
+  res.render('./customer/customer-profile',{
+    layout:"./layouts/layout2.handlebars"
+  });
+});
+
 //customer Request
 router.post('/customer-request',ensureAuthentication,(req, res)=>{
     
