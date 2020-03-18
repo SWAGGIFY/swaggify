@@ -39,7 +39,7 @@ const AddressSchema = mongoose.Schema({
         type:String
       },
     contact:{
-    type:String
+      type:String
     },
     altcontact:{
         type:String
@@ -62,6 +62,12 @@ const CompanySchema = mongoose.Schema({
     tel:{
         type:String
     },
+    category:{
+      type:String
+    },
+    employees:{
+      type:String
+    },
     mobile:{
         type:String
     },
@@ -79,7 +85,20 @@ const CompanySchema = mongoose.Schema({
     },
     email:{
       type:String
-    }
+    },
+    inventory:{
+      type:String
+    },
+    store:{
+      type:String
+    },
+    payments:[{
+      paypal:String,
+      paynow: String,
+      etf : String,
+      Online_banking : String,
+      other : String
+    }]
 });
 
 //User Schema
@@ -105,15 +124,6 @@ const UserSchema = mongoose.Schema({
     socialNetwork:[
       SocialNetworkSchema
     ],
-    contact:{
-         type:String,
-   },
-   city:{
-        type:String,
-    },
-    country:{
-    type:String,
-    },
     role:{
       type:String,
   

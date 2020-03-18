@@ -1,163 +1,86 @@
 <div class="container register">
                 <div class="row">
                     <div class="col-md-3 register-left">
-                        <img src="<%= avatar %>" alt="" style="border-radius: 25px;">
+                        <img src="<%= user.avatar %>" alt="" style="border-radius: 25px;">
                         <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
-                        <h3>Welcome <%= firstname %></h3>
+                        <h3>Welcome <%= user.firstname %></h3>
                         <p>You are 30 seconds away from earning your own money!</p>
-                        <input href="/auth/sign-in" type="submit" name="" value="Login"/><br/>
+                        <input href="/auth/sign-in" type="submit" name="" value="SwaggIn"/><br/>
                     </div>
                     <div class="col-md-9 register-right">
                         <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Employee</a>
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Personal</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Hirer</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#company_detailes" role="tab" aria-controls="profile" aria-selected="false">Company</a>
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Contact</a>
                             </li>
                         </ul>
-                        <div class="tab-content" id="myTabContent">
-                            <form action="">
-                                
+                        <form action="/auth/verify-account" method="post">
+                            <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                    <h3 class="register-heading">Apply as a Employee</h3>
+                                    <h3 class="register-heading">PERSONAL DETAILS</h3>
                                     <div class="row register-form">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="text" name="firstname" class="form-control" placeholder="First Name *" value="<%= firstname %>" />
+                                                <input type="text" name="firstname" class="form-control" placeholder="First Name *" value="<%= user.firstname %>" required/>
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Last Name *" value="<%= lastname %>" />
+                                                <input type="text" name="lastname" class="form-control" placeholder="Last Name *" value="<%= user.lastname %>" require/>
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" class="form-control" placeholder="Password *" value="" />
+                                                <input type="text" name="username" class="form-control" placeholder="username *" value="<%= user.username %>" required/>
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" class="form-control"  placeholder="Confirm Password *" value="" />
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="maxl">
-                                                    <label class="radio inline"> 
-                                                        <input type="radio" name="gender" value="male" checked>
-                                                        <span> Male </span> 
-                                                    </label>
-                                                    <label class="radio inline"> 
-                                                        <input type="radio" name="gender" value="female">
-                                                        <span>Female </span> 
-                                                    </label>
-                                                </div>
+                                                <input type="password" name="pwd" minimum="6" class="form-control"  placeholder="Enter a Password *" value="" required/>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="email" class="form-control" placeholder="Your Email *" value="" />
+                                                <input type="password" name="pwd1" minimum="6" class="form-control" placeholder="Confirm your password *" value="" required/>
                                             </div>
-                                            <div class="form-group">
-                                                <input type="text" minlength="10" maxlength="10" name="txtEmpPhone" class="form-control" placeholder="Your Phone *" value="" />
-                                            </div>
-                                            <div class="form-group">
-                                                <select class="form-control">
-                                                    <option class="hidden"  selected disabled>Please select your Sequrity Question</option>
-                                                    <option>What is your Birthdate?</option>
-                                                    <option>What is Your old Phone Number</option>
-                                                    <option>What is your Pet Name?</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Enter Your Answer *" value="" />
-                                            </div>
-                                            <input type="submit" class="btnRegister"  value="Register"/>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                    <h3  class="register-heading">Apply as a Hirer</h3>
+                                    <h3  class="register-heading">CONTACT DETAILS</h3>
                                     <div class="row register-form">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="First Name *" value="" />
+                                                <input type="email" name="email" class="form-control" placeholder="email" value="<%= user.socialNetwork[0].email %>" required/>
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Last Name *" value="" />
+                                                <input type="text" name="facebook"  class="form-control" placeholder="Facebook optional" value="<%= user.socialNetwork[0].facebook %>" />
                                             </div>
                                             <div class="form-group">
-                                                <input type="email" class="form-control" placeholder="Email *" value="<%= socialNetwork %>" />
+                                                <input type="text" name="instagram" class="form-control" placeholder="instagram optional" value="<%= user.socialNetwork[0].instagram %>" />
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" maxlength="10" minlength="10" class="form-control" placeholder="Phone *" value="" />
+                                                <input type="text" name="twitter"  class="form-control" placeholder="Twitter *" value="<%= user.socialNetwork[0].twitter %>" />
                                             </div>
 
 
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="password" class="form-control" placeholder="Password *" value="" />
+                                                <input type="text" name="address" class="form-control" placeholder="Adress *" value="<%= user.address[0].address %>" required/>
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" class="form-control" placeholder="Confirm Password *" value="" />
+                                                <input type="text" name="contact" class="form-control" placeholder="Contact *" value="<%= user.address[0].contact %>" required/>
                                             </div>
                                             <div class="form-group">
-                                                <select class="form-control">
-                                                    <option class="hidden"  selected disabled>Please select your Sequrity Question</option>
-                                                    <option>What is your Birthdate?</option>
-                                                    <option>What is Your old Phone Number</option>
-                                                    <option>What is your Pet Name?</option>
-                                                </select>
+                                                <input type="text" name="city" class="form-control" placeholder="*" value="<%= user.address[0].city %>" required/>
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="`Answer *" value="" />
+                                                <input type="text" name="country" class="form-control" placeholder="enter your country" value="<%= user.address[0].country %>" required/>
                                             </div>
-                                            <input type="submit" class="btnRegister"  value="Register"/>
+                                            <input type="submit" class="btnRegister"  value="Swaggmit"/>
                                         </div>
                                     </div>
                                 </div>
                                 
-                                <div class="tab-pane fade show" id="company_detailes" role="tabpanel" aria-labelledby="profile-tab">
-                                    <h3  class="register-heading">Company Details</h3>
-                                    <div class="row register-form">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="First Name *" value="" />
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Last Name *" value="" />
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="email" class="form-control" placeholder="Email *" value="<%= socialNetwork %>" />
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" maxlength="10" minlength="10" class="form-control" placeholder="Phone *" value="" />
-                                            </div>
-
-
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <input type="password" class="form-control" placeholder="Password *" value="" />
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="password" class="form-control" placeholder="Confirm Password *" value="" />
-                                            </div>
-                                            <div class="form-group">
-                                                <select class="form-control">
-                                                    <option class="hidden"  selected disabled>Please select your Sequrity Question</option>
-                                                    <option>What is your Birthdate?</option>
-                                                    <option>What is Your old Phone Number</option>
-                                                    <option>What is your Pet Name?</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="`Answer *" value="" />
-                                            </div>
-                                            <input type="submit" class="btnRegister"  value="Register"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
 

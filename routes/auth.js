@@ -12,7 +12,10 @@ router.get('/google',
 passport.authenticate('google', {
   scope: [//'profile','email'
         'https://www.googleapis.com/auth/userinfo.profile',
-        'https://www.googleapis.com/auth/userinfo.email'
+        'https://www.googleapis.com/auth/userinfo.email',
+        'https://www.googleapis.com/auth/user.phonenumbers.read',
+        'https://www.googleapis.com/auth/user.addresses.read',
+        'https://www.googleapis.com/auth/profile.agerange.read'
     ]
 }));
 
@@ -48,21 +51,21 @@ router.get('/google/redirect',
 router.get('/artist-verify-account', ensureAuthentication, (req, res)=>{
     res.render('./homefiles/accountVerification/artist',{
         user:req.user, 
-        layout:"../layouts/verifyAccount.handlebars"
+        layout:"./layouts/verifyAccount.handlebars"
     });
 });
 
 router.get('/supplier-verify-account', ensureAuthentication, (req, res)=>{
     res.render('./homefiles/accountVerification/supplier',{
         user:req.user, 
-        layout:"../layouts/verifyAccount.handlebars"
+        layout:"./layouts/verifyAccount.handlebars"
     });
 });
 
 router.get('/user-verify-account', ensureAuthentication, (req, res)=>{
     res.render('./homefiles/accountVerification/user',{
         user:req.user, 
-        layout:"../layouts/verifyAccount.handlebars"
+        layout:"./layouts/verifyAccount.handlebars"
     });
 });
 
@@ -101,18 +104,36 @@ router.post('/verify-account', ensureAuthentication, [
                             contact:req.body.contact
                         },
                         company:{
-                            company_name:req.body.company_name,
-                            email:req.body.compan_email,
+                            company_name:req.body.tranding_name,
+                            email:req.body.company_email,
                             city : req.body.company_city,
-                            country: req.body.company_country,
+                            country: req.body.country,
                             postalcode : req.body.postalcode,
                             description: req.body.description,
-                            tel : req.body.tel,
+                            tel : req.body.company_contact,
                             mobile : req.body.mobile,
-                            address : req.body.company_address
+                            address : req.body.company_address,
+                            category : req.body.category,
+                            employees : req.body.employees,
+                            inventory : req.body.inventory,
+                            store : req.body.store,
+                            payments :{
+                                paynow :req.body.paynow,
+                                paypal :req.body.paypal,
+                                etf :req.body.ETF,
+                                online_banking :req.body.online_banking,
+                                other :req.body.other,
+                            }
+                        },
+                        socialNetwork:{
+                            facebook:req.body.facebook,
+                            twitter:req.body.twitter,
+                            instagram:req.body.instagram,
+                            email:req.body.email
                         },
                         password : pwd,
-                        active:true
+                        active:true,
+
                     }};
                     User.updateOne({_id:req.user.id},query , (err)=>{
                         if (err) throw err;
@@ -280,7 +301,7 @@ router.post('/sign-in', passport.authenticate('local',{ failureRedirect: '/auth/
         }
      }else if(req.user.role == "Supplier"){
         if(req.user.active == false){
-            res.redirect('/auth/user-verify-account');
+            res.redirect('/auth/supplier-verify-account');
          }else{
             res.redirect('/supplier/supplier-dashboard');
         }

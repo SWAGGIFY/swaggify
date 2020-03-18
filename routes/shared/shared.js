@@ -408,7 +408,7 @@ router.put('/profileupdate', (req, res)=>{
         }else{
             res.render('./auction/view-auctions',{
                 auctions:auctions,
-                layout:"./layouts/layout2.handlebars"
+                layout:"./layouts/layout.handlebars"
             });
        }
     } catch (err) {

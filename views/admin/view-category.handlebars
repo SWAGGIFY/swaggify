@@ -13,7 +13,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                          <% for (package of packages){ %>
+                          <% for (category of categories){ %>
                         <tr data-id="user._id" data-type="user">
                             <td>
                                   <div class="col-md-10 grid-margin stretch-card">
@@ -25,7 +25,7 @@
                                           </div>
                                           <div class="col-md-8">
                                             <span class="text-success outline-primary font-weight-bold" style=" top:8px; right:16px; position:absolute;"> </span>
-                                            <h5 class="mb-0"><% %></h5><hr>
+                                            <h5 class="mb-0"><%= category.category_name %></h5><hr>
                                             <p class="text-muted mb-1"><%%></p>
                                             <p class="mb-0 text-success font-weight-bold">Designer</p>
                                           </div>

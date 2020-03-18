@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Swaggify</title>
         <link rel="stylesheet" href="/bootstrap-4.4.1-dist/css/bootstrap.css">
+        <link rel="stylesheet" href="/home/css/font-awesome.min.css">
         <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Istok+Web:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="/bootstrap-4.4.1-dist/css/font-awsome.css">
@@ -24,10 +25,30 @@
         <script src="/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
         <script>
             $(document).ready(function(){
-                if($('div.tab-pane').hasClass('active')){
-                    console.log("Hello ready to verify");
-                    $('div.tab-pane').hasClass('active').hide();
-                }
+                $('div.store').hide();
+                $('div.inventory').hide();
+
+                $('#store').click(function() {
+                    // this will contain a reference to the checkbox   
+                    if (this.checked) {
+                         $('div.store').show();
+                         $('div.store').attr('required');
+                    } else {
+                        $(this).checked = false;
+                        $('div.store').hide();
+                    }
+                });
+
+                $('#inventory').click(function() {
+                    // this will contain a reference to the checkbox   
+                    if (this.checked) {
+                         $('div.inventory').show();
+                         $('div.inventory').attr('required');
+                    } else {
+                        $(this).checked = false;
+                        $('div.inventory').hide();
+                    }
+                });
             });
         </script>
     </body>

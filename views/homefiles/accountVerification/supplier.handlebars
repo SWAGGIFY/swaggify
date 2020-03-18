@@ -1,108 +1,177 @@
 <div class="container register">
                 <div class="row">
                     <div class="col-md-3 register-left">
-                        <img src="<%= avatar %>" alt="" style="border-radius: 25px;">
+                        <img src="<%= user.avatar %>" alt="" style="border-radius: 25px;">
                         <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
-                        <h3>Welcome <%= firstname %></h3>
+                        <h3>Welcome <%= user.firstname %></h3>
                         <p>You are 30 seconds away from earning your own money!</p>
-                        <input href="/auth/sign-in" type="submit" name="" value="Login"/><br/>
-                        
+                        <a href="/auth/sign-in" class="btn"><i class="fa fa-sign-in"></i> SwaggIn</a><br/>
                     </div>
-                    <div class="col-md-9 register-right" style="height: 478px;">
-                        <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                    <div class="col-md-9 register-right">
+                        <ul class="nav nav-tabs nav-justified" style="width: 42%;" id="myTab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Personal</a>
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#personal" role="tab" aria-controls="home" aria-selected="true">Personal</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Company</a>
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="profile" aria-selected="false">Contact</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#company" role="tab" aria-controls="profile" aria-selected="false">Company</a>
                             </li>
                         </ul>
-                        <div class="tab-content" id="myTabContent">
-                            <form action="/auth/verify-account" method="post">
-                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                    <h3 class="register-heading">Personal Details</h3>
+                        <form action="/auth/verify-account" method="post">
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="personal" role="tabpanel" aria-labelledby="home-tab">
+                                    <h3 class="register-heading">PERSONAL DETAILS</h3>
                                     <div class="row register-form">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="text" disabled name="firstname" class="form-control" placeholder="First Name *" value="<%= firstname %>" />
+                                                <input type="text" name="firstname" class="form-control" placeholder="First Name *" value="<%= user.firstname %>" required/>
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" name="lastname" class="form-control" placeholder="Last Name *" value="<%= lastname %>" />
-                                            </div> 
-                                            <div class="form-group">
-                                                <input type="text" name="username" class="form-control" placeholder="Enter username *" value="<%= username %>" />
+                                                <input type="text" name="lastname" class="form-control" placeholder="Last Name *" value="<%= user.lastname %>" require/>
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" name="pwd" class="form-control" placeholder="Password *" value="" />
+                                                <input type="text" name="username" class="form-control"  placeholder="Username *" value="<%= user.username %>" required/>
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" name="pwd1" class="form-control"  placeholder="Confirm Password *" value="" />
+                                                <input type="text" name="position" class="form-control"  placeholder="What is your position *" value="" required/>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="email" name="email" class="form-control" placeholder="Your Email *" value="<% for(social of user.socialNetwork){ %><%= social.email %>" />
-                                                 <% } %>
+                                                <input type="password" name="pwd" minimum="6" class="form-control"  placeholder="Enter a Password *" value="" required/>
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" name="address" minlength="10" maxlength="10" name="txtEmpPhone" class="form-control" placeholder="Your address *" value="<% for(address of user.address){ %><%= address.address %>" />
-                                                 <% } %>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" name="city" class="form-control" placeholder="Enter city *" value="" required/>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" name="contact" class="form-control" placeholder="Enter contact *" value="" required/>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" name="country" class="form-control" placeholder="Enter Country *" value="" required/>
+                                                <input type="password" name="pwd1" minimum="6" class="form-control" placeholder="Confirm your password *" value="" required/>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                    <h3  class="register-heading">Company Details</h3>
+                                <div class="tab-pane fade show" id="contact" role="tabpanel" aria-labelledby="profile-tab">
+                                    <h3  class="register-heading">CONTACT DETAILS</h3>
                                     <div class="row register-form">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="text" name="company_name" class="form-control" placeholder="Enter company name *" value="" required/>
+                                                <input type="email" name="email" class="form-control" placeholder="email" value="<%= user.socialNetwork[0].email %>" required/>
                                             </div>
                                             <div class="form-group">
-                                                <input type="company_email" class="form-control" placeholder="Enter company email" value="" required/>
+                                                <input type="text" name="facebook"  class="form-control" placeholder="Facebook optional" value="<%= user.socialNetwork[0].facebook %>" />
                                             </div>
                                             <div class="form-group">
-                                                <input type="company_address" class="form-control" placeholder="Enter company address *" value=""  required/>
+                                                <input type="text" name="instagram" class="form-control" placeholder="instagram optional" value="<%= user.socialNetwork[0].instagram %>" />
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" name="tel" maxlength="10" minlength="10" class="form-control" placeholder="Enter Telephone number *" value="" />
+                                                <input type="text" name="twitter"  class="form-control" placeholder="Twitter *" value="<%= user.socialNetwork[0].twitter %>" />
                                             </div>
 
 
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="text" name="mobile" class="form-control" placeholder="Enter mobile *" value="" />
+                                                <input type="text" name="address" class="form-control" placeholder="Adress *" value="<%= user.address[0].address %>" required/>
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" name="postal" class="form-control" placeholder="Enter postal code *" value="" />
+                                                <input type="text" name="contact" class="form-control" placeholder="Contact *" value="<%= user.address[0].contact %>" required/>
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" name="company_city" class="form-control" placeholder="Enter city *" value="" required/>
+                                                <input type="text" name="city" class="form-control" placeholder="*" value="<%= user.address[0].city %>" required/>
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" name="company_country" class="form-control" placeholder="Enter country *" value="" />
+                                                <input type="text" name="country" class="form-control" placeholder="enter your country" value="<%= user.address[0].country %>" required/>
                                             </div>
-                                            <div class="form-group">
-                                                <textarea name="description" rows="5" class="form-control" placeholder="Enter a company brief description" value="" ></textarea>
-                                            </div>
-                                            <input type="submit" class="btnRegister"  value="Register"/>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
+                                <div class="tab-pane fade show" id="company" role="tabpanel" aria-labelledby="profile-tab">
+                                    <h3  class="register-heading">COMPANY DETAILS</h3>
+                                    <div class="row register-form">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="text" name="tranding_name" class="form-control" placeholder="Enter Tranding name..."  required/>
+                                            </div>
+                                            <div class="form-group">
+                                                <select type="text" name="category" class="form-control" placeholder="instagram optional" value="<%= user.socialNetwork[0].instagram %>" />
+                                                    <option value="Independend Music Artist" disabled selected>Please select</option>
+                                                    <option value="Independend Music Artist">Independend Music Artist</option>
+                                                    <option value="Music Label/Stable">Music Label/Stable</option>
+                                                    <option value="Fashion Designer">Fashion Designer</option>
+                                                    <option value="Fashion Retailer">Fashion Retailer</option>
+                                                    <option value="Music Retailer">Music Retailer</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="number" name="employees"  class="form-control" placeholder="Number of employes" value="<%= user.socialNetwork[0].facebook %>" />
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="maxl">
+                                                    <label class="radio inline"> 
+                                                        <input id="store" type="checkbox" name="gender" >
+                                                        <span> Do you have an Online Store? </span> 
+                                                    </label>
+                                                    <div class="form-group store">
+                                                        <input type="text" name="store"  class="form-control" placeholder="Please enter the link to your shop... *" />
+                                                    </div>
+                                                    <label class="radio inline"> 
+                                                        <input id="inventory" type="checkbox" name="gender">
+                                                        <span>Do you have an Inventory System / CRM System </span> 
+                                                    </label>
+                                                    <div class="form-group inventory">
+                                                        <input type="text" name="inventory"  class="form-control" placeholder="Please enter name of the system *" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="maxl">
+                                                    <label class="radio inline"> 
+                                                        <input type="checkbox" name="paypal" >
+                                                        <span> Paypal </span> 
+                                                    </label>
+                                                    <label class="radio inline"> 
+                                                        <input type="checkbox" name="paynow">
+                                                        <span>Paynow </span> 
+                                                    </label>
+                                                    <label class="radio inline"> 
+                                                        <input type="checkbox" name="ETF">
+                                                        <span>ETF </span> 
+                                                    </label>
+                                                    <label class="radio inline"> 
+                                                        <input type="checkbox" name="online_banking">
+                                                        <span>Online Banking </span> 
+                                                    </label>
+                                                    <label class="radio inline"> 
+                                                        <input  type="checkbox" name="other">
+                                                        <span>Other </span> 
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="email" name="company_email" class="form-control" placeholder="Please enter company email... *"  required/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="company_address" class="form-control" placeholder="Please enter company physical address...*" required/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="company_contact" class="form-control" placeholder="Please enter company telphone..*" required/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="company_city" class="form-control" placeholder="Please enter company city... *"  required/>
+                                            </div>
+                                            <div class="form-group">
+                                                <textarea rows="5" name="description" type="text" class="form-control" placeholder="Please tell us more about your business... " required></textarea>
+                                            </div>
+                                            <button type="submit" class="btnRegister"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Swaggmit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </form>
                     </div>
                 </div>
 
             </div>
-            
+       

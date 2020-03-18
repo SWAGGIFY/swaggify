@@ -7,14 +7,14 @@ const Song= require('../../model/song');
 router.get('/artist-dashboard', ensureAuthentication, (req, res) =>{
     
     res.render('./artist/artist-dashboard',{
-        layout:'../layouts/artistLayout.handlebars'
+        layout:'./layouts/artistLayout.handlebars'
     });
 });
 
 router.get('/artist-profile', ensureAuthentication, (req, res) =>{
     
     res.render('./artist/artist-dashboard',{
-        layout:'../layouts/artistLayout.handlebars'
+        layout:'./layouts/artistLayout.handlebars'
     });
 });
 
@@ -39,7 +39,7 @@ router.post('/artist-add-song',ensureAuthentication,(req, res)=>{
                     const alert = "alert alert-success";
                     const msg = "Successfully added";
                     res.render('./artist/artist-view-songs',{
-                        layout:"../layouts/artistLayout.handlebars",
+                        layout:"./layouts/artistLayout.handlebars",
                         alert:alert,
                         msg: msg,
                         song:songs
@@ -47,7 +47,7 @@ router.post('/artist-add-song',ensureAuthentication,(req, res)=>{
                 });
             }else{
                 res.render('./artist/artist-view-songs',{
-                    layout:"../layouts/artistLayout.handlebars",
+                    layout:"./layouts/artistLayout.handlebars",
                     alert:"alert alert-danger",
                     msg: "Song already added",
                     song:songs
@@ -66,7 +66,7 @@ router.get('/artist-view-song',ensureAuthentication, (req, res)=>{
         //res.send(users);
       res.render('./artist/artist-view-songs.handlebars',{
         song:song,
-        layout:"../layouts/artistLayout.handlebars"
+        layout:"./layouts/artistLayout.handlebars"
       });
     });
   });

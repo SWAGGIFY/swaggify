@@ -5,6 +5,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20');
 const FacebookStrategy = require('passport-facebook').Strategy;
 const keys= require('./keys');
+const {google} = require('googleapis');
 
 
 //models
@@ -34,6 +35,7 @@ module.exports = function(passport){
       callbackURL: '/auth/google/redirect',
     },
     (accessToken, refreshToken,profile, done)=>{
+      console.log(profile.user);
       User.findOne({$or:[{socialNetwork:{$elemMatch:{email:profile.emails[0].value.toLowerCase()}}},{socialNetwork:{$elemMatch:{googleId:profile.id}}}]},( err, user)=>{
         if(err) throw err;
         if (!user){
