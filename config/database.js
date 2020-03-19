@@ -1,5 +1,5 @@
+require('dotenv').config();
 module.exports ={
-    //database:'mongodb://localhost/swaggify',
-    database:'mongodb+srv://swaggify:swaggify123$@cluster0-wwsuq.mongodb.net/swaggify?retryWrites=true&w=majority',
+    database:process.env.MONGOLAB_URI || `mongodb://${process.env.DB_HOST}/${process.env.DB_NAME}`,
     secret: 'mysecret'
   }

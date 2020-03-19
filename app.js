@@ -12,12 +12,15 @@ const layouts = require('express-ejs-layouts');
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
+require('dotenv').config();
 const port = process.env.PORT || 3000;
 //const LocalStrategy = require('passport-local').Strategy;
 const config = require('./config/database');
 const socketIO = require('./config/io');
 const mongoose = require('mongoose');
 //Db connections
+console.log(config)
+
 mongoose.connect(config.database, { 
   useNewUrlParser: true,
   useCreateIndex: true,

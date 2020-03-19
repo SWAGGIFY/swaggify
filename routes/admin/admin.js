@@ -6,6 +6,10 @@ const User= require('../../model/user');
 const Package= require('../../model/package');
 const Category= require('../../model/inventory/category');
 const Auction = require('../../model/auction/auction');
+///Mail handlers
+const sendMail = require('../../mailer/sendMail');
+const { newUserSignup, newAuctionMailer } = require('../../mailer/template');
+///end mail handlers//
 
 router.get('/admin-dashboard', ensureAuthentication, function(req, res){
     //res.send(req.user)
@@ -169,6 +173,7 @@ router.post('/admin-add-auction',ensureAuthentication,(req,res)=>{
     if (err) throw err;
     Auction.find({},(err,auctions)=>{
       if(err) throw err;
+      sendMail(newAuctionMailer, newAuction);
       res.render('./auction/view-auctions',{
         alert:"alert alert-success",
         msg:"Auction successfully added",

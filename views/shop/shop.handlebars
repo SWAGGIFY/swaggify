@@ -1,250 +1,157 @@
-<body class="">
-
-    <!-- ##### Breadcrumb Area Start ##### -->
-  <div class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url('/home/img/bg-img/3.jpg');">
-    <div class="container h-100">
-      <div class="row h-100 align-items-center">
-        <div class="col-12">
-          <div class="breadcrumb-text">
-            <h2>Shop</h2>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="famie-breadcrumb">
-    <div class="container">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Shop</li>
-        </ol>
-      </nav>
-    </div>
-  </div>
-  <!-- ##### Breadcrumb Area End ##### -->
-
-<!-- ##### Shop Area Start ##### -->
-  <section class="shop-area section-padding-0-100">
-    <div class="container">
-
-      <div class="row">
-        <!-- Shop Filters -->
-        <div class="col-12">
-          <div class="shop-filters mb-30 d-flex align-items-center justify-content-between">
-            <!-- Product Show -->
-            <div class="product-show">
-              <h6>Showing 1–9 of 72 results</h6>
-            </div>
-
-            <!-- Product View Mode -->
-            <div class="produtc-view-mode" id="btnContainer">
-              <a href="#" class="btn active" onclick="gridView()"><i class="fa fa-th"></i></a>
-              <a href="#" class="btn" onclick="listView()"><i class="fa fa-list-ul"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <!-- Shop Sidebar Area -->
-        <div class="col-12 col-md-4 col-lg-3">
-
-          <!-- Shopping Cart -->
-          <div class="shopping-cart mb-50">
-            <h5 class="mb-30">Shopping Cart</h5>
-            <!-- Cart Table -->
-            <div class="cart-table clearfix">
-              <table class="table table-responsive">
-                <!-- tbody -->
-                <tbody>
-                  <!-- Single Table Row -->
-                  <tr>
-                    <td class="cart_product_img">
-                      <a href="#"><img src="/home/img/bg-img/34.jpg" alt="Product"></a>
-                    </td>
-                    <td class="cart_product_desc">
-                      <p>Bayonne Ham</p>
-                      <h6>1 x $39.99</h6>
-                    </td>
-                    <td class="pro-close">
-                      <a href="#"><i class="icon_close"></i></a>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <!-- SubTotal -->
-            <div class="cart-summary d-flex align-items-center justify-content-between">
-              <div class="sub-total">
-                <h6>SUBTOTAL</h6>
-              </div>
-              <div class="total-price">
-                <h6>$52.99</h6>
-              </div>
-            </div>
-            <!-- Checkout -->
-            <a href="/shop/shopping-cart" class="btn famie-btn checkout-btn mt-30 w-100">Checkout</a>
-          </div>
-
-          <!-- Single Widget Area -->
-          <div class="single-widget-area">
-            <!-- Title -->
-            <h5 class="widget-title">Catagories</h5>
-            <!-- Cata List -->
-            <ul class="cata-list shop-page">
-              <li><a href="#">All products (72)</a></li>
-              <li><a href="#">Freshy Fruits (20)</a></li>
-              <li><a href="#">Rice &amp; Corn (15)</a></li>
-              <li><a href="#">Meat &amp; Eggs (20)</a></li>
-              <li><a href="#">Milk &amp; Cheese (15)</a></li>
-              <li><a href="#">Others (2)</a></li>
-            </ul>
-          </div>
-
-          <!-- Single Widget Area -->
-          <div class="single-widget-area">
-            <!-- Title -->
-            <h5 class="widget-title">Sort by</h5>
-            <!-- Cata List -->
-            <ul class="cata-list shop-page">
-              <li><a href="#">Top rated</a></li>
-              <li><a href="#">New arrivals</a></li>
-              <li><a href="#">Alphabetically, A-Z</a></li>
-              <li><a href="#">Alphabetically, Z-A</a></li>
-              <li><a href="#">Price: low to high</a></li>
-              <li><a href="#">Price: high to low</a></li>
-            </ul>
-          </div>
-
-          <!-- Single Widget Area -->
-          <div class="single-widget-area">
-            <!-- Title -->
-            <h5 class="widget-title">Price</h5>
-            <!-- Cata List -->
-            <ul class="cata-list shop-page">
-              <li><a href="#">$0.00 - $10.00</a></li>
-              <li><a href="#">$10.00 - $50.00</a></li>
-              <li><a href="#">$50.00 - $100.00</a></li>
-              <li><a href="#">$100.00+</a></li>
-            </ul>
-          </div>
-
-          <!-- Single Widget Area -->
-          <div class="single-widget-area">
-            <!-- Title -->
-            <h5 class="widget-title">Tags</h5>
-            <!-- Tags -->
-            <ul class="famie-tags">
-              <li><a href="#">All product</a></li>
-              <li><a href="#">Freshy Fruit</a></li>
-              <li><a href="#">Sweet Corn</a></li>
-              <li><a href="#">Chicken</a></li>
-              <li><a href="#">Organic</a></li>
-              <li><a href="#">Meat</a></li>
-            </ul>
-          </div>
-
-        </div>
-
-        <!-- Shop Products Area -->
-        <div class="col-12 col-md-8 col-lg-9">
-          <div class="row">
-        
-            <!-- Single Product Area -->
-             <% for (product of products){
-               for (product1 of product.product_id){
-               %>
-
-           
-            <div data-productid="<%= product1 %>" data-artistid="<%= product.artist_name %>" data-artistsong="<%= product.artist_song %>" class="col-12 col-sm-6 col-lg-4 <%= product1 %> products" style="cursor:pointer">
-             <div class="panel-group " id="accordion" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-default ">
-                  <div class="panel-heading" role="tab" id="headingOne">
-                    <h4 class="panel-title">
-                      <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        <div class="single-product-area mb-50 ">
-                          <!-- Product Thumbnail -->
-                          <div class="product-thumbnail">
-                            <a href="/shop/view-single-product?pro_id=<%= product1 %>&song_id=<%=product.artist_song %>&art_id=<%=product.artist_name %>"><img src="/home/img/bg-img/p1.jpg" alt=""></a>
-                            <!-- Product Tags -->
-                            <span class="product-tags name<%= product1 %>"> </span><br>
-                             <span class="product-price <%= product1 %>"> </span><br>
-                             <span class="product-song product-song<%= product1 %>"> </span>
-                            <!-- Product Meta Data -->
-                            <div class="product-meta-data">
-                              <a href="#" data-toggle="tooltip" data-placement="top" title="Favourite"><i class="icon_heart_alt"></i></a>
-                              <a href="#" onclick="addTocart('<%= product1 %>')" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon_cart_alt"></i></a>
-                              <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="arrow_left-right_alt"></i></a>
-
-                              
-                            </div>
-                          </div>
-                          <!-- Product Description --
-                          <div class="product-desc text-center pt-4">
-                            <p class="product-title "> Won:</p>
-                            <h6 class="price"></h6>
-                          </div>-->
+  <div class="main-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="filter-sidebar">
+                        <div class="col-md-12 form-title">
+                            <h2>Refine Your Search</h2>
                         </div>
-                      </a>
-                    </h4>
-                  </div>
-                  <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                    <div class="panel-body">
-                      <p class="product-title <%= product1 %>">kkkkkkk</p>
+                        <form>
+                            
+                            <div class="col-md-12 form-group">
+                                <label class="control-label">Select Category</label>
+                                <div class="checkbox checkbox-success">
+                                    <input type="checkbox" name="checkbox" id="weddinghall" value="Wedding Hall" class="styled">
+                                    <label for="weddinghall" class="control-label"> Cloths </label>
+                                </div>
+                                <div class="checkbox checkbox-success">
+                                    <input type="checkbox" name="checkbox" id="dining" value="Dining" class="styled">
+                                    <label for="dining" class="control-label">Suits </label>
+                                </div>
+                                <div class="checkbox checkbox-success">
+                                    <input type="checkbox" name="checkbox" id="insurance" value="Liability Insurance" class="styled">
+                                    <label for="insurance" class="control-label"> Shoes </label>
+                                </div>
+                                <div class="checkbox checkbox-success">
+                                    <input type="checkbox" name="checkbox" id="catering" value="In House Catering" class="styled">
+                                    <label for="catering" class="control-label"> Jewelery </label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label class="control-label" for="capacity">Capacity</label>
+                                <select id="capacity" name="capacity" class="form-control">
+                                    <option value="">Select Capacity</option>
+                                    <option value="0 - 99">0 - 99</option>
+                                    <option value="100 - 199">100 - 199</option>
+                                    <option value="200 - 299">200 - 299</option>
+                                    <option value="300 - 399">300 - 399</option>
+                                    <option value="400+">60 - 500</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <div class="price-range default-range">
+                                    <label for="amount" class="control-label">Price range:</label>
+                                    <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                                    <div id="slider-range"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 form-group rating">
+                                <label class="control-label">Select Rating </label>
+                                <div class="checkbox checkbox-success">
+                                    <input type="checkbox" name="checkbox" id="checkbox-0" value="1" class="styled">
+                                    <label for="checkbox-0" class="control-label"> <i class="fa fa-star"></i> </label>
+                                </div>
+                                <div class="checkbox checkbox-success">
+                                    <input type="checkbox" name="checkbox" id="checkbox-1" value="2" class="styled">
+                                    <label for="checkbox-1" class="control-label"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </label>
+                                </div>
+                                <div class="checkbox checkbox-success">
+                                    <input type="checkbox" name="checkbox" id="checkbox-2" value="3" class="styled">
+                                    <label for="checkbox-2" class="control-label"> <i class="fa fa-star"></i> <i class="fa fa-star"></i><i class="fa fa-star"></i> </label>
+                                </div>
+                                <div class="checkbox checkbox-success">
+                                    <input type="checkbox" name="checkbox" id="checkbox-3" value="4" class="styled">
+                                    <label for="checkbox-3" class="control-label"> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> </label>
+                                </div>
+                                <div class="checkbox checkbox-success">
+                                    <input type="checkbox" name="checkbox" id="checkbox-4" value="5" class="styled">
+                                    <label for="checkbox-4" class="control-label"> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> </label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label class="control-label">Amenities</label>
+                                <div class="checkbox checkbox-success">
+                                    <input type="checkbox" name="checkbox" id="weddinghall" value="Wedding Hall" class="styled">
+                                    <label for="weddinghall" class="control-label"> Wedding Hall </label>
+                                </div>
+                                <div class="checkbox checkbox-success">
+                                    <input type="checkbox" name="checkbox" id="dining" value="Dining" class="styled">
+                                    <label for="dining" class="control-label"> Dining </label>
+                                </div>
+                                <div class="checkbox checkbox-success">
+                                    <input type="checkbox" name="checkbox" id="insurance" value="Liability Insurance" class="styled">
+                                    <label for="insurance" class="control-label"> Liability Insurance </label>
+                                </div>
+                                <div class="checkbox checkbox-success">
+                                    <input type="checkbox" name="checkbox" id="catering" value="In House Catering" class="styled">
+                                    <label for="catering" class="control-label"> In House Catering </label>
+                                </div>
+                                <div class="checkbox checkbox-success">
+                                    <input type="checkbox" name="checkbox" id="djfacilities" value="5" class="styled">
+                                    <label for="djfacilities" class="control-label"> DJ Facilities </label>
+                                </div>
+                                <div class="checkbox checkbox-success">
+                                    <input type="checkbox" name="checkbox" id="dancefloor" value="Dance Foor" class="styled">
+                                    <label for="dancefloor" class="control-label"> Dance Foor </label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <button type="submit" class="btn btn-primary btn-block">Search</button>
+                            </div>
+                        </form>
                     </div>
-                  </div>
                 </div>
-              </div>
-            
+                <div class="col-md-9">
+                    <div class="row">
+
+                       <% for (product of products){
+                            for (product1 of product.product_id){  %>
+
+                       <!-- /.venue box start-->
+                        <div class="col-md-4 vendor-box <%= product1 %> products" data-productid="<%= product1 %>" data-artistid="<%= product.artist_name %>" data-artistsong="<%= product.artist_song %>" style="cursor:pointer">
+                            <!-- venue box start-->
+                            <div class="vendor-image">
+                                <!-- venue pic -->
+                                <a href="/shop/view-single-product?pro_id=<%= product1 %>&song_id=<%=product.artist_song %>&art_id=<%=product.artist_name %>"><img src="/home2/images/old/vendor-3.jpg" alt="wedding venue" class="img-responsive"></a>
+                                <div class="favourite-bg" style=" background-color:black "><a href="#" onclick="addTocart('<%= product1 %>')"><i class="fa fa-cart-plus"></i></a></div>
+                            </div>
+                            <!-- /.venue pic -->
+                            <div class="vendor-detail">
+                                <!-- venue details -->
+                                <div class="caption">
+                                    <!-- caption -->
+                                    <h2></h2><span class="product-tags title name<%= product1 %>">hhh</span></h2>
+                                    <p class="location"><i class="fa fa-map-marker"></i><span class="product-song product-song<%= product1 %>"> Song Name: </span></p>
+                                    <div class="rating "> <i class="fa fa-dollar"></i></i><span class="rating-count <%= product1 %>">(20) </span> </div>
+                                </div>
+                                <!-- /.caption -->
+                                <div class="vendor-price">
+                                    <div class="price">$390 - $600</div>
+                                </div>
+                            </div>
+                            <!-- venue details -->
+                        </div>
+                        <!-- /.venue box start-->
+
+                         <% }} %>
+                        
+                        <div class="col-md-12 tp-pagination">
+                            <ul class="pagination">
+                                <li>
+                                    <a href="#" aria-label="Previous"> <span aria-hidden="true">Previous</span> </a>
+                                </li>
+                                <li class="active"><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li>
+                                    <a href="#" aria-label="Next"> <span aria-hidden="true">NEXT</span> </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-             <% }} %>
-          </div>
-
-          <!-- Pagination -->
-          <nav>
-            <ul class="pagination mb-0 mt-50">
-              <li class="page-item active"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-right"></i></a></li>
-            </ul>
-          </nav>
         </div>
-      </div>
-
     </div>
-  </section>
-  <!-- ##### Shop Area End ##### -->
-  </body>
-  <script>
-// Get the elements with class="column"
-var elements = document.getElementsByClassName("column");
-
-// Declare a loop variable
-var i;
-
-// List View
-function listView() {
-  for (i = 0; i < elements.length; i++) {
-    elements[i].style.width = "100%";
-  }
-}
-
-// Grid View
-function gridView() {
-  for (i = 0; i < elements.length; i++) {
-    elements[i].style.width = "50%";
-  }
-}
-
-/* Optional: Add active class to the current button (highlight it) */
-var container = document.getElementById("btnContainer");
-var btns = container.getElementsByClassName("btn");
-for (var i = 0; i < btns.length; i++) {
-  btns[i].addEventListener("click", function() {
-    var current = document.getElementsByClassName("active");
-    current[0].className = current[0].className.replace(" active", "");
-    this.className += " active";
-  });
-}
-</script>

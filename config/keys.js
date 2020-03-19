@@ -1,18 +1,19 @@
+require('dotenv').config();
 module.exports ={
     google:{
-      clientID:'211111895005-2flkth2u09rpcccvahr5og2rc2vimaqc.apps.googleusercontent.com',
-      clientSecret:'ad-xzBhT8PYmSLJqDiu3fdZB'
+      clientID:process.env.GOOGLE_CLIENTID,
+      clientSecret:process.env.GOOGLE_CLIENT_SECRET
     },
     facebook:{
-      clientID:'My_secret',
-      clientSecret:''
+      clientID:process.env.FACEBOOK_CLIENTID,
+      clientSecret:process.env.FACEBOOK_CLIENT_SECRET
     },
     nexmo:{
-      apiKey: '',
-      apiSecret: ''
+      apiKey: process.env.NEXMO_KEY,
+      apiSecret: process.env.NEXMO_SECRETE
     },
     mail:{
-      user: '',
-      pass: ''
+      user: process.env.MAILER_USER,
+      pass: process.env.MAILER_PASS
     }
   }
