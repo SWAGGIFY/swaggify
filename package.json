@@ -9,7 +9,7 @@
   "author": "Knowledge Kwaramba, Kudakwashe Makumbe, Handsome Lunga, Panashe Ngazimbi, Jabulani Khumalo, Marven M\u001b[D\u001b[D\u001b[i\u001b[C\u001b[C\u001b[Cadyara",
   "license": "ISC",
   "dependencies": {
-    "async": "^3.2.0",
+    "async": "^3.2.2",
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
